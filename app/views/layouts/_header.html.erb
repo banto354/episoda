@@ -1,0 +1,23 @@
+<header>
+  <div class="container">
+    <div class="logo">
+      <!--<%= link_to image_tag("logo.png"), root_path %>-->
+    </div>
+    <nav>
+      <ul>
+        <% if user_signed_in? %>
+          <%# ログイン後 %>
+          <li><%= link_to "お知らせ", notices_path %></li>
+          <li><%= link_to "マイページ", user_path(current_user) %></li>
+          <li><%= link_to "新規投稿", new_post_path %></li>
+          <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+        <% else %>
+          <%# ログイン前 %>
+          <li><%= link_to "アバウトページ", about_path %></li>
+          <li><%= link_to "ログイン", new_user_session_path %></li>
+          <li><%= link_to "新規登録", new_user_registration_path %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+</header>
