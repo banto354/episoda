@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  
+  root to:'public/homes#top'
+  get '/about' => 'public/homes#about'
 # ユーザー用
   devise_for :users, controllers: {
   registrations: "public/registrations",

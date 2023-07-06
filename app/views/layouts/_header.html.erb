@@ -1,23 +1,41 @@
-<header>
-  <div class="container">
+<header class="bg-light">
+  <nav class="navbar navbar-expand-md navbar-light">
     <div class="logo">
-      <!--<%= link_to image_tag("logo.png"), root_path %>-->
+      <a class="navbar-brand">episoda</a>
     </div>
-    <nav>
-      <ul>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                  aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div  class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ml-auto">
         <% if user_signed_in? %>
           <%# ログイン後 %>
-          <li><%= link_to "お知らせ", notices_path %></li>
-          <li><%= link_to "マイページ", user_path(current_user) %></li>
-          <li><%= link_to "新規投稿", new_post_path %></li>
-          <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+          <div class="form-inline my-2 justify-content-center ml-1">
+            <%= form_with url: root_path, method: :get, local: true do |f| %>
+            <div class="row">
+              <div class="col pr-0 mt-1">
+                <%= f.text_field :word, placeholder: "Search", class: "form-control"%>
+              </div>
+              <div class="col pl-1 mt-1">
+                <button class="btn btn-success" type="submit">
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+            <% end %>
+          </div>
+          <li class="nav-item"><%= link_to "お知らせ", root_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "マイページ", root_path(current_user), class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "新規投稿", root_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %></li>
         <% else %>
           <%# ログイン前 %>
-          <li><%= link_to "アバウトページ", about_path %></li>
-          <li><%= link_to "ログイン", new_user_session_path %></li>
-          <li><%= link_to "新規登録", new_user_registration_path %></li>
+          <li class="nav-item"><%= link_to "アバウトページ", about_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "ログイン", new_user_session_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "新規登録", new_user_registration_path, class: "nav-link" %></li>
         <% end %>
       </ul>
-    </nav>
-  </div>
+    </div>
+  </nav>
 </header>
