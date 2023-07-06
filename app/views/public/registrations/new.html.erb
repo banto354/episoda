@@ -1,8 +1,23 @@
-<h2>Sign up</h2>
+<h2>新規登録</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= form_with model: @user, url: user_registration_path do |f| %>
+
   <%= render "public/shared/error_messages", resource: resource %>
 
+  <div class="field">
+    <%= f.label :name, "名前" %><br />
+    <%= f.text_field :name, autofocus: true, autocomplete: "名前" %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :username, "ユーザー名" %><br />
+    <%= f.text_field :username, autocomplete: "ユーザーネーム" %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :birthdate, "生年月日" %><br />
+    <%= f.date_select :birthdate, use_month_numbers: true %>
+  </div>
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
