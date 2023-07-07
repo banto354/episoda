@@ -1,14 +1,36 @@
 <div class="container">
   <div class="row">
-    <div class="col-6" style="position: fixed; height: 100vh;">
+    <div class="col-3" style="position: fixed; height: 100vh;">
       <!-- 左側のコンテンツ -->
-    <div class="col-sm-8 col-lg-4">
-      <%= image_tag @user.get_item_image(300, 250), class: 'img-fluid' %><br>
-      <%= @user.name %><br>
-      @<%= @user.username %><br>
-      <%= @user.introduction %>
+      <div class="container my-5 shadow-sm rounded">
+        <div class="row align-items-center"> 
+          <div class="col">
+            <%= image_tag @user.get_item_image(400, 400), class: 'rounded-circle img-fluid' %><br>
+          </div>
+        </div>
+        <div class="row align-items-center"> 
+          <div class="col">
+            <%= @user.name %><br>
+          </div>
+        </div>
+        <div class="row align-items-center"> 
+          <div class="col">
+            @<%= @user.username %><br>
+          </div>
+        </div>
+        <div class="row align-items-center"> 
+          <div class="col">
+            <%= @user.introduction %><br>
+          </div>
+        </div>
+        <div class="row align-items-center">
+          <div class="col">
+            〇〇フォロー　〇〇フォロワー
+          </div>
+        </div>
+      </div>
     </div>
-    </div>
+
     <div class="col-6" style="overflow-y: auto; height: 100vh; margin-left: 50%;">
       <!-- 右側のコンテンツ -->
       フィード
