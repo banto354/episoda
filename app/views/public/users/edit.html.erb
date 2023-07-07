@@ -1,2 +1,41 @@
-<h1>Public::Users#edit</h1>
-<p>Find me in app/views/public/users/edit.html.erb</p>
+<div class="container d-flex flex-column justify-content-center align-items-center col-12">
+  <div class="row">
+    <h2 class="col">ユーザー情報編集</h2>
+  </div>
+
+  <%= form_with model: @user, class: "row col-12" do |f| %>
+
+    <%= render "public/shared/error_messages", resource: @user %>
+    <div class="col">
+      <div class="container d-flex flex-column justify-content-center ">
+        <div class="form-group row mb-3">
+          <%= f.label :name, "名前", class: "col-2 form-label col-6" %>
+          <%= f.text_field :name, autocomplete: "名前", class: "col-4 col form-control" %>
+        </div>
+
+        <div class="form-group row mb-3">
+          <%= f.label :username, "ユーザー名", class: "col-2 form-label col-6" %>
+          <%= f.text_field :username, autocomplete: "ユーザーネーム", class: "col-4 form-control" %>
+        </div>
+
+        <div class="form-group row mb-3">
+          <%= f.label :birthdate, "生年月日", class: "col-2 form-label col-6" %>
+          <%= f.date_select :birthdate, use_month_numbers: true, class: "col-4 form-select" %>
+        </div>
+        <div class="form-group row mb-3">
+          <%= f.label :email, "メールアドレス", class: "col-2 form-label col-6" %>
+          <%= f.email_field :email, autocomplete: "email", class: "form-control col-4 " %>
+        </div>
+        <div class="form-group row mb-3">
+          <%= f.label :introduction, "プロフィール", class: "col-2 form-label col-6" %>
+          <%= f.text_area :introduction, class: "form-control col-4 " %>
+        </div>
+        <div class="row d-flex justify-content-center">
+          <div class="col-3">
+            <%= f.submit "更新", class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
