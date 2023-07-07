@@ -1,3 +1,31 @@
-<h2>Log in</h2>
-<%= render "form" %>
-<%= render "public/shared/links" %>
+<div class="container">
+  <div class="row">
+    <!--サイト説明-->
+    <div class="col-6 d-flex align-items-center">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <p>知らないエピソードが溢れるSNS</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--ログイン機能コンテナ-->
+    <div class="col-6">
+      <div class="container mt-5">
+        <div class="row justify-content-center">
+          <h5>ログイン</h5>
+        </div>
+        <%= render "form" %>
+        <div class="row justify-content-center pb-5">
+          <div class="col-12 text-center ">
+            <%= link_to "会員登録はこちら", new_registration_path(resource_name) %>
+          </div>
+        </div>
+        <div class="row text-center">
+          <%#= render "public/shared/links" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

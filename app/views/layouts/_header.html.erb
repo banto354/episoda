@@ -11,6 +11,10 @@
       <ul class="navbar-nav ml-auto">
         <% if user_signed_in? %>
           <%# ログイン後 %>
+          <li class="nav-item"><%= link_to "お知らせ", root_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "マイページ", root_path(current_user), class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "新規投稿", root_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %></li>
           <div class="form-inline my-2 justify-content-center ml-1">
             <%= form_with url: root_path, method: :get, local: true do |f| %>
             <div class="row">
@@ -25,10 +29,6 @@
             </div>
             <% end %>
           </div>
-          <li class="nav-item"><%= link_to "お知らせ", root_path, class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "マイページ", root_path(current_user), class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "新規投稿", root_path, class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %></li>
         <% else %>
           <%# ログイン前 %>
           <li class="nav-item"><%= link_to "アバウトページ", about_path, class: "nav-link" %></li>
