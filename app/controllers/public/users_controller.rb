@@ -19,9 +19,17 @@ class Public::UsersController < ApplicationController
   def check
   end
   
+  def withdrawal
+    @user = User.find(current_user.id)
+    user.update(is_deleted: true)
+    reset_session
+    flash[:danger] = "退会処理を実行いたしました"
+    redirect_to root_path
+  end
+  
   private
   
   def user_params
-    params.require(:user).permit(:name, :username, :birthdate, :email, :introduction)
+    params.require(:user).permit(:image, :name, :username, :birthdate, :email, :introduction)
   end
 end

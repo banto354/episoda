@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
          
   has_one_attached :image
+  # validate :image_size_validation
   
   def get_item_image(width, height)
     unless image.attached?
@@ -13,4 +14,13 @@ class User < ApplicationRecord
     end
     image.variant(resize_to_limit: [width, height]).processed
   end
+  
+  # def image_size_validation
+  #   if image.attached?
+  #     if image.blob.byte_size > 1.megabytes
+  #       image.purge
+  #       errors.add(:image, "は1MB以下でなければなりません")
+  #     end
+  #   end
+  # end
 end

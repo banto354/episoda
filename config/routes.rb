@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get '/about' => 'public/homes#about'
   scope module: :public do
     resources :users, only: [:show, :edit, :update]
+    patch 'users/withdrawal' => "users#withdrawal"
   end
   
   namespace :admin do
