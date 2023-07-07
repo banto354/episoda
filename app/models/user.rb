@@ -3,4 +3,24 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+         
+  has_one_attached :image
+  # validate :image_size_validation
+  
+  def get_item_image(width, height)
+    unless image.attached?
+      file_path = Rails.root.join('app/assets/images/no_image.jpg')
+      image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+    end
+    image.variant(resize_to_limit: [width, height]).processed
+  end
+  
+  # def image_size_validation
+  #   if image.attached?
+  #     if image.blob.byte_size > 1.megabytes
+  #       image.purge
+  #       errors.add(:image, "は1MB以下でなければなりません")
+  #     end
+  #   end
+  # end
 end
