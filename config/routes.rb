@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  
+  root to:'public/homes#top'
+  get '/about' => 'public/homes#about'
+  scope module: :public do
+  end
+  
+  namespace :admin do
+  end
 # ユーザー用
   devise_for :users, controllers: {
   registrations: "public/registrations",
