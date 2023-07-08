@@ -1,47 +1,13 @@
 <div class="container">
   <div class="row">
+    <!--左側:プロフィール-->
     <div class="col-3" style="position: fixed; height: 100vh;">
-      <!-- 左側のコンテンツ -->
-      <div class="container my-5 shadow-sm rounded">
-        <div class="row align-items-center"> 
-          <div class="col">
-            <%= image_tag @user.get_item_image(400, 400), class: 'rounded-circle img-fluid' %><br>
-          </div>
-        </div>
-        <div class="row align-items-center"> 
-          <div class="col">
-            <%= @user.name %><br>
-          </div>
-        </div>
-        <div class="row align-items-center"> 
-          <div class="col">
-            @<%= @user.username %><br>
-          </div>
-        </div>
-        <div class="row align-items-center"> 
-          <div class="col">
-            <%= @user.introduction %><br>
-          </div>
-        </div>
-        <div class="row align-items-center">
-          <div class="col">
-            〇〇フォロー　〇〇フォロワー
-          </div>
-        </div>
-        <div class="row align-items-center">
-          <div class="col">
-            <%= link_to edit_user_path(current_user), class: "btn btn-outline-secondary btn-block my-3" do %>
-                ユーザー情報編集
-                <i class="fa-solid fa-gear"></i>
-            <% end %>
-          </div>
-        </div>
-      </div>
+      <%= render 'profile', user: @user %>
     </div>
 
     <div class="col-6" style="overflow-y: auto; height: 100vh; margin-left: 50%;">
-      <!-- 右側のコンテンツ -->
-      フィード
+      <!-- 右側:投稿一覧 -->
+      <%= render 'index', episodes: @episodes, user: @user %>
     </div>
   </div>
 </div>

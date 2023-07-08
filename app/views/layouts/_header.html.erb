@@ -12,8 +12,16 @@
         <% if user_signed_in? %>
           <%# ログイン後 %>
           <li class="nav-item"><%= link_to "お知らせ", root_path, class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "マイページ", user_path(current_user), class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "新規投稿", root_path, class: "nav-link" %></li>
+          <li class="nav-item">
+            <%= link_to user_path(current_user), class: "nav-link" do %>
+              <i class="fa-solid fa-circle-user"></i>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to new_episode_path, class: "nav-link" do %>
+              <i class="fa-solid fa-pen-to-square"></i>
+            <% end %>
+          </li>
           <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %></li>
           <div class="form-inline my-2 justify-content-center ml-1">
             <%= form_with url: root_path, method: :get, local: true do |f| %>
