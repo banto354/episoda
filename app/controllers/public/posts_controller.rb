@@ -4,7 +4,7 @@ class Public::PostsController < ApplicationController
   end
 
   def show
-    
+    @post = Post.find(params[:id])
   end
 
   def new
@@ -15,7 +15,7 @@ class Public::PostsController < ApplicationController
     post = Post.new(post_params) 
     post.user_id = current_user.id
     if post.save
-      flash[:success] = "投稿しました"
+      flash[:success] = "投稿をしました"
       redirect_to user_path(current_user)
     else
       render :new
@@ -27,7 +27,8 @@ class Public::PostsController < ApplicationController
   end
   
   def update
-    if @post.save(post_params)
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
       flash[:success] = "編集を完了しました"
       redirect_to user_path(current_user)
     else
