@@ -1,2 +1,14 @@
-<h1><%= @episode.title %></h1>
-<h2><%= @episode.content %></h2>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1><%= @episode.title %></h1>
+      <h2><%= @episode.content %></h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <%= render "public/comments/comments_area", comments: @comments, episode: @episode %>
+    </div>
+  </div>
+</div>
+
