@@ -1,11 +1,6 @@
 Rails.application.routes.draw do
   
-  namespace :public do
-    get 'posts/index'
-    get 'posts/show'
-    get 'posts/new'
-    get 'posts/edit'
-  end
+
   root to:'public/homes#top'
   
   # ユーザー用
@@ -24,6 +19,7 @@ Rails.application.routes.draw do
     patch 'users/withdrawal' => "users#withdrawal", as: 'withdrawal_user'
     get 'users/check' => "users#check", as: 'check_user'
     resources :users, only: [:show, :edit, :update]
+    resources :posts, only: [:index, :show, :new, :create, :edit, :update]
   end
   
   namespace :admin do

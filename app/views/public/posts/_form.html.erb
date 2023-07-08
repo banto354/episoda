@@ -1,5 +1,5 @@
 <div>
-  <%= form_with model: item, url: (item.persisted? ? admin_item_path(item) : admin_items_path), class: 'form', local: true do |f| %>
+  <%= form_with model: post, url: posts_path, class: 'form' do |f| %>
 
     
     <div class="form-group row ml-md-2 mb-2">
