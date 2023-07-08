@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  
+
 
   root to:'public/homes#top'
-  
+
   # ユーザー用
   devise_for :users, controllers: {
   registrations: "public/registrations",
@@ -19,9 +19,11 @@ Rails.application.routes.draw do
     patch 'users/withdrawal' => "users#withdrawal", as: 'withdrawal_user'
     get 'users/check' => "users#check", as: 'check_user'
     resources :users, only: [:show, :edit, :update]
-    resources :episodes, only: [:index, :show, :new, :create, :edit, :update]
+    resources :episodes, only: [:index, :show, :new, :create, :edit, :update] do
+      resource :favourite, only: [:create, :destroy]
+    end
   end
-  
+
   namespace :admin do
   end
 
