@@ -1,6 +1,11 @@
 class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
+    if @user == current_user
+      @posts = Post.where(user_id: current_user.id)
+    else
+      @posts = Post.where(user_id: params[:id], visibility: 0)
+    end
   end
 
   def edit

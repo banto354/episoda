@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 2023_07_07_233449) do
     t.string "title", null: false
     t.text "content", null: false
     t.integer "visibility", default: 0, null: false
-    t.integer "group_id", null: false
+    t.integer "group_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -24,7 +24,7 @@
       <label class="col-md-4 col-form-label">カテゴリ</label>
       <div class="col form-row">
         <div class="col">
-          <%#= f.select :category, options_for_select(Category.all.map { |category| [category.name, category.id] }), {prompt: '選択してください'}, class: 'form-control' %>
+          <%#= f.select :category_id, options_for_select(Category.all.map { |category| [category.name, category.id] }), {prompt: '選択してください'}, class: 'form-control' %>
         </div>
       </div>
     </div>
@@ -33,7 +33,7 @@
       <label class="col-md-4 col-form-label">公開対象</label>
       <div class="col form-row">
         <div class="col">
-          <%#= f.select :visibility, Post.visibility_i18n.invert, {prompt: '選択してください'}, class: 'form-control' %>
+          <%= f.select :visibility, Post.visibilities_i18n.invert, {prompt: '選択してください'}, class: 'form-control' %>
         </div>
       </div>
     </div>
