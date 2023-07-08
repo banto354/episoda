@@ -24,7 +24,9 @@
           <!--エピソード概要下段-->
           <div class="row">
             <div class="col">
-              <%= episode_favourite_icon(episode, current_user) %>
+              <div class="favourite-btn" id="favourite-btn-<%= episode.id %>">
+                <%= render 'public/favourites/favourite-btn', episode: episode %>
+              </div>
             </div>
           </div>
         </div>

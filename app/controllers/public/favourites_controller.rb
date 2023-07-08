@@ -1,13 +1,14 @@
 class Public::FavouritesController < ApplicationController
 
   def create
+    @episode = Episode.find(params[:episode_id])
     favourite = Favourite.new(user_id: current_user.id, episode_id: params[:episode_id])
     favourite.save
-    byebug
   end
 
   def destroy
-    favourite = Favourite.find(user_id: current_user.id, episode_id: params[:episode_id])
+    @episode = Episode.find(params[:episode_id])
+    favourite = Favourite.find_by(user_id: current_user.id, episode_id: params[:episode_id])
     favourite.destroy
   end
   
