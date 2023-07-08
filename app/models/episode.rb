@@ -1,4 +1,4 @@
-class Post < ApplicationRecord
+class Episode < ApplicationRecord
   
   belongs_to :user
   

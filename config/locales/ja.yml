@@ -1,6 +1,6 @@
 ja:
     enums:
-      post:
+      episode:
         visibility:
           to_public: "公開"
           to_group: "任意のグループ"

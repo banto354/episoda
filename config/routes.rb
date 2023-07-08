@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     patch 'users/withdrawal' => "users#withdrawal", as: 'withdrawal_user'
     get 'users/check' => "users#check", as: 'check_user'
     resources :users, only: [:show, :edit, :update]
-    resources :posts, only: [:index, :show, :new, :create, :edit, :update]
+    resources :episodes, only: [:index, :show, :new, :create, :edit, :update]
   end
   
   namespace :admin do
