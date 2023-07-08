@@ -8,6 +8,7 @@ class User < ApplicationRecord
   # validate :image_size_validation
   
   has_many :episodes, dependent: :destroy
+  has_many :favourites, dependent: :destroy
   
   def get_item_image(width, height)
     unless image.attached?

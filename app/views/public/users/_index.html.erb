@@ -5,6 +5,7 @@
     <div>
       <% episodes.each do |episode| %>
         <div class="container my-3 shadow-sm rounded">
+          <!--エピソード概要上段-->
           <div class="row">
             <div class="col-2">
               <%= image_tag user.get_item_image(150, 150), class: 'rounded-circle img-fluid' %>
@@ -18,6 +19,14 @@
               <%= link_to edit_episode_path do %>
                 <i class="fa-solid fa-file-pen"></i>
               <% end %>
+            </div>
+          </div>
+          <!--エピソード概要下段-->
+          <div class="row">
+            <div class="col">
+              <div class="favourite-btn" id="favourite-btn-<%= episode.id %>">
+                <%= render 'public/favourites/favourite-btn', episode: episode %>
+              </div>
             </div>
           </div>
         </div>
