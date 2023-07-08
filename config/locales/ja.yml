@@ -1,0 +1,7 @@
+ja:
+    enums:
+      post:
+        visibility:
+          to_public: "公開"
+          to_group: "任意のグループ"
+          to_myself: "非公開"

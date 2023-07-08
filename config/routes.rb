@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
   
+  namespace :public do
+    get 'posts/index'
+    get 'posts/show'
+    get 'posts/new'
+    get 'posts/edit'
+  end
   root to:'public/homes#top'
   
   # ユーザー用
