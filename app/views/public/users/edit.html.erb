@@ -2,10 +2,12 @@
   <div class="row">
     <h2 class="col">ユーザー情報編集</h2>
   </div>
-
+  <div class="row">
+    <div class="col">
+      <%= render "public/shared/error_messages", resource: @user %>
+    </div>
+  </div>
   <%= form_with model: @user, class: "row col-12" do |f| %>
-
-    <%= render "public/shared/error_messages", resource: @user %>
     <div class="col">
       <div class="container d-flex flex-column justify-content-center ">
         
