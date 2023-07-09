@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
-
   root to:'public/homes#top'
-
+  get '/about' => 'public/homes#about'
+  
   # ユーザー用
   devise_for :users, controllers: {
   registrations: "public/registrations",
@@ -14,7 +14,6 @@ Rails.application.routes.draw do
   sessions: "admin/sessions"
   }
 
-  get '/about' => 'public/homes#about'
   scope module: :public do
     patch 'users/withdrawal' => "users#withdrawal", as: 'withdrawal_user'
     get 'users/check' => "users#check", as: 'check_user'
@@ -26,6 +25,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

@@ -1,34 +1,36 @@
 <!--comments index-->
-<table class="table table-bordered col-8">
-    <tbody>
-        <% comments.each do |comment| %>
-            <tr class="comment" id="comment_<%= comment.id %>">
-                <td>
-                    <a href="<%= user_path(comment.user) %>">
-                        <%= image_tag comment.user.get_profile_image(100, 100) %><br>
-                        <%= comment.user.name %>
-                    </a>
-                </td>
-                <td>
-                    <%= comment.content %>
-                </td>
-                <td>
-                    <% if comment.user == current_user %>
-                        <%= link_to "Destroy", episode_comments_path(comment.id), method: :delete, class:"btn btn-sm btn-danger" %>
-                    <% end %>
-                </td>
-            </tr>
+<div class="comment">
+    <table class="table col-8">
+        <tbody>
+            <% comments.each do |comment| %>
+                <tr id="comment_<%= comment.id %>">
+                    <td>
+                        <a href="<%= user_path(comment.user) %>">
+                            <!--<%#= image_tag comment.user.get_profile_image(100, 100) %><br>-->
+                            <%= comment.user.name %>
+                        </a>
+                    </td>
+                    <td>
+                        <%= comment.content %>
+                    </td>
+                    <td>
+                        <% if comment.user == current_user %>
+                            <%= link_to "Destroy", episode_comment_path(comment.id, episode_id: comment.episode_id), method: :delete, remote: true, class:"btn btn-sm btn-danger" %>
+                        <% end %>
+                    </td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+    <!--comment form-->
+    <div class="container">
+        <%= form_with(model: Comment.new, url: episode_comments_path(episode), local: false) do |form| %>
+            <div class="form-group">
+                <%= form.text_area :content, class:"form-control" %>
+            </div>
+            <div class="form-group">
+                <%= form.submit "submit", class:"btn btn-secondary" %>
+            </div>
         <% end %>
-    </tbody>
-</table>
-<!--comment form-->
-<div class="container">
-    <%= form_with(model: Comment.new, url: episode_comments_path(episode)) do |form| %>
-        <div class="form-group">
-            <%= form.text_area :content, class:"form-control" %>
-        </div>
-        <div class="form-group">
-            <%= form.submit "submit", class:"btn btn-secondary" %>
-        </div>
-    <% end %>
+    </div>
 </div>

@@ -4,10 +4,17 @@ class Public::CommentsController < ApplicationController
     comment.user_id = current_user.id
     comment.episode_id = params[:episode_id]
     comment.save
+    @comments = Comment.where(episode_id: params[:episode_id])
+    @episode = Episode.find(params[:episode_id])
+    flash[:success] = "コメントを投稿しました"
   end
 
   def destroy
-
+    comment = Comment.find(params[:id])
+    comment.destroy
+    @comments = Comment.where(episode_id: params[:episode_id])
+    @episode = Episode.find(params[:episode_id])
+    flash[:success] = "コメントを削除しました"
   end
 
   private
