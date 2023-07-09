@@ -9,8 +9,9 @@ class User < ApplicationRecord
   
   has_many :episodes, dependent: :destroy
   has_many :favourites, dependent: :destroy
+  has_many :comments, dependent: :destroy
   
-  def get_item_image(width, height)
+  def get_profile_image(width, height)
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
       image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')

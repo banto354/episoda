@@ -5,6 +5,7 @@ class Public::EpisodesController < ApplicationController
 
   def show
     @episode = Episode.find(params[:id])
+    @comments = Comment.where(episode_id: params[:id])
   end
 
   def new
