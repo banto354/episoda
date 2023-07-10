@@ -1,4 +1,6 @@
 class Public::EpisodesController < ApplicationController
+  before_action :is_public?, only: [:show]
+  
   def index
     @episodes = Episode.where(is_public: true)
   end
@@ -50,4 +52,17 @@ class Public::EpisodesController < ApplicationController
       redirect_to user_path(current_user.id) 
     end
   end
+  
+  def is_public?
+    episode = Episode.find(params[:id])
+    if episode.visibility == 1 
+      flash[:notice] = "この投稿は公開されていません"
+      redirect_to root_path
+    elsif episode.visibility == 2
+      # グループ設定
+      flash[:notice] = "この投稿は指定されたグループにのみ公開されています"
+      redirect_to root_path
+    end
+  end
+  
 end
