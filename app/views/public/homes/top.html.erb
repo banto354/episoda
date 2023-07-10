@@ -16,7 +16,12 @@
         <div class="row justify-content-center">
           <h5>ログイン</h5>
         </div>
+        <!--ゲストユーザーログインボタン-->
         <%= render "/public/sessions/form" %>
+        <div class="row">
+          <%= link_to "ゲストログイン（閲覧用）", users_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
+        </div>
+        
         <div class="row justify-content-center pb-5">
           <div class="col-12 text-center ">
             <%= link_to "はじめてのはこちら", new_registration_path(:user) %>
