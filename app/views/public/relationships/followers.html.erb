@@ -1,0 +1,35 @@
+<div class="container">
+  <h1>
+      フォロワー
+  </h1>
+
+  <% if @followers.empty? %>
+  <div class="row">
+    <div class="col">
+      <h2>まだフォロワーはいません</h2>
+    </div>
+  </div>
+  <% end %>
+
+  <div>
+    <% @followers.each do |follower| %>
+      <div class="container my-3 shadow-sm rounded">
+        <!--エピソード概要上段-->
+        <div class="row">
+          <div class="col-2">
+            <%= image_tag user.get_profile_image(150, 150), class: 'rounded-circle img-fluid' %>
+          </div>
+          <div class="col-9">
+            <%= follower.name %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+
+      </div>
+    <% end %>
+  </div>
+  <div class="pagination d-flex justify-content-center mb-4">
+    <%#= paginate @orders %>
+  </div>
+</div>

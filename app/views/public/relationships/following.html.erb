@@ -1,0 +1,35 @@
+<div class="container">
+  <h1>
+      フォロー中
+  </h1>
+  
+  <% if @following.empty? %>
+  <div class="row">
+    <div class="col">
+      <h2>だれもフォローしていません</h2>      
+    </div>
+  </div>
+  <% end %>
+
+  <div>
+    <% @following.each do |followed| %>
+      <div class="container my-3 shadow-sm rounded">
+        <!--エピソード概要上段-->
+        <div class="row">
+          <div class="col-2">
+            <%= image_tag followed.get_profile_image(150, 150), class: 'rounded-circle img-fluid' %>
+          </div>
+          <div class="col-9">
+            <%= followed.name %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+
+      </div>
+    <% end %>
+  </div>
+  <div class="pagination d-flex justify-content-center mb-4">
+    <%#= paginate @orders %>
+  </div>
+</div>
