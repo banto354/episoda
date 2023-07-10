@@ -1,7 +1,7 @@
-<header class="bg-light">
+<header class="header">
   <nav class="navbar navbar-expand-md navbar-light">
     <%= link_to root_path, class: "logo" do %>
-      <a>episoda</a>
+      <%= image_tag("episoda_logo.png", alt: "logo", id: "header_logo", class: "logo") %>
     <% end %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                   aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,20 +23,20 @@
             <% end %>
           </li>
           <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %></li>
-          <div class="form-inline my-2 justify-content-center ml-1">
-            <%= form_with url: root_path, method: :get, local: true do |f| %>
-            <div class="row">
-              <div class="col pr-0 mt-1">
-                <%= f.text_field :word, placeholder: "Search", class: "form-control"%>
-              </div>
-              <div class="col pl-1 mt-1">
-                <button class="btn btn-success" type="submit">
-                  <i class="fa fa-search" aria-hidden="true"></i>
-                </button>
-              </div>
-            </div>
-            <% end %>
-          </div>
+          <!--<div class="form-inline my-2 justify-content-center ml-1">-->
+          <!--  <%#= form_with url: root_path, method: :get, local: true do |f| %>-->
+          <!--  <div class="row">-->
+          <!--    <div class="col pr-0 mt-1">-->
+          <!--      <%#= f.text_field :word, placeholder: "Search", class: "form-control"%>-->
+          <!--    </div>-->
+          <!--    <div class="col pl-1 mt-1">-->
+          <!--      <button class="btn btn-success" type="submit">-->
+          <!--        <i class="fa fa-search" aria-hidden="true"></i>-->
+          <!--      </button>-->
+          <!--    </div>-->
+          <!--  </div>-->
+          <!--  <%# end %>-->
+          <!--</div>-->
         <% else %>
           <%# ログイン前 %>
           <li class="nav-item"><%= link_to "アバウトページ", about_path, class: "nav-link" %></li>
