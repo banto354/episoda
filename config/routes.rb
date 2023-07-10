@@ -17,7 +17,11 @@ Rails.application.routes.draw do
   scope module: :public do
     patch 'users/withdrawal' => "users#withdrawal", as: 'withdrawal_user'
     get 'users/check' => "users#check", as: 'check_user'
-    resources :users, only: [:show, :edit, :update]
+    resources :users, only: [:show, :edit, :update] do
+      resource :relationships, only: [:create, :destroy]
+      get 'followers' => 'relationships#followers', as: 'followers'
+      get 'following' => 'relationships#following', as: 'following'
+    end
     resources :episodes, only: [:index, :show, :new, :create, :edit, :update] do
       resource :favourite, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]

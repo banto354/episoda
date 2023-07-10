@@ -10,6 +10,10 @@ class User < ApplicationRecord
   has_many :episodes, dependent: :destroy
   has_many :favourites, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :passive_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+  has_many :following, through: :active_relationships, source: :followed
+  has_many :followers, through: :passive_relationships, source: :follower
   
   validates :name, presence: true, length: { minimum: 2, maximum: 20 }
     # 半角英数字のみを許可する正規表現（英字は小文字のみ）
@@ -25,6 +29,10 @@ class User < ApplicationRecord
       image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
     image.variant(resize_to_limit: [width, height]).processed
+  end
+  
+  def followed_by?(user)
+    passive_relationships.exists?(follower_id: user.id )
   end
   
   # def image_size_validation

@@ -21,15 +21,31 @@
   </div>
   <div class="row align-items-center">
     <div class="col">
-      〇〇フォロー　〇〇フォロワー
-    </div>
-  </div>
-  <div class="row align-items-center">
-    <div class="col">
-      <%= link_to edit_user_path(current_user), class: "btn btn-outline-secondary btn-block my-3" do %>
-          ユーザー情報編集
-          <i class="fa-solid fa-gear"></i>
+      <%= link_to user_following_path(user.id) do %>
+        <%= user.following.count %> フォロー
+      <% end %>
+      <%= link_to user_followers_path(user.id) do %>
+        <%= user.followers.count %> フォロワー
       <% end %>
     </div>
   </div>
+  <!--ログインユーザーの確認、表示ボタンの変更-->
+  <% if user.id != current_user.id %>
+  <div class="row">
+    <div class="col">
+      <div class="follow-btn my-3" id="follow-btn-<%= user.id %>">
+        <%= render "/public/relationships/follow_btn", user: user %>
+      </div>     
+    </div>
+  </div>
+  <% else %>
+    <div class="row align-items-center">
+      <div class="col">
+        <%= link_to edit_user_path(current_user), class: "btn btn-outline-secondary btn-block my-3" do %>
+            ユーザー情報編集
+            <i class="fa-solid fa-gear"></i>
+        <% end %>
+      </div>
+    </div>  
+  <% end %>
 </div>
