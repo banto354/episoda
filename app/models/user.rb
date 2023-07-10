@@ -46,6 +46,10 @@ class User < ApplicationRecord
     end
   end
   
+  def guest_user?
+    email == GUEST_USER_EMAIL
+  end
+  
   # def image_size_validation
   #   if image.attached?
   #     if image.blob.byte_size > 1.megabytes
