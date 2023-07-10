@@ -11,7 +11,8 @@ Rails.application.routes.draw do
 
 # 管理者用
   devise_for :admin, controllers: {
-  sessions: "admin/sessions"
+  sessions: "admin/sessions",
+  registrations: "admin/registrations"
   }
 
   scope module: :public do

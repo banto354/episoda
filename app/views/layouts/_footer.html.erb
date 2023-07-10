@@ -4,6 +4,9 @@
       <% if user_signed_in? %>
         <%# ログイン後 %>
         <li class="nav-item"><%= link_to "サイト概要", about_path, class: "nav-link" %></li>
+      <% elsif admin_signed_in?%>
+        <!--管理者ログイン後-->
+        管理者ログイン中
       <% else %>
         <%# ログイン前 %>
         お問合せ
