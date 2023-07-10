@@ -42,4 +42,12 @@ class Public::EpisodesController < ApplicationController
   def episode_params
     params.require(:episode).permit(:title, :content, :visibility, :group_id)
   end
+
+  def is_matching_login_user
+    episode = Episode.find(params[:id])
+    unless episode.user.id == current_user.id
+      flash[:alert]="ユーザーが一致しません"
+      redirect_to user_path(current_user.id) 
+    end
+  end
 end

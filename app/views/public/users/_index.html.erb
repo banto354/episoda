@@ -20,20 +20,16 @@
             <%= link_to user.name, user_path(episode.user), class: "underline" %><br>
             <!--<%#= link_to episode.category.name, category_path(episode.category) %>-->
             <%= link_to episode.title, episode_path(episode) %>
+            <div class="favourite-btn" id="favourite-btn-<%= episode.id %>">
+              <%= render 'public/favourites/favourite-btn', episode: episode %>
+            </div>
           </div>
           <div class="col-1">
             <%= link_to edit_episode_path do %>
               <i class="fa-solid fa-file-pen"></i>
             <% end %>
           </div>
-        </div>
-        <!--エピソード概要下段-->
-        <div class="row">
-          <div class="col">
-            <div class="favourite-btn" id="favourite-btn-<%= episode.id %>">
-              <%= render 'public/favourites/favourite-btn', episode: episode %>
-            </div>
-          </div>
+          
         </div>
       </div>
       <div class="row">
