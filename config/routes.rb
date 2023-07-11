@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get 'episodes/index'
+    get 'episodes/show'
+    get 'episodes/edit'
+  end
   root to:'public/homes#top'
   get '/about' => 'public/homes#about'
   
