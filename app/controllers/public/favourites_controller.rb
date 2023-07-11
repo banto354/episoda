@@ -1,4 +1,5 @@
 class Public::FavouritesController < ApplicationController
+  before_action :authenticate_user!
 
   def create
     @episode = Episode.find(params[:episode_id])

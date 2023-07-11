@@ -1,4 +1,5 @@
 class Public::CommentsController < ApplicationController
+  before_action :authenticate_user!, except: [:top, :about] 
   def create
     comment = Comment.new(comment_params)
     comment.user_id = current_user.id
