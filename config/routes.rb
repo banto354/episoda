@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  namespace :public do
+    get 'notifications/index'
+  end
   root to:'public/homes#top'
   get '/about' => 'public/homes#about'
 
