@@ -26,7 +26,7 @@ class Admin::UsersController < ApplicationController
   private
   
   def user_params
-    params.require(:user).permit(:image, :name, :username, :birthdate, :email, :introduction)
+    params.require(:user).permit(:image, :name, :username, :birthdate, :email, :introduction, :is_public, :is_active)
   end
   
   # 管理者機能では編集先のidとの一致を求めない

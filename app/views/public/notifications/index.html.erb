@@ -1,0 +1,21 @@
+<h1>お知らせ</h1>
+<ul>
+  <% @notifications.each do |notification| %>
+    <% message = notification.to_notification.message %>
+    <% url = notification.to_notification.url %>
+    <li>
+      <% if notification.type == "CommentNotification" %>
+        <%= link_to message[:user], url[:user] %>さんがあなたのエピソード<%= link_to message[:episode], url[:episode] %>にコメントしました
+      <% elsif notification.type == "RelationshipNotification" %>
+        <%= link_to message[:user], url[:user] %>さんがあなたをフォローしました
+      <% elsif notification.type == "FavouriteNotification" %>
+        <%= link_to message[:user], url[:user] %>さんがあなたのエピソード<%= link_to message[:episode], url[:episode] %>にいいねしました
+      <% end %>
+      <% if notification.read? %>
+        <span class="badge badge-success">Read</span>
+      <% else %>
+        <span class="badge badge-danger">Unread</span>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

@@ -4,7 +4,15 @@ class Public::FavouritesController < ApplicationController
   def create
     @episode = Episode.find(params[:episode_id])
     favourite = Favourite.new(user_id: current_user.id, episode_id: params[:episode_id])
-    favourite.save
+    if  favourite.save
+      # 通知(投稿者自身によるいいね除く)
+      unless favourite.user == favourite.episode.user
+        notification = FavouriteNotification.with(favourite: favourite)
+        notification.deliver(@episode.user)
+      end
+    else
+      render "episodes/show"
+    end
   end
 
   def destroy

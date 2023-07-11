@@ -1,13 +1,23 @@
 class Public::CommentsController < ApplicationController
   before_action :authenticate_user!, except: [:top, :about] 
   def create
+    # コメント保存
     comment = Comment.new(comment_params)
     comment.user_id = current_user.id
     comment.episode_id = params[:episode_id]
-    comment.save
+    # 引き渡しデータ格納
     @comments = Comment.where(episode_id: params[:episode_id])
     @episode = Episode.find(params[:episode_id])
-    flash[:success] = "コメントを投稿しました"
+    if comment.save
+      # 通知(投稿者自身によるコメント除く)
+      unless comment.user == comment.episode.user
+        notification = CommentNotification.with(comment: comment)
+        notification.deliver(@episode.user)
+      end  
+      # flash[:success] = "コメントを投稿しました"
+    else
+      render "episodes/show"
+    end
   end
 
   def destroy

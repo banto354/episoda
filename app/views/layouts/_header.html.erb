@@ -11,7 +11,7 @@
       <ul class="navbar-nav ml-auto">
         <% if user_signed_in? %>
           <%# ログイン後 %>
-          <li class="nav-item"><%= link_to "お知らせ", root_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "お知らせ", notifications_path, class: "nav-link" %></li>
           <li class="nav-item">
             <%= link_to user_path(current_user), class: "nav-link" do %>
               <i class="fa-solid fa-circle-user"></i>
