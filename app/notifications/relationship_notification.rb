@@ -22,13 +22,13 @@ class RelationshipNotification < Noticed::Base
   # end
   def message
     {
-      user: params[:follower].name, 
+      user: params[:follower].name
     }
   end
   #
    def url
    {
-     user_path(params[:follower])
+     user: user_path(params[:follower])
    }
    end
 end

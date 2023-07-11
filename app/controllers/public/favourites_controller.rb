@@ -7,7 +7,7 @@ class Public::FavouritesController < ApplicationController
     if  favourite.save
       # 通知(投稿者自身によるいいね除く)
       unless favourite.user == favourite.episode.user
-        notification = FabouritetNotification.with(favourite: favourite)
+        notification = FavouriteNotification.with(favourite: favourite)
         notification.deliver(@episode.user)
       end
     else

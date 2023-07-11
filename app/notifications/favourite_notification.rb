@@ -3,7 +3,7 @@
 # FavourtiteNotification.with(post: @post).deliver_later(current_user)
 # FavourtiteNotification.with(post: @post).deliver(current_user)
 
-class FavourtiteNotification < Noticed::Base
+class FavouriteNotification < Noticed::Base
   # Add your delivery methods
   #
    deliver_by :database
