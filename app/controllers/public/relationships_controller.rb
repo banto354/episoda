@@ -3,7 +3,12 @@ class Public::RelationshipsController < ApplicationController
   def create
     relationship = Relationship.new(followed_id: params[:user_id])
     relationship.follower_id = current_user.id
-    relationship.save
+    if relationship.save
+      notification = FabouritetNotification.with(follower: current_user)
+      notification.deliver(relationship.followed)
+    else
+      redirect_to request.referer #要チェック
+    end
     @user = User.find(params[:user_id])
   end
 

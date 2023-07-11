@@ -13,9 +13,7 @@ class Public::CommentsController < ApplicationController
       unless comment.user == comment.episode.user
         notification = CommentNotification.with(comment: comment)
         notification.deliver(@episode.user)
-        byebug
       end  
-      byebug
       # flash[:success] = "コメントを投稿しました"
     else
       render "episodes/show"

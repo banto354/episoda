@@ -6,7 +6,7 @@
 class RelationshipNotification < Noticed::Base
   # Add your delivery methods
   #
-  # deliver_by :database
+  deliver_by :database
   # deliver_by :email, mailer: "UserMailer"
   # deliver_by :slack
   # deliver_by :custom, class: "MyDeliveryMethod"
@@ -20,8 +20,15 @@ class RelationshipNotification < Noticed::Base
   # def message
   #   t(".message")
   # end
+  def message
+    {
+      user: params[:follower].name, 
+    }
+  end
   #
-  # def url
-  #   post_path(params[:post])
-  # end
+   def url
+   {
+     user_path(params[:follower])
+   }
+   end
 end

@@ -6,7 +6,7 @@
 class FavourtiteNotification < Noticed::Base
   # Add your delivery methods
   #
-  # deliver_by :database
+   deliver_by :database
   # deliver_by :email, mailer: "UserMailer"
   # deliver_by :slack
   # deliver_by :custom, class: "MyDeliveryMethod"
@@ -20,8 +20,17 @@ class FavourtiteNotification < Noticed::Base
   # def message
   #   t(".message")
   # end
-  #
-  # def url
-  #   post_path(params[:post])
-  # end
+  def message
+    {
+      user: params[:favourite].user.name, 
+      episode: params[:favourite].episode.title
+    }
+  end
+  
+   def url
+     {
+     user: user_path(params[:favourite].user),
+     episode: episode_path(params[:favourite].episode)       
+     }
+   end
 end
