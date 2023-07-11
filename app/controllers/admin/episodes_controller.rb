@@ -12,6 +12,16 @@ class Admin::EpisodesController < ApplicationController
     @episode = Episode.find(params[:id])
   end
   
+  def update
+    @episode = Episode.find(params[:id])
+    if @episode.update(episode_params)
+      flash[:notice] = "編集を完了しました"
+      redirect_to admin_episode_path(@episode)
+    else
+      render :edit
+    end
+  end
+  
   private
   
   def episode_params
