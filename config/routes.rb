@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :public do
-    get 'notifications/index'
-  end
   root to:'public/homes#top'
   get '/about' => 'public/homes#about'
 
@@ -30,6 +27,7 @@ Rails.application.routes.draw do
       resource :favourite, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
     end
+    resources :notifications, only: [:index]
   end
 
   namespace :admin do
