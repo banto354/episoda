@@ -1,2 +1,31 @@
-<h1>Admin::Episodes#index</h1>
-<p>Find me in app/views/admin/episodes/index.html.erb</p>
+<div class="container col-xl-8 col-lg-9 my-4 px-sm-1">
+  <div class="px-1 ml-md-2">
+    <h1 class="text-center mx-auto mb-4" style="width: 400px;">エピソード一覧</h1>
+  </div>
+  <div class="mx-auto col-10">
+
+    <table class="table">
+      <thead>
+        <tr>
+          <td class="bg-light">エピソードID</td>
+          <td class="bg-light">名前</td>
+          <td class="bg-light">タイトル</td>
+          <td class="bg-light">公開対象</td>
+        </tr>
+        <% @episodes.each do |episode| %>
+        <tr>
+          <td><%= episode.id %></td>
+          <td class="link-black"><%= link_to episode.user.name, admin_user_path(episode.user) %></td>
+          <td class="link-black"><%= link_to episode.title, admin_episode_path(episode) %></td>
+          <td><%= Episode.visibilities_i18n[episode.visibility] %></td>
+        </tr>
+      <% end %>
+    </thead>
+  </table>
+
+    <div>
+      <%= paginate @episodes %>
+    </div>
+
+  </div>
+</div>

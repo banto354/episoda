@@ -1,13 +1,8 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
-    get 'episodes/index'
-    get 'episodes/show'
-    get 'episodes/edit'
-  end
   root to:'public/homes#top'
   get '/about' => 'public/homes#about'
-  
+
   # ユーザー用
   devise_for :users, controllers: {
   registrations: "public/registrations",
@@ -36,8 +31,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users, only: [:index, :show, :edit, :update]
+    resources :episodes, only: [:index, :show, :edit, :update]
   end
-  
+
   devise_scope :user do
     post "users/guest_sign_in", to: "users/sessions#guest_sign_in"
   end

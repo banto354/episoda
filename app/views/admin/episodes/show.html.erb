@@ -1,2 +1,26 @@
-<h1>Admin::Episodes#show</h1>
-<p>Find me in app/views/admin/episodes/show.html.erb</p>
+<div class="container">
+  <div class="row">
+
+    <div class="col-3" style="position: fixed; height: 100%;">
+      <%= render 'public/users/profile', user: @episode.user %>
+    </div>
+
+    <div class="col-8" style="overflow-y: auto; height: 100vh; margin-left: 35%;">
+      <div class="row my-5">
+        <div class="col">
+          <h1><%= @episode.title %></h1>
+        </div>
+      </div>
+        <div class="row">
+        <div class="col">
+          <p><%= simple_format(@episode.content) %></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <%= render "admin/comments/comments_area", comments: @comments, episode: @episode %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
