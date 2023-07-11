@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col-10">
+      <div class="row my-5">
+        <div class="col">
+          <h1><%= @episode.title %></h1>
+        </div>
+      </div>
+        <div class="row">
+        <div class="col">
+          <p><%= simple_format(@episode.content) %></p>
+        </div>
+      </div>
+      <%= link_to "編集する", edit_admin_episode_path(@episode), class: "btn btn-success btn-sm mr-2 mr-md-5 px-4" %>
+      <div class="row">
+        <div class="col">
+          <%= render "admin/comments/comments_area", comments: @comments, episode: @episode %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

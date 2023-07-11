@@ -1,4 +1,5 @@
 class Public::RelationshipsController < ApplicationController
+  before_action :authenticate_user!
   def create
     relationship = Relationship.new(followed_id: params[:user_id])
     relationship.follower_id = current_user.id

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   root to:'public/homes#top'
   get '/about' => 'public/homes#about'
-  
+
   # ユーザー用
   devise_for :users, controllers: {
   registrations: "public/registrations",
@@ -11,7 +11,8 @@ Rails.application.routes.draw do
 
 # 管理者用
   devise_for :admin, controllers: {
-  sessions: "admin/sessions"
+  sessions: "admin/sessions",
+  registrations: "admin/registrations"
   }
 
   scope module: :public do
@@ -29,9 +30,10 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    
+    resources :users, only: [:index, :show, :edit, :update]
+    resources :episodes, only: [:index, :show, :edit, :update]
   end
-  
+
   devise_scope :user do
     post "users/guest_sign_in", to: "users/sessions#guest_sign_in"
   end

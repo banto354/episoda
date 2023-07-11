@@ -1,0 +1,23 @@
+<!--comments index-->
+<div class="comment">
+    <table class="table col-8">
+        <tbody>
+            <% comments.each do |comment| %>
+                <tr id="comment_<%= comment.id %>">
+                    <td>
+                        <a href="<%= admin_user_path(comment.user) %>">
+                            <!--<%#= image_tag comment.user.get_profile_image(100, 100) %><br>-->
+                            <%= comment.user.name %>
+                        </a>
+                    </td>
+                    <td>
+                        <%= comment.content %>
+                    </td>
+                    <td>
+                        <%= link_to "Destroy", episode_comment_path(comment.id, episode_id: comment.episode_id), method: :delete, remote: true, class:"btn btn-sm btn-danger" %>
+                    </td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>
