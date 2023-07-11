@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get 'searches/index'
+  end
+  namespace :public do
+    get 'searches/index'
+  end
   root to:'public/homes#top'
   get '/about' => 'public/homes#about'
 
