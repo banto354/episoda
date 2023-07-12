@@ -1,2 +1,27 @@
-<h1>Public::Searches#index</h1>
-<p>Find me in app/views/public/searches/index.html.erb</p>
+<div class="container col-10">
+    <% if @episodes.present? %>
+        <h1 class="row">"<%= @query %>"の検索結果</h1>
+        <table class="container col-12 table table-hover">
+            <tbody>
+            <% @episodes.each do |episode| %>
+                <tr class="row col-12">
+                    <td class="col-1">
+                        <a href="<%= user_path(episode.user.id) %>">
+                            <%= image_tag episode.user.get_profile_image(50, 50) %>
+                        </a>
+                    </td>
+                    <td class="col-1"><%= episode.user.name %></td>
+                    <td class="col-3 text-truncate"><a href="<%= episode_path(episode.id) %>"><%= link_to episode.title, episode_path(episode.id) %></a></td>
+                    <td class="col-5 text-truncate"><%= episode.content %></td>
+                </tr>
+            </tbody>
+            <% end %>
+        </table>
+
+    <% elsif @users.present? %>
+        <h1>ユーザー</h1>
+            <% @users.each do |user| %>
+              <%= render "public/users/profile", user: user %>
+            <% end %>
+    <% end %>
+</div>

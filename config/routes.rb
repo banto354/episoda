@@ -1,11 +1,4 @@
 Rails.application.routes.draw do
-
-  namespace :admin do
-    get 'searches/index'
-  end
-  namespace :public do
-    get 'searches/index'
-  end
   root to:'public/homes#top'
   get '/about' => 'public/homes#about'
 
@@ -34,11 +27,13 @@ Rails.application.routes.draw do
       resources :comments, only: [:create, :destroy]
     end
     resources :notifications, only: [:index]
+    resources :searches, only: [:index]
   end
 
   namespace :admin do
     resources :users, only: [:index, :show, :edit, :update]
     resources :episodes, only: [:index, :show, :edit, :update]
+    resources :searches, only: [:index]
   end
 
   devise_scope :user do
