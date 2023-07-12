@@ -23,19 +23,6 @@
             <% end %>
           </li>
           <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %></li>
-          <!--検索機能-->
-          <div class="form-inline my-2 justify-content-center ml-1">
-            <%= form_with url: searches_path, method: :get do |f| %>
-              <div class="row">
-                <div class="col pr-0 mt-1">
-                  <%= f.text_field :query, placeholder: "Search", class: "form-control"%>
-                </div>
-                <div class="col pl-1 mt-1">
-                  <%= f.submit "検索", class: "btn btn-success" %>
-                </div>
-              </div>
-            <% end %>
-          </div>
         <% elsif admin_signed_in? %>
         <!--管理者ログイン後-->
           <li class="nav-item"><%= link_to "ユーザー一覧", admin_users_path, class: "nav-link" %></li>
@@ -48,6 +35,21 @@
           <li class="nav-item"><%= link_to "ログイン", new_user_session_path, class: "nav-link" %></li>
           <li class="nav-item"><%= link_to "管理者ログイン", new_admin_session_path, class: "nav-link" %></li>
           <li class="nav-item"><%= link_to "新規登録", new_user_registration_path, class: "nav-link" %></li>
+        <% end %>
+        <!--検索機能-->
+        <% unless admin_signed_in? %>
+          <div class="form-inline my-2 justify-content-center ml-1">
+            <%= form_with url: admin_signed_in? ? admin_searches_path : searches_path, method: :get do |f| %>
+              <div class="row">
+                <div class="col pr-0 mt-1">
+                  <%= f.text_field :query, placeholder: "Search", class: "form-control"%>
+                </div>
+                <div class="col pl-1 mt-1">
+                  <%= f.submit "検索", class: "btn btn-success" %>
+                </div>
+              </div>
+            <% end %>
+          </div>
         <% end %>
       </ul>
     </div>
