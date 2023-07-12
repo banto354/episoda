@@ -1,0 +1,42 @@
+<div class="col-3 shadow-sm rounded my-3 d-inline-block">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <%= image_tag user.get_profile_image(100, 100), class: 'rounded-circle img-fluid' %><br>
+      </div>
+    </div>
+    <div class="row align-items-center">
+      <div class="col">
+        <%= user.name %><br>
+      </div>
+    </div>
+    <div class="row align-items-center">
+      <div class="col">
+        @<%= user.username %><br>
+      </div>
+    </div>
+    <div class="row align-items-center">
+      <div class="col">
+        <%= user.introduction %><br>
+      </div>
+    </div>
+    <div class="row align-items-center">
+      <div class="col">
+        <%= link_to user_following_path(user.id) do %>
+          <%= user.following.count %> フォロー
+        <% end %>
+        <%= link_to user_followers_path(user.id) do %>
+          <%= user.followers.count %> フォロワー
+        <% end %>
+      </div>
+    </div>
+    <!--フォローボタン-->
+    <div class="row">
+      <div class="col-">
+        <div class="follow-btn my-3" id="follow-btn-<%= user.id %>">
+          <%= render "/public/relationships/follow_btn", user: user %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
