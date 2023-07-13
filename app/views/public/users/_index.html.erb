@@ -12,33 +12,7 @@
   </div>
   <div>
     <% episodes.each do |episode| %>
-      <div class="container my-3 shadow-sm rounded">
-        <!--エピソード概要上段-->
-        <div class="row">
-          <div class="col-2">
-            <%= image_tag user.get_profile_image(150, 150), class: 'rounded-circle img-fluid' %>
-          </div>
-          <div class="col-9">
-            <%= link_to user.name, user_path(episode.user), class: "underline" %><br>
-            <!--<%#= link_to episode.category.name, category_path(episode.category) %>-->
-            <%= link_to episode.title, episode_path(episode) %>
-            <div class="favourite-btn" id="favourite-btn-<%= episode.id %>">
-              <%= render 'public/favourites/favourite-btn', episode: episode %>
-            </div>
-          </div>
-          <!--編集アイコンの表示-->
-          <% if user == current_user %>
-            <div class="col-1">
-              <%= link_to edit_episode_path(episode) do %>
-                <i class="fa-solid fa-file-pen"></i>
-              <% end %>
-            </div>
-          <% end %>
-        </div>
-      </div>
-      <div class="row">
-
-      </div>
+      <%= render "public/episodes/episode_box", episode: episode, user: user %>
     <% end %>
   </div>
   <div class="pagination d-flex justify-content-center mb-4">

@@ -22,6 +22,12 @@ class Admin::EpisodesController < ApplicationController
     end
   end
   
+  def destroy
+    episode = Episode.find(params[:id])
+    user = episode.user
+    episode.destroy
+    redirect_to admin_user_path(user)
+  end
   private
   
   def episode_params

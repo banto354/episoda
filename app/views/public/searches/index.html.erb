@@ -1,0 +1,20 @@
+<div class="container col-10">
+  <h1 class="row">"<%= @query %>"の検索結果</h1>
+  <% if @users.present? %>
+    <h2>ユーザー</h2>
+    <div class="d-flex flex-wrap">
+      <% @users.each do |user| %>
+        <%= render "profile_box", user: user %>
+      <% end %>    
+    </div>
+  <% end %>
+  <% if @episodes.present? %>
+    <h2>エピソード</h2>
+    <div class="d-flex flex-wrap">
+      <% @episodes.each do |episode| %>
+        <%= render "episode_box", episode: episode, user: episode.user %>
+      <% end %>
+    </div>
+  <% end %>
+
+</div>

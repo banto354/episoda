@@ -1,0 +1,23 @@
+<h2 class="text-center mx-auto mb-4">エピソード一覧</h2>
+<div class="mx-auto col-10">
+  <table class="table">
+    <thead>
+      <tr>
+        <td>ID</td>
+        <td>アカウント名</td>
+        <td>タイトル</td>
+        <td>公開ステータス</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% episodes.each do |episode| %>
+      <tr>
+        <td><%= episode.id %></td>
+        <td><%= episode.user.name %></td>
+        <td class="link-black"><%= link_to episode.title, admin_episode_path(episode) %></td>
+        <td><%= Episode.visibilities_i18n[episode.visibility] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

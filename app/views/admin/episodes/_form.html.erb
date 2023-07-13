@@ -39,6 +39,7 @@
       <div class="col form-row text-center">
         <div class="col">
           <%= f.submit (action_name == 'new' ? '新規登録' : '変更を保存'), class: 'btn btn-success px-4' %>
+          <%= link_to "削除", admin_episode_path(episode), method: :delete, class:"btn btn-sm btn-danger" %>
         </div>
       </div>
     </div>
