@@ -1,0 +1,2 @@
+class CategoryRelation < ApplicationRecord
+end

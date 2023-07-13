@@ -36,6 +36,7 @@ Rails.application.routes.draw do
       resources :comments, only: [:destroy]
     end
     resources :searches, only: [:index]
+    resources :categories, only: [:index, :create, :edit, :update, :destroy]
   end
 
   devise_scope :user do
