@@ -22,7 +22,7 @@ Rails.application.routes.draw do
       get 'followers' => 'relationships#followers', as: 'followers'
       get 'following' => 'relationships#following', as: 'following'
     end
-    resources :episodes, only: [:index, :show, :new, :create, :edit, :update] do
+    resources :episodes, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
       resource :favourite, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
     end
@@ -32,7 +32,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users, only: [:index, :show, :edit, :update]
-    resources :episodes, only: [:index, :show, :edit, :update]
+    resources :episodes, only: [:index, :show, :edit, :update, :destroy] do
+      resources :comments, only: [:destroy]
+    end
     resources :searches, only: [:index]
   end
 

@@ -37,20 +37,18 @@
           <li class="nav-item"><%= link_to "新規登録", new_user_registration_path, class: "nav-link" %></li>
         <% end %>
         <!--検索機能-->
-        <% unless admin_signed_in? %>
-          <div class="form-inline my-2 justify-content-center ml-1">
-            <%= form_with url: admin_signed_in? ? admin_searches_path : searches_path, method: :get do |f| %>
-              <div class="row">
-                <div class="col pr-0 mt-1">
-                  <%= f.text_field :query, placeholder: "Search", class: "form-control"%>
-                </div>
-                <div class="col pl-1 mt-1">
-                  <%= f.submit "検索", class: "btn btn-success" %>
-                </div>
+        <div class="form-inline my-2 justify-content-center ml-1">
+          <%= form_with url: admin_signed_in? ? admin_searches_path : searches_path, method: :get do |f| %>
+            <div class="row">
+              <div class="col pr-0 mt-1">
+                <%= f.text_field :query, placeholder: "Search", class: "form-control"%>
               </div>
-            <% end %>
-          </div>
-        <% end %>
+              <div class="col pl-1 mt-1">
+                <%= f.submit "検索", class: "btn btn-success" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
       </ul>
     </div>
   </nav>

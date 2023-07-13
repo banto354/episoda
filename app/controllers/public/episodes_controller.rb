@@ -40,6 +40,12 @@ class Public::EpisodesController < ApplicationController
     end
   end
   
+  def destroy
+    episode = Episode.find(params[:id])
+    episode.destroy
+    redirect_to user_path(current_user)
+  end
+  
   private
   
   def episode_params

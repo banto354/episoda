@@ -14,7 +14,7 @@
                         <%= comment.content %>
                     </td>
                     <td>
-                        <%= link_to "Destroy", episode_comment_path(comment.id, episode_id: comment.episode_id), method: :delete, remote: true, class:"btn btn-sm btn-danger" %>
+                        <%= link_to "Destroy", admin_episode_comment_path(comment.id, episode_id: comment.episode_id), method: :delete, remote: true, class:"btn btn-sm btn-danger" %>
                     </td>
                 </tr>
             <% end %>
