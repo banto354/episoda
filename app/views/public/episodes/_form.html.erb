@@ -1,7 +1,5 @@
 <div>
   <%= form_with model: episode, class: 'form' do |f| %>
-
-    
     <div class="form-group row ml-md-2 mb-2">
       <div class="col form-row">
         <div class="col">
@@ -22,7 +20,8 @@
       <label class="col-md-4 col-form-label">カテゴリ</label>
       <div class="col form-row">
         <div class="col">
-          <%#= f.select :category_id, options_for_select(Category.all.map { |category| [category.name, category.id] }), {prompt: '選択してください'}, class: 'form-control' %>
+          <%= f.collection_select :parent, Category.parents_i18n, :first, :last, prompt: true, id: 'category_parent_id' %>
+          <%#= f.collection_select :category_id, @categories, :id, :name, prompt: true, id: 'category_id' %>
         </div>
       </div>
     </div>
@@ -44,6 +43,6 @@
         </div>
       </div>
     </div>
-    
+z
   <% end %>
 </div>

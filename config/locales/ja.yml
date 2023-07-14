@@ -5,6 +5,11 @@ ja:
           to_public: "公開"
           to_group: "任意のグループ"
           to_myself: "非公開"
+      category:
+        parent:
+          emotion: "感情"
+          genre: "ジャンル"
+          year: "年代"
     date:
       formats:
         default: "%Y/%m/%d"
@@ -28,6 +33,6 @@ ja:
     activerecord:
       attributes:
         user:
-          name: 名前
-          username: ユーザーネーム
-          introduction: プロフィール
+          name: "名前"
+          username: "ユーザーネーム"
+          introduction: "プロフィール"

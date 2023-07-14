@@ -13,6 +13,7 @@ class Public::EpisodesController < ApplicationController
 
   def new
     @episode = Episode.new
+    @categories = Category.all
   end
   
   def create
@@ -20,6 +21,8 @@ class Public::EpisodesController < ApplicationController
     episode.user_id = current_user.id
     if episode.save
       flash[:success] = "投稿をしました"
+      #category_relation = CategoryRelation.new(category_relation_params, episode_id: episode.id)
+      #category_relation.save
       redirect_to user_path(current_user)
     else
       render :new
@@ -28,6 +31,7 @@ class Public::EpisodesController < ApplicationController
 
   def edit
     @episode = Episode.find(params[:id])
+    @category_relation = CategoryRelation.find(episode_id: params[:id])
   end
   
   def update
@@ -51,6 +55,10 @@ class Public::EpisodesController < ApplicationController
   def episode_params
     params.require(:episode).permit(:title, :content, :visibility, :group_id)
   end
+  
+  # def category_relation_params
+  #   params.require(:category_relation).permit(:category_id)
+  # end
 
   def is_matching_login_user
     episode = Episode.find(params[:id])
