@@ -1,4 +1,4 @@
-<header class="header">
+<header class="header fixed-top bg-white">
   <nav class="navbar navbar-expand-md navbar-light">
     <%= link_to root_path, class: "logo" do %>
       <%= image_tag("episoda_logo.png", alt: "logo", id: "header_logo", class: "logo") %>
@@ -20,6 +20,11 @@
           <li class="nav-item">
             <%= link_to new_episode_path, class: "nav-link" do %>
               <i class="fa-solid fa-pen-to-square"></i>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to edit_user_path(current_user), class: 'nav-link' do %>
+              <i class="fa-solid fa-gear"></i>  
             <% end %>
           </li>
           <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %></li>

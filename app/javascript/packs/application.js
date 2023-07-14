@@ -12,8 +12,9 @@ import "channels"
 import "jquery";
 import "popper.js";
 import "bootstrap";
+import Cropper from "cropperjs"
 import "../stylesheets/application"; 
-import "./categories"
+import "../categories"
 
 
 Rails.start()
