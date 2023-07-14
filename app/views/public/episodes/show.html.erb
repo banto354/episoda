@@ -6,16 +6,24 @@
     </div>
 
     <div class="col-8" style="overflow-y: auto; height: 100vh; margin-left: 35%;">
+      <!--エピソード-->
       <div class="row my-5">
         <div class="col">
           <h1><%= @episode.title %></h1>
         </div>
       </div>
-        <div class="row">
+      <div class="row">
         <div class="col">
           <p><%= simple_format(@episode.content) %></p>
         </div>
       </div>
+      <!--閲覧数-->
+      <div class="row">
+        <div class="col">
+          <p>閲覧数: <%= @view_counts %></p>
+        </div>
+      </div>
+      <!--コメント-->
       <div class="row">
         <div class="col">
           <%= render "public/comments/comments_area", comments: @comments, episode: @episode %>
