@@ -6,7 +6,7 @@ ja:
           to_group: "任意のグループ"
           to_myself: "非公開"
       category:
-        variety:
+        parent:
           emotion: "感情"
           genre: "ジャンル"
           year: "年代"
