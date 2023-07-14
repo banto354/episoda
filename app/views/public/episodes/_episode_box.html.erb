@@ -4,13 +4,17 @@
     <div class="col-2">
       <%= image_tag user.get_profile_image(150, 150), class: 'rounded-circle img-fluid' %>
     </div>
-    <div class="col-9">
+    <div class="col-6">
       <%= link_to user.name, user_path(episode.user), class: "underline" %><br>
       <!--<%#= link_to episode.category.name, category_path(episode.category) %>-->
       <%= link_to episode.title, episode_path(episode) %>
       <div class="favourite-btn" id="favourite-btn-<%= episode.id %>">
         <%= render 'public/favourites/favourite-btn', episode: episode %>
       </div>
+    </div>
+    <!--公開対象-->
+    <div class="col">
+      <%= Episode.visibilities_i18n[episode.visibility] %>
     </div>
     <!--編集アイコンの表示-->
     <% if user == current_user %>

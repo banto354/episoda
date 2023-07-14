@@ -3,8 +3,8 @@ ja:
       episode:
         visibility:
           to_public: "公開"
-          to_group: "任意のグループ"
-          to_myself: "非公開"
+          to_group: "グループ公開"
+          to_myself: "下書き"
       category:
         parent:
           emotion: "感情"
