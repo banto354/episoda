@@ -10,8 +10,8 @@ class Public::EpisodesController < ApplicationController
     @episode = Episode.find(params[:id])
     @comments = Comment.where(episode_id: params[:id])
     # 閲覧数カウント（3時間以内の同一ユーザーの閲覧はカウントしない）
-    unless ViewCount.where('user_id = ? AND episode_id = ? AND created_at >= ?', current_user.id, params[:id], 3.hours.ago)
-      view_count = ViewvCount.new(user?id: current_user.id, episode_id: params[:id])
+    unless ViewCount.where('user_id = ? AND episode_id = ? AND created_at >= ?', current_user.id, params[:id], 3.hours.ago).present?
+      view_count = ViewCount.new(user_id: current_user.id, episode_id: params[:id])
       view_count.save
     end
     # 閲覧数表示用
