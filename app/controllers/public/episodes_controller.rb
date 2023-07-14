@@ -38,7 +38,9 @@ class Public::EpisodesController < ApplicationController
 
   def edit
     @episode = Episode.find(params[:id])
-    @category_relation = CategoryRelation.find(episode_id: params[:id])
+    unless CategoryRelation.find_by(episode_id: params[:id]).nil?
+      @category_relation = CategoryRelation.find(episode_id: params[:id])
+    end
   end
   
   def update
