@@ -1,4 +1,7 @@
 class Tagging < ApplicationRecord
-  belongs_to :user, dependents: :destroy
-  belongs_to :tag, dependents: :destroy
+  belongs_to :episode, dependent: :destroy
+  belongs_to :tag, dependent: :destroy
+  
+  validates  :episode_id, presence: true
+  validates  :tag_id,   presence: true
 end

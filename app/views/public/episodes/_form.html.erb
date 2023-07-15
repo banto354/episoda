@@ -20,10 +20,10 @@
       <label class="col-md-4 col-form-label">カテゴリ</label>
       <div class="col form-row">
         <div class="col">
-          <%= f.fields_for :category_relation do |p| %>
-            <%= p.collection_select :parent, Category.parents_i18n, :category_id, :name, prompt: true, id: 'category_parent_id' %>
-            <%= p.collection_select :category_id, @categories, :id, :name, prompt: true, id: 'category_id' %>
-          <%= end %>
+          <%#= f.fields_for :category_relation do |p| %>
+            <%#= p.collection_select :parent, Category.parents_i18n, :category_id, :name, prompt: true, id: 'category_parent_id' %>
+            <%#= p.collection_select :category_id, @categories, :id, :name, prompt: true, id: 'category_id' %>
+          <%#= end %>
         </div>
       </div>
     </div>
@@ -32,9 +32,9 @@
       <label class="col-md-4 col-form-label">タグ</label>
       <div class="col form-row">
         <div class="col">
-          <%= f.fields_for :taggings do |p| %>
-            <%= p.text_area :name, Category.parents_i18n, :category_id, :name, prompt: true, id: 'category_parent_id' %>
-          <%= end %>
+          <%#= f.fields_for :taggings do |p| %>
+            <%#= p.text_area :name, Category.parents_i18n, :category_id, :name, prompt: true, id: 'category_parent_id' %>
+          <%#= end %>
         </div>
       </div>
     </div>
