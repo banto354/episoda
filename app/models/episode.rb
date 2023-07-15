@@ -10,4 +10,13 @@ class Episode < ApplicationRecord
       favourites.exists?(user_id: user.id)
   end
   
+  after_create do
+    episode = Episode.find_by(id: self.id)
+    tags  = self.content.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
+    tags.uniq.map do |tag|
+      #ハッシュタグは先頭の'#'を外した上で保存
+      hashtag = Tag.find_or_create_by(name: tag.downcase.delete('#'))
+      episode.tags << hashtag
+    end
+  end    
 end
