@@ -15,6 +15,9 @@ class User < ApplicationRecord
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
   has_many :notifications, as: :recipient
+  has_many :category_relations
+  
+  # accepts_nested_attributes_for :categroy_relations
   
   validates :name, presence: true, length: { minimum: 2, maximum: 20 }
     # 半角英数字のみを許可する正規表現（英字は小文字のみ）

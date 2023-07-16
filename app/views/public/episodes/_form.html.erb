@@ -22,6 +22,10 @@
         <div class="col">
           <%#= f.collection_select :parent, Category.parents_i18n, :first, :last, prompt: true, id: 'category_parent_id' %>
           <%#= f.collection_select :category_id, @categories, :id, :name, prompt: true, id: 'category_id' %>
+          <%#= f.fields_for :category_relation do |p| %>
+            <%#= p.collection_select :parent, Category.parents_i18n, :category_id, :name, prompt: true, id: 'category_parent_id' %>
+            <%#= p.collection_select :category_id, @categories, :id, :name, prompt: true, id: 'category_id' %>
+          <%# end %>     
         </div>
       </div>
     </div>

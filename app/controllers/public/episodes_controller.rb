@@ -59,6 +59,15 @@ class Public::EpisodesController < ApplicationController
     redirect_to user_path(current_user)
   end
   
+  def hashtag
+    @user = current_user
+    @tag = Tag.find_by(name: params[:name])
+    @episodes = @tag.episodes
+    @episode  = @tag.episodes.page(params[:page])
+    @comment    = Comment.new
+    @comments   = @episodes.comments
+  end  
+  
   private
   
   def episode_params

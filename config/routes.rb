@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     resources :notifications, only: [:index]
     resources :searches, only: [:index]
     get '/categories/subcategories' => 'categories#subcategories'
+    get '/tag/:name', to: "episodes#hashtag"
   end
 
   namespace :admin do

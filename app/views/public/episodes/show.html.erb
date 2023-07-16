@@ -14,7 +14,7 @@
       </div>
       <div class="row">
         <div class="col">
-          <p><%= simple_format(@episode.content) %></p>
+          <p><%= render_with_tags(@episode.content) %></p>
         </div>
       </div>
       <!--閲覧数-->
