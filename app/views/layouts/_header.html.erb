@@ -11,50 +11,41 @@
       <ul class="navbar-nav ml-auto">
         <% if user_signed_in? %>
           <%# ログイン後 %>
-          <li class="nav-item"><%= link_to "お知らせ", notifications_path, class: "nav-link" %></li>
-          <li class="nav-item">
+          <li class="nav-link"><%= link_to "お知らせ", notifications_path, class: "nav-link" %></li>
+          <li class="nav-link">
             <%= link_to user_path(current_user), class: "nav-link" do %>
               <i class="fa-solid fa-circle-user"></i>
             <% end %>
           </li>
-          <li class="nav-item">
+          <li class="nav-link">
             <%= link_to new_episode_path, class: "nav-link" do %>
               <i class="fa-solid fa-pen-to-square"></i>
             <% end %>
           </li>
-          <li class="nav-item">
+          <li class="nav-link">
             <%= link_to edit_user_path(current_user), class: 'nav-link' do %>
-              <i class="fa-solid fa-gear"></i>  
+              <i class="fa-solid fa-gear"></i>
             <% end %>
-          </li>          
-          <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %></li>
+          </li>
+          <li class="nav-link"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %></li>
         <% elsif admin_signed_in? %>
         <!--管理者ログイン後-->
-          <li class="nav-item"><%= link_to "ユーザー一覧", admin_users_path, class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "投稿一覧", admin_episodes_path, class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "カテゴリー一覧", admin_categories_path, class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "グループ一覧", root_path, class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link" %></li>
+          <li class="nav-link"><%= link_to "ユーザー一覧", admin_users_path, class: "nav-link" %></li>
+          <li class="nav-link"><%= link_to "投稿一覧", admin_episodes_path, class: "nav-link" %></li>
+          <li class="nav-link"><%= link_to "カテゴリー一覧", admin_categories_path, class: "nav-link" %></li>
+          <li class="nav-link"><%= link_to "グループ一覧", root_path, class: "nav-link" %></li>
+          <li class="nav-link"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link" %></li>
         <% else %>
           <%# ログイン前 %>
-          <li class="nav-item"><%= link_to "アバウトページ", about_path, class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "ログイン", new_user_session_path, class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "管理者ログイン", new_admin_session_path, class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "新規登録", new_user_registration_path, class: "nav-link" %></li>
+          <li class="nav-link"><%= link_to "アバウトページ", about_path, class: "nav-link" %></li>
+          <li class="nav-link"><%= link_to "ログイン", new_user_session_path, class: "nav-link" %></li>
+          <li class="nav-link"><%= link_to "管理者ログイン", new_admin_session_path, class: "nav-link" %></li>
+          <li class="nav-link"><%= link_to "新規登録", new_user_registration_path, class: "nav-link" %></li>
         <% end %>
         <!--検索機能-->
-        <div class="form-inline my-2 justify-content-center ml-1">
-          <%= form_with url: admin_signed_in? ? admin_searches_path : searches_path, method: :get do |f| %>
-            <div class="row">
-              <div class="col pr-0 mt-1">
-                <%= f.text_field :query, placeholder: "Search", class: "form-control"%>
-              </div>
-              <div class="col pl-1 mt-1">
-                <%= f.submit "検索", class: "btn btn-success" %>
-              </div>
-            </div>
-          <% end %>
-        </div>
+        <% if user_signed_in? || admin_signed_in? %>
+           <%= render "layouts/search" %>
+        <% end %>
       </ul>
     </div>
   </nav>
