@@ -1,9 +1,11 @@
-<div class="col-4 shadow-sm rounded my-3 d-inline-block ">
+<div class="col-4 shadow-sm rounded my-3 mr-0 d-inline-block ">
   <div class="container">
     <!--エピソード概要上段-->
     <div class="row my-1">
       <div class="col-3">
-        <%= image_tag user.get_profile_image(150, 150), class: 'rounded-circle img-fluid' %>
+        <%= link_to user_path(episode.user) do %>
+          <%= image_tag user.get_profile_image(150, 150), class: 'rounded-circle img-fluid img-thumbnail' %>
+        <% end %>
       </div>
       <div class="col-9">
         <%= link_to user.name, user_path(episode.user), class: "underline" %><br>
@@ -24,7 +26,7 @@
       <div class="col">
         <div class="favourite-btn" id="favourite-btn-<%= episode.id %>">
           <%= render 'public/favourites/favourite-btn', episode: episode %>
-        </div>       
+        </div>
       </div>
     </div>
   </div>

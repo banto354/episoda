@@ -1,22 +1,22 @@
-<div class="col-3 shadow-sm rounded my-3 d-inline-block">
+<div class="col-3 shadow-sm rounded my-3 mr-3 d-inline-block">
   <div class="container">
     <div class="row">
-      <div class="col">
-        <%= image_tag user.get_profile_image(100, 100), class: 'rounded-circle img-fluid' %><br>
+      <div class="col d-flex justify-content-center">
+        <%= image_tag user.get_profile_image(100, 100), class: 'rounded-circle img-fluid img-thumbnail' %><br>
       </div>
     </div>
     <div class="row align-items-center">
-      <div class="col">
+      <div class="name col">
         <%= user.name %><br>
       </div>
     </div>
     <div class="row align-items-center">
-      <div class="col">
+      <div class="username col">
         @<%= user.username %><br>
       </div>
     </div>
     <div class="row align-items-center">
-      <div class="col">
+      <div class="introduction col">
         <%= user.introduction %><br>
       </div>
     </div>
@@ -25,6 +25,7 @@
         <%= link_to user_following_path(user.id) do %>
           <%= user.following.count %> フォロー
         <% end %>
+        <br>
         <%= link_to user_followers_path(user.id) do %>
           <%= user.followers.count %> フォロワー
         <% end %>
@@ -32,10 +33,8 @@
     </div>
     <!--フォローボタン-->
     <div class="row">
-      <div class="col-">
-        <div class="follow-btn my-3" id="follow-btn-<%= user.id %>">
-          <%= render "/public/relationships/follow_btn", user: user %>
-        </div>
+      <div class="follow-btn my-3 d-flex justify-content-center col" id="follow-btn-<%= user.id %>">
+        <%= render "/public/relationships/follow_btn", user: user %>
       </div>
     </div>
   </div>
