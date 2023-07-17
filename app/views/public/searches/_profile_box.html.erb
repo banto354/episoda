@@ -2,11 +2,13 @@
   <div class="container">
     <div class="row">
       <div class="col d-flex justify-content-center">
-        <%= image_tag user.get_profile_image(100, 100), class: 'rounded-circle img-fluid img-thumbnail' %><br>
+        <%= link_to user_path(user) do %>
+          <%= image_tag user.get_profile_image(100, 100), class: 'rounded-circle img-fluid img-thumbnail' %><br>
+        <% end %>
       </div>
     </div>
     <div class="row align-items-center">
-      <div class="name col">
+      <div class="name col text-reset">
         <%= user.name %><br>
       </div>
     </div>
