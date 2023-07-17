@@ -8,10 +8,10 @@
         <% end %>
       </div>
       <div class="col-9">
-        <%= link_to user.name, user_path(episode.user), class: "underline" %><br>
-        <p>@<%= user.username %></p>
+        <%= link_to user.name, user_path(episode.user), class: "underline text-body" %><br>
+        <p class="text-muted">@<%= link_to user.username, user_path(episode.user), class: "text-muted" %></p>
         <!--<%#= link_to episode.category.name, category_path(episode.category) %>-->
-        <%= link_to episode.title, episode_path(episode) %>
+        <%= link_to episode.title, episode_path(episode), class:"text-body font-weight-bold" %>
       </div>
     </div>
     <hr>
@@ -24,7 +24,7 @@
     <!--下段-->
     <div class="row">
       <div class="col">
-        <div class="favourite-btn" id="favourite-btn-<%= episode.id %>">
+        <div class="favourite-btn mt-3" id="favourite-btn-<%= episode.id %>">
           <%= render 'public/favourites/favourite-btn', episode: episode %>
         </div>
       </div>

@@ -8,13 +8,13 @@
       </div>
     </div>
     <div class="row align-items-center">
-      <div class="name col text-reset">
-        <%= user.name %><br>
+      <div class="name col">
+        <%= link_to user.name, user_path(user), class: "text-body font-weight-bold" %>
       </div>
     </div>
     <div class="row align-items-center">
-      <div class="username col">
-        @<%= user.username %><br>
+      <div class="username col text-muted">
+        @<%= link_to user.username, user_path(user), class: "text-muted" %>
       </div>
     </div>
     <div class="row align-items-center">
@@ -25,11 +25,11 @@
     <div class="row align-items-center">
       <div class="col">
         <%= link_to user_following_path(user.id) do %>
-          <%= user.following.count %> フォロー
+          <a class-"text-body font-weight-bold"><%= user.following.count %></a> <a class="text-muted">フォロー</a>
         <% end %>
         <br>
         <%= link_to user_followers_path(user.id) do %>
-          <%= user.followers.count %> フォロワー
+          <a class-"text-body font-weight-bold"><%= user.followers.count %></a> <a class="text-muted">フォロワーー</a>
         <% end %>
       </div>
     </div>
