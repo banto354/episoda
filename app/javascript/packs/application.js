@@ -4,6 +4,12 @@
 // that code so it'll be compiled.
 // 下記追記
 //= require_tree ./packs
+
+//datepicke用
+//= require moment
+//= require moment/ja.js # 日本語化
+//= require tempusdominus-bootstrap-4.js
+
 import Rails from "@rails/ujs"
 // import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
@@ -12,8 +18,10 @@ import "channels"
 import "jquery";
 import "popper.js";
 import "bootstrap";
-import "../stylesheets/application"; 
-import "./categories"
+
+import "../stylesheets/application";
+// import "../categories"
+// import "hoge"
 
 
 Rails.start()

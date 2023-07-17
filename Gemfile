@@ -70,3 +70,6 @@ gem 'devise-i18n'
 gem 'rails-i18n'
 
 gem 'noticed'
+
+gem 'bootstrap4-datetime-picker-rails'
+gem 'momentjs-rails'
