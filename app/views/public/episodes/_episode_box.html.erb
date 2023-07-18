@@ -1,22 +1,49 @@
 <div class="container my-3 shadow-sm rounded">
-  <!--エピソード概要上段-->
   <div class="row">
+    <!--左ブロック-->
     <div class="col-2">
-      <%= image_tag user.get_profile_image(150, 150), class: 'rounded-circle img-fluid' %>
+      <%= image_tag user.get_profile_image(150, 150), class: 'rounded-circle img-fluid mx-2 my-2' %>
     </div>
+    <!--真ん中左ブロック-->
     <div class="col-6">
-      <%= link_to user.name, user_path(episode.user), class: "underline" %><br>
-      <!--<%#= link_to episode.category.name, category_path(episode.category) %>-->
-      <%= link_to episode.title, episode_path(episode) %>
-      <div class="favourite-btn" id="favourite-btn-<%= episode.id %>">
-        <%= render 'public/favourites/favourite-btn', episode: episode %>
+      <!--ユーザー情報段-->
+      <div class="row">
+        <div class="col">
+          <%= link_to user.name, user_path(episode.user), class: "underline text-body" %>
+          <small class="text-muted">@<%= link_to user.username, user_path(episode.user), class: "text-muted" %></small>
+        </div>
+      </div>
+      <!--エピソード情報段-->
+      <div>
+        <div class="row mt-2">
+          <div class="col">
+            <!--<%#= link_to episode.category.name, category_path(episode.category) %>-->
+            <%= link_to episode.title, episode_path(episode), class: "text-body font-weight-bold" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="episode_content col">
+            <small><%= episode.content %></small>
+          </div>
+        </div>
+      </div>
+      <!--最下段-->
+      <div class="row my-2">
+        <div class="col">
+          <div class="favourite-btn" id="favourite-btn-<%= episode.id %>">
+            <%= render 'public/favourites/favourite-btn', episode: episode %>
+          </div>
+        </div>
+        <div class="col d-flex align-items-center justify-content-end">
+          <small class="text-muted"><%= episode.created_at.strftime("%Y/%m/%d")  %></small>
+        </div>
       </div>
     </div>
-    <!--公開対象-->
+    <!--真ん中右ブロック（公開対）象-->
     <div class="col">
       <%= Episode.visibilities_i18n[episode.visibility] %>
     </div>
-    <!--編集アイコンの表示-->
+    <!--右ブロック（編集アイコンの表示）-->
     <% if user == current_user %>
       <div class="col-1">
         <%= link_to edit_episode_path(episode) do %>
@@ -25,7 +52,4 @@
       </div>
     <% end %>
   </div>
-</div>
-<div class="row">
-
 </div>

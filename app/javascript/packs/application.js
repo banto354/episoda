@@ -18,10 +18,10 @@ import "channels"
 import "jquery";
 import "popper.js";
 import "bootstrap";
-
 import "../stylesheets/application";
+
 // import "../categories"
-// import "hoge"
+import "./hoge.js"
 
 
 Rails.start()

@@ -1,2 +1,30 @@
-<h1>Public::episodes#index</h1>
-<p>Find me in app/views/public/episodes/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <!--カテゴリボックス-->
+    <div class="col-3">
+      <%= render "public/categories/category_search", categories: @categories %>
+    </div>
+    <!--エピソードインデックス-->
+    <div class="col-9">
+      <!--フォローアカウントのエピソード-->
+      <div class="row">
+        <h2 class="mt-5">フォロー中</h2>
+        <div class="d-flex flex-nowrap" style="overflow-x: auto;">
+          <% @episodes_following.each do |episode| %>
+            <%= render "public/searches/episode_box", episode: episode, user: episode.user %>
+          <% end %>
+        </div>
+      </div>
+      <!--エピソードランダム表示-->
+      <div class="row">
+        <h2 class="mt-5">みんなのエピソード</h2>
+        <div class="d-flex flex-row flex-wrap">
+          <% @episodes_random.each do |episode| %>
+            <%= render "episode_box", episode: episode, user: episode.user %>
+          <% end %>
+        </div>
+        <%= paginate @episodes_random %>
+      </div>
+    </div>
+  </div>
+</div>
