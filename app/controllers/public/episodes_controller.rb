@@ -23,6 +23,7 @@ class Public::EpisodesController < ApplicationController
 
   def new
     @episode = Episode.new
+    @category_relation = CategoryRelation.new
     @categories = Category.all
   end
 

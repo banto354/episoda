@@ -1,31 +1,33 @@
 <div class="container my-5 shadow-sm rounded">
-  <div class="row align-items-center">
-    <div class="col">
+  <div class="row">
+    <div class="col d-flex justify-content-center">
       <%= image_tag user.get_profile_image(100, 100), class: 'rounded-circle img-fluid' %><br>
     </div>
   </div>
   <div class="row align-items-center">
-    <div class="col">
-      <%= user.name %><br>
+    <div class="col font-weight-bold">
+      <%= user.name %>
+    </div>
+  </div>
+  <div class="row align-items-center">
+    <div class="col text-muted">
+      @<%= user.username %>
     </div>
   </div>
   <div class="row align-items-center">
     <div class="col">
-      @<%= user.username %><br>
+      <%= user.introduction %>
     </div>
   </div>
-  <div class="row align-items-center">
+  <div class="row d-flex flex-column mt-2">
     <div class="col">
-      <%= user.introduction %><br>
-    </div>
-  </div>
-  <div class="row align-items-center">
-    <div class="col">
-      <%= link_to user_following_path(user.id) do %>
-        <%= user.following.count %> フォロー
+      <%= link_to user_following_path(user.id), class: "text-body" do %>
+        <a class="font-weight-bold text-body"><%= user.following.count %></a> フォロー
       <% end %>
-      <%= link_to user_followers_path(user.id) do %>
-        <%= user.followers.count %> フォロワー
+    </div>
+    <div class="col">
+      <%= link_to user_followers_path(user.id), class: "text-body" do %>
+        <a class="font-weight-bold text-body"><%= user.followers.count %></a> フォロワー
       <% end %>
     </div>
   </div>
