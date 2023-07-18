@@ -1,33 +1,38 @@
-<div class="col-4 shadow-sm rounded my-3 mr-0 d-inline-block ">
-  <div class="container">
-    <!--エピソード概要上段-->
-    <div class="row my-1">
-      <div class="col-3">
-        <%= link_to user_path(episode.user) do %>
-          <%= image_tag user.get_profile_image(150, 150), class: 'rounded-circle img-fluid img-thumbnail' %>
-        <% end %>
-      </div>
-      <div class="col-9">
-        <%= link_to user.name, user_path(episode.user), class: "underline text-body" %><br>
-        <p class="text-muted">@<%= link_to user.username, user_path(episode.user), class: "text-muted" %></p>
-        <!--<%#= link_to episode.category.name, category_path(episode.category) %>-->
-        <%= link_to episode.title, episode_path(episode), class:"text-body font-weight-bold" %>
+<div class="col-sm-6 col-lg-4 shadow-sm rounded my-3 mr-2 d-inline-block ">
+  <!--エピソード概要上段-->
+  <div class="row mt-1">
+    <div class="col-3">
+      <%= link_to user_path(episode.user) do %>
+        <%= image_tag user.get_profile_image(150, 150), class: 'rounded-circle img-thumbnail' %>
+      <% end %>
+    </div>
+    <div class="col-9 d-flex flex-column">
+      <%= link_to user.name, user_path(episode.user), class: "underline text-body" %>
+      <p class="text-muted">@<%= link_to user.username, user_path(episode.user), class: "text-muted" %></p>
+    </div>
+  </div>
+  <!--中段-->
+  <hr>
+  <div class="row">
+    <div class="col text-truncate">
+      <!--<%#= link_to episode.category.name, category_path(episode.category) %>-->
+      <%= link_to episode.title, episode_path(episode), class:"text-body font-weight-bold" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="episode_content col">
+      <small><%= episode.content %></small>
+    </div>
+  </div>
+  <!--下段-->
+  <div class="row">
+    <div class="col">
+      <div class="favourite-btn my-3" id="favourite-btn-<%= episode.id %>">
+        <%= render 'public/favourites/favourite-btn', episode: episode %>
       </div>
     </div>
-    <hr>
-    <!--中段-->
-    <div class="row">
-      <div class="col text-truncate">
-        <%= episode.content %>
-      </div>
-    </div>
-    <!--下段-->
-    <div class="row">
-      <div class="col">
-        <div class="favourite-btn mt-3" id="favourite-btn-<%= episode.id %>">
-          <%= render 'public/favourites/favourite-btn', episode: episode %>
-        </div>
-      </div>
+    <div class="col d-flex align-items-center justify-content-end">
+      <small class="text-muted"><%= episode.created_at.strftime("%Y/%m/%d")  %></small>
     </div>
   </div>
 </div>

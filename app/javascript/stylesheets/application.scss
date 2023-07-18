@@ -23,6 +23,14 @@ main {
   vertical-align: middle;
 }
 
+// 長文の省略表示（複数行）
+.episode_content {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+
 /*ページネーション自体のデザイン*/
 .pagination>li>a {
   border: none;     /*枠線をなくす*/

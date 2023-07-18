@@ -1,9 +1,12 @@
 class Public::EpisodesController < ApplicationController
   before_action :authenticate_user!
   before_action :is_public?, only: [:show]
-  
+
   def index
-    @episodes = Episode.where(is_public: true)
+    following_user_ids = current_user.following.pluck(:id)
+    @episodes_following = Episode.where(user_id: following_user_ids).order("created_at DESC").limit(40).page(params[:page]).per(5)
+    @episodes_random = Episode.where(visibility: 0).order("RANDOM()").limit(40).page(params[:page]).per(5)
+    @categories = Category.all
   end
 
   def show
@@ -22,9 +25,9 @@ class Public::EpisodesController < ApplicationController
     @episode = Episode.new
     @categories = Category.all
   end
-  
+
   def create
-    episode = Episode.new(episode_params) 
+    episode = Episode.new(episode_params)
     episode.user_id = current_user.id
     if episode.save
       flash[:success] = "投稿をしました"
@@ -42,7 +45,7 @@ class Public::EpisodesController < ApplicationController
       @category_relation = CategoryRelation.find(episode_id: params[:id])
     end
   end
-  
+
   def update
     @episode = Episode.find(params[:id])
     if @episode.update(episode_params)
@@ -52,13 +55,13 @@ class Public::EpisodesController < ApplicationController
       render :edit
     end
   end
-  
+
   def destroy
     episode = Episode.find(params[:id])
     episode.destroy
     redirect_to user_path(current_user)
   end
-  
+
   def hashtag
     @user = current_user
     @tag = Tag.find_by(name: params[:name])
@@ -66,14 +69,14 @@ class Public::EpisodesController < ApplicationController
     @episode  = @tag.episodes.page(params[:page])
     @comment    = Comment.new
     @comments   = @episodes.comments
-  end  
-  
+  end
+
   private
-  
+
   def episode_params
     params.require(:episode).permit(:title, :content, :visibility, :group_id)
   end
-  
+
   # def category_relation_params
   #   params.require(:category_relation).permit(:category_id)
   # end
@@ -82,13 +85,13 @@ class Public::EpisodesController < ApplicationController
     episode = Episode.find(params[:id])
     unless episode.user.id == current_user.id
       flash[:alert]="ユーザーが一致しません"
-      redirect_to user_path(current_user.id) 
+      redirect_to user_path(current_user.id)
     end
   end
-  
+
   def is_public?
     episode = Episode.find(params[:id])
-    if episode.visibility == 1 
+    if episode.visibility == 1
       flash[:notice] = "この投稿は公開されていません"
       redirect_to root_path
     elsif episode.visibility == 2
@@ -97,5 +100,5 @@ class Public::EpisodesController < ApplicationController
       redirect_to root_path
     end
   end
-  
+
 end

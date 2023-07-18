@@ -1,9 +1,8 @@
-<div class="col-3 shadow-sm rounded my-3 mr-3 d-inline-block">
-  <div class="container">
+<div class="col-12 col-sm-4 col-md-3 shadow-sm rounded my-3 mr-3" style="width: 100px;">
     <div class="row">
-      <div class="col d-flex justify-content-center">
+      <div class="col d-flex justify-content-center my-3">
         <%= link_to user_path(user) do %>
-          <%= image_tag user.get_profile_image(100, 100), class: 'rounded-circle img-fluid img-thumbnail' %><br>
+          <%= image_tag user.get_profile_image(100, 100), class: 'rounded-circle img-thumbnail' %><br>
         <% end %>
       </div>
     </div>
@@ -29,7 +28,7 @@
         <% end %>
         <br>
         <%= link_to user_followers_path(user.id) do %>
-          <a class-"text-body font-weight-bold"><%= user.followers.count %></a> <a class="text-muted">フォロワーー</a>
+          <a class-"text-body font-weight-bold"><%= user.followers.count %></a> <a class="text-muted">フォロワー</a>
         <% end %>
       </div>
     </div>
@@ -39,5 +38,4 @@
         <%= render "/public/relationships/follow_btn", user: user %>
       </div>
     </div>
-  </div>
 </div>
