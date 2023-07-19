@@ -1,11 +1,13 @@
 <div class="container my-3 shadow-sm rounded">
-  <div class="row">
+  <div class="d-flex flex-md-row flex-column">
     <!--左ブロック-->
-    <div class="col-2">
-      <%= image_tag user.get_profile_image(150, 150), class: 'rounded-circle img-fluid mx-2 my-2' %>
-    </div>
-    <!--真ん中左ブロック-->
-    <div class="col-6">
+      <div class="col-md-2">
+        <div class="d-none d-md-block">
+           <%= image_tag user.get_profile_image(150, 150), class: 'rounded-circle img-fluid mx-2 my-2' %>
+        </div>
+      </div>
+    <!--真ん中ブロック-->
+    <div class="col-md-8 mt-2">
       <!--ユーザー情報段-->
       <div class="row">
         <div class="col">
@@ -39,17 +41,29 @@
         </div>
       </div>
     </div>
-    <!--真ん中右ブロック（公開対）象-->
-    <div class="col">
-      <%= Episode.visibilities_i18n[episode.visibility] %>
-    </div>
-    <!--右ブロック（編集アイコンの表示）-->
-    <% if user == current_user %>
-      <div class="col-1">
-        <%= link_to edit_episode_path(episode) do %>
-          <i class="fa-solid fa-file-pen"></i>
+    <!--右ブロック-->
+    <div class="col-12 col-md-2 d-flex flex-row flex-md-column justify-content-between px-0 mt-2">
+      <!--公開対象-->
+      <div class="d-flex flex-md-row">
+        <div class="col-12 flex-md-grow-1 pr-0">
+          <%= Episode.visibilities_i18n[episode.visibility] %>
+        </div>
+      </div>
+      <!--編集、削除-->
+      <div class=" d-flex flex-md-row justify-content-end mr-1 my-2">
+        <% if user == current_user %>
+          <div class="col-3 col-md-2">
+            <%= link_to edit_episode_path(episode) do %>
+              <i class="fa-solid fa-file-pen"></i>
+            <% end %>
+          </div>
+          <div class="col-3 col-md-2">
+            <%= link_to episode_path(episode), method: "delete",  data: { confirm: "削除しますか？" } do %>
+              <i class="fa-solid fa-trash-can" style="color: #ea3e3e;"></i>
+            <% end %>
+          </div>
         <% end %>
       </div>
-    <% end %>
+    </div>
   </div>
 </div>

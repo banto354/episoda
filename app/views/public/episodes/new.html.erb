@@ -1,11 +1,11 @@
-<div class="container my-4 px-sm-1">
-  <div class="col-12 col-sm-12 col-md-10 col-lg-8 mx-auto my-2">
+<div class="container my-4">
+  <div class="col-12 col-md-10  mx-auto my-2">
     <div class="px-1">
-      <h5 class="bg-light text-center" style="width: 150px;">新規投稿</h5>
+      <h5 class="text-center" style="width: 150px;">エピソード</h5>
       <%= render 'layouts/error_messages', resource: @episode %>
     </div>
-    <div class="col-md-11 col-lg-10 col-xl-12 ml-3">
-    <%= render 'form', episode: @episode %>
+    <div class="col-12">
+    <%= render 'form', episode: @episode, categories: @categories %>
     </div>
   </div>
 </div>

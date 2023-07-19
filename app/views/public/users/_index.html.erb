@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>
+  <h1 class="h4">
       <%= user.name %>さんの投稿一覧
   </h1>
   <% if episodes.empty? %>
@@ -16,6 +16,6 @@
     <% end %>
   </div>
   <div class="pagination d-flex justify-content-center mb-4">
-    <%#= paginate @orders %>
+    <%= paginate episodes %>
   </div>
 </div>

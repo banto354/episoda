@@ -1,49 +1,44 @@
 <div>
   <%= form_with model: episode, class: 'form' do |f| %>
-    <div class="form-group row ml-md-2 mb-2">
+    <div class="form-group row mt-3 mb-2">
       <div class="col form-row">
         <div class="col">
-          <%= f.text_field :title, class: 'form-control', placeholder: 'タイトル' %>
+          <%= f.text_field :title, class: 'form-control rounded-0 border-left-0 border-top-0 border-right-0', placeholder: 'タイトル' %>
         </div>
       </div>
     </div>
 
-    <div class="form-group row ml-md-2 mb-2">
-      <div class="col form-row">
+    <div class="form-group row mt-3 mb-2">
+      <div class="col-12 form-row">
         <div class="col">
-          <%= f.text_area :content, class: 'form-control', rows: 6, placeholder: '本文', input_html: { wrap: :virtual } %>
+          <%= f.text_area :content, class: 'form-control border-0', rows: 15, placeholder: '本文', input_html: { wrap: :virtual } %>
         </div>
       </div>
     </div>
 
-    <div class="form-group row ml-md-2 mb-2">
-      <label class="col-md-4 col-form-label">カテゴリ</label>
+    <div class="form-group row mb-2">
+      <label class="col-md-3 col-form-label">カテゴリ</label>
       <div class="col form-row">
-        <div class="col">
-          <%#= f.collection_select :parent, Category.parents_i18n, :first, :last, prompt: true, id: 'category_parent_id' %>
-          <%#= f.collection_select :category_id, @categories, :id, :name, prompt: true, id: 'category_id' %>
-          <%#= f.fields_for :category_relation do |p| %>
-            <%#= p.collection_select :parent, Category.parents_i18n, :category_id, :name, prompt: true, id: 'category_parent_id' %>
-            <%#= p.collection_select :category_id, @categories, :id, :name, prompt: true, id: 'category_id' %>
-          <%# end %>     
-        </div>
+        <%#= f.collection_select :parent, Category.parents_i18n, :first, :last, prompt: true, id: 'category_parent_id' %>
+        <%#= f.collection_select :category_id, @categories, :id, :name, prompt: true, id: 'category_id' %>
+        <%= f.fields_for :category_relation do |p| %>
+          <%#= p.collection_select :parent, Category.parents_i18n, :category_id, :name, prompt: true, id: 'category_parent_id' %>
+          <%= p.collection_select :category_id, @categories, :id, :name, {prompt: '選択してください'}, class: 'form-control col-12 col-md-5'%>
+        <% end %>
       </div>
     </div>
 
-    <div class="form-group row ml-md-2 mb-2">
-      <label class="col-md-4 col-form-label">公開対象</label>
+    <div class="form-group row mb-2">
+      <label class="col-md-3 col-form-label">公開対象</label>
       <div class="col form-row">
-        <div class="col">
-          <%= f.select :visibility, Episode.visibilities_i18n.invert, {prompt: '選択してください'}, class: 'form-control' %>
-        </div>
+        <%= f.select :visibility, Episode.visibilities_i18n.invert, {prompt: '選択してください'}, class: 'form-control col-12 col-md-5' %>
       </div>
     </div>
 
-    <div class="form-group row ml-md-2">
-      <label class="col-md-4 col-form-label"></label>
+    <div class="form-group row">
       <div class="col form-row text-center">
-        <div class="col">
-          <%= f.submit (action_name == 'new' ? '新規登録' : '変更を保存'), class: 'btn btn-success px-4' %>
+        <div class="col d-flex justify-content-md-center justify-content-end mx-auto">
+          <%= f.submit (action_name == 'new' ? '新規登録' : '変更を保存'), class: 'btn btn-outline-primary px-4' %>
         </div>
       </div>
     </div>
