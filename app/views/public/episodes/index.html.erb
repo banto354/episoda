@@ -8,19 +8,19 @@
     <div class="col-9">
       <!--フォローアカウントのエピソード-->
       <div class="row">
-        <h2 class="mt-5">フォロー中</h2>
+        <h1 class="h4 mt-5">フォロー中</h1>
         <div class="d-flex flex-nowrap" style="overflow-x: auto;">
           <% @episodes_following.each do |episode| %>
-            <%= render "public/searches/episode_box", episode: episode, user: episode.user %>
+            <%= render "public/episodes/ep_box_search", episode: episode, user: episode.user %>
           <% end %>
         </div>
       </div>
       <!--エピソードランダム表示-->
       <div class="row">
-        <h2 class="mt-5">みんなのエピソード</h2>
+        <h1 class="h4 mt-5">みんなのエピソード</h1>
         <div class="d-flex flex-row flex-wrap">
           <% @episodes_random.each do |episode| %>
-            <%= render "episode_box", episode: episode, user: episode.user %>
+            <%= render "ep_box", episode: episode, user: episode.user %>
           <% end %>
         </div>
         <%= paginate @episodes_random %>
