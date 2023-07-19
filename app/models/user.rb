@@ -39,6 +39,7 @@ class User < ApplicationRecord
     passive_relationships.exists?(follower_id: user.id )
   end
   
+  
   GUEST_USER_EMAIL = "guest@example.com"
 
   def self.guest

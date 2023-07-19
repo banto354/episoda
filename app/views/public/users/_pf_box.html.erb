@@ -23,35 +23,18 @@
       <small><%= simple_format(user.introduction) %></small>
     </div>
   </div>
-  <div class="row d-md-flex flex-md-column mt-2">
-    <span class="ml-3">
+  <div class="row d-md-flex flex-md-column">
+    <div class="ml-3 mt-2">
       <%= link_to user_following_path(user.id), class: "text-body" do %>
-        <a class="font-weight-bold text-body"><%= user.following.count %></a> フォロー
+        <span class="font-weight-bold text-body"><%= user.following.count %></span> フォロー
       <% end %>
-    </span>
-    <span class="ml-3">
+    </div>
+    <div class="ml-3 mt-2">
       <%= link_to user_followers_path(user.id), class: "text-body" do %>
-        <a class="font-weight-bold text-body"><%= user.followers.count %></a> フォロワー
+        <span class="font-weight-bold text-body"><%= user.followers.count %></span> フォロワー
       <% end %>
-    </span>
-  </div>
-  <!--ログインユーザーの確認、表示ボタンの変更-->
-  <% if user.id != current_user.id %>
-  <div class="d-flex justify-content-center">
-    <div class="follow-btn my-3" id="follow-btn-<%= user.id %>">
-      <%= render "/public/relationships/follow_btn", user: user %>
     </div>
   </div>
-  <% else %>
-    <% unless user.guest_user?%>
-      <div class="row align-items-center">
-        <div class="col">
-          <%= link_to edit_user_path(current_user), class: "btn btn-outline-secondary btn-block my-3" do %>
-              ユーザー情報編集
-              <i class="fa-solid fa-gear"></i>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
-  <% end %>
+  <!--ログインユーザーの確認、表示ボタンの変更-->
+  <%= render 'public/relationships/btn_option', user: user %>
 </div>

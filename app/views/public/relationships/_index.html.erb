@@ -1,0 +1,42 @@
+<div>
+  <table class="table table-bordered">
+    <% users.each do |user| %>
+      <tr>
+        <td>
+          <!--上段-->
+          <div class="row">
+            <!--ユーザーアイコン-->
+            <div class="col-1">
+              <%= link_to user_path(user) do %>
+                <%= image_tag user.get_profile_image(80, 80), class: 'rounded-circle img-fluid img-thumbnail' %>
+              <% end %>
+            </div>
+            <div class="col-8">
+              <div class="row">
+                <%= link_to user_path(user), class:" text-body font-weight-bold" do %>
+                  <%= user.name %>
+                <% end %>
+              </div>
+              <div class="row text-muted">
+                @<%= user.username %>
+              </div>
+            </div>
+            <div class="col-3 d-flex justify-content-end align-items-start">
+              <!--ログインユーザーの確認、表示ボタンの選択-->
+              <%= render 'btn_option', user: user %>
+            </div>
+          </div>
+          <!--下段（プロフィール）-->
+          <div class="row justify-content-end">
+            <div class="col-11 pl-0">
+              <small><%= user.introduction %></small>
+            </div>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+<div class="pagination d-flex justify-content-center mb-4">
+  <%#= paginate @orders %>
+</div>
