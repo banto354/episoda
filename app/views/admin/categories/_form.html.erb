@@ -2,7 +2,7 @@
     <%= form_with model: category, url: (action_name == 'edit' ? admin_category_path : admin_categories_path) do |f| %>
       <div class="form-row">
         <%= f.label :parent, "親カテゴリー", class: "col-2 col-form-label font-weight-bold" %>
-        <%= f.select :parent, Category.varieties_i18n.invert, {prompt: '選択してください'}, class: 'col-5 form-control' %>
+        <%= f.select :parent, Category.parents_i18n.invert, {prompt: '選択してください'}, class: 'col-5 form-control' %>
       </div>
       <div class="form-row mt-2">
         <%= f.label :name, "カテゴリー名", class: "col-2 col-form-label font-weight-bold" %>

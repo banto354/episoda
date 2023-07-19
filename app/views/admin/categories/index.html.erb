@@ -19,7 +19,7 @@
           <% @categories.each do |category| %>
             <tr>
               <td><%= category.name %></td>
-              <td><%= Category.varieties_i18n[category.variety] %></td>
+              <td><%= Category.parents_i18n[category.parent] %></td>
               <td>
                 <%= link_to '編集', edit_admin_category_path(category), class: 'btn btn-success px-3' %>
               </td>
