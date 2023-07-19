@@ -1,11 +1,10 @@
-<div class="container">
-  <div class="row">
-
-    <div class="col-3" style="position: fixed; height: 100%;">
+<div class="container episode_show">
+  <div class="d-flex flex-column flex-md-row">
+    <div class="col-md-3 episode_profile">
       <%= render 'public/users/profile', user: @episode.user %>
     </div>
 
-    <div class="col-8" style="overflow-y: auto; height: 100vh; margin-left: 35%;">
+    <div class="col-md-9 episode_content" style="">
       <!--エピソード-->
       <div class="row my-5">
         <div class="col">
@@ -26,6 +25,7 @@
       <!--コメント-->
       <div class="row">
         <div class="col">
+          <h2 class="h4 mt-3 mb-2">コメント</h2>
           <%= render "public/comments/comments_area", comments: @comments, episode: @episode %>
         </div>
       </div>
