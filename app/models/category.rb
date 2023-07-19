@@ -1,6 +1,6 @@
 class Category < ApplicationRecord
   has_many :episodes, through: :category_relations
-  has_many :category_relation, dependent: :destroy
+  has_many :category_relations, dependent: :destroy
 
   with_options presence: true do
     validates :name

@@ -76,7 +76,7 @@ class Public::EpisodesController < ApplicationController
   private
 
   def episode_params
-    params.require(:episode).permit(:title, :content, :visibility, :group_id, category_relations_attributes: [:category_id, :_destroy])
+    params.require(:episode).permit(:title, :content, :visibility, :group_id, category_relations_attributes: [:category_id])
   end
 
   def is_matching_login_user
