@@ -7,7 +7,7 @@
 
     <div class="d-flex flex-wrap ">
       <% @users.each do |user| %>
-        <%= render "profile_box", user: user %>
+        <%= render "public/episodes/pf_box", user: user %>
       <% end %>
       <%= paginate @users %>
     </div>
@@ -16,7 +16,7 @@
     <h2 class="mt-5">エピソード</h2>
     <div class="d-flex flex-row flex-wrap">
       <% @episodes.each do |episode| %>
-        <%= render "episode_box", episode: episode, user: episode.user %>
+        <%= render "public/episodes/ep_box", episode: episode, user: episode.user %>
       <% end %>
     </div>
     <%= paginate @episodes %>

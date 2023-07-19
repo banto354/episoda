@@ -1,12 +1,16 @@
 <div class="container my-5 shadow-sm rounded">
   <div class="row">
     <div class="col d-flex justify-content-center">
-      <%= image_tag user.get_profile_image(100, 100), class: 'rounded-circle img-fluid img-thumbnail my-3' %><br>
+      <%= link_to user_path(user) do %>
+        <%= image_tag user.get_profile_image(100, 100), class: 'rounded-circle img-fluid img-thumbnail my-3' %><br>
+      <% end %>
     </div>
   </div>
   <div class="row align-items-center">
-    <div class="col font-weight-bold">
-      <%= user.name %>
+    <div class="col">
+      <%= link_to user_path(user), class:" text-body font-weight-bold" do %>
+        <%= user.name %>
+      <% end %>
     </div>
   </div>
   <div class="row align-items-center">
