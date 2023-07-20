@@ -5,8 +5,9 @@ class Episode < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
-  has_many :categories, through: :category_relations
   has_many :category_relations, dependent: :destroy
+  has_many :categories, through: :category_relations
+
 
   accepts_nested_attributes_for :category_relations
 

@@ -1,12 +1,12 @@
   <div class="col">
     <%= form_with model: category, url: (action_name == 'edit' ? admin_category_path : admin_categories_path) do |f| %>
-      <div class="form-row">
-        <%= f.label :parent, "親カテゴリー", class: "col-2 col-form-label font-weight-bold" %>
-        <%= f.select :parent, Category.varieties_i18n.invert, {prompt: '選択してください'}, class: 'col-5 form-control' %>
+      <div class="d-flex flex-column flex-md-row justify-content-md-center my-4">
+        <%= f.label :parent, "親カテゴリー", class: "col-md-4 col-form-label font-weight-bold" %>
+        <%= f.select :parent, Category.parents_i18n.invert, {prompt: '選択してください'}, class: 'col-md-5 form-control' %>
       </div>
-      <div class="form-row mt-2">
-        <%= f.label :name, "カテゴリー名", class: "col-2 col-form-label font-weight-bold" %>
-        <%= f.text_field :name, class: 'col-5 form-control', placeholder: 'カテゴリー名' %>
+      <div class="d-flex flex-column flex-md-row justify-content-md-center my-4">
+        <%= f.label :name, "カテゴリー名", class: "col-md-4 col-form-label font-weight-bold" %>
+        <%= f.text_field :name, class: 'col-md-5 form-control', placeholder: 'カテゴリー名' %>
       </div>
       <div class="d-flex justify-content-center mt-4">
         <%= f.submit (action_name == 'edit' ? '更新' : '登録'), class: 'btn btn-success px-4' %>

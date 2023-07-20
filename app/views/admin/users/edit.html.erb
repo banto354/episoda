@@ -1,67 +1,53 @@
-<div class="container my-4 px-sm-1">
-  <div class="px-2 ml-md-5">
-    <h5 class="bg-light text-center ml-3 mb-4" style="width: 300px;"><%= @user.name %>さんのユーザー情報編集</h5>
-  </div>
-  <div class="col-12 px-sm-0 px-md-1 mt-3">
+<div class="container">
+  <h1 class="h4 text-center"><%= @user.name %>さんのユーザー情報編集</h1>
+  <div class="col-11 mx-auto">
     <%= render 'layouts/error_messages', resource: @user %>
       <%= form_with model: @user, url: admin_user_path do |f| %>
-      <form>
-        <div class="form-group row ml-3 mb-2">
-          <label class="col-md-3 col-form-label">ユーザーID</label>
-          <div class="col-md-9 form-row y-middle">
-            <div class="col-md-4 d-flex align-items-center">
-              <%= content_tag :div, @user.id %>
-            </div>
+
+        <div class="form-group row ml-3 my-4">
+          <label class="col-md-3 col-form-label font-weight-bold pl-0">ユーザーID</label>
+          <div class="col-md-9 form-row align-items-center">
+              <%= @user.id %>
           </div>
         </div>
 
-        <div class="form-group row ml-3 mb-2">
-          <label class="col-md-3 col-form-label">名前</label>
+        <div class="form-group row ml-3 my-4">
+          <label class="col-md-3 col-form-label font-weight-bold pl-0">名前</label>
           <div class="col-md-9 form-row">
-            <div class="col-md-4 mr-md-5">
-              <%= f.text_field :name, class: "form-control" %>
-            </div>
+            <%= f.text_field :name, class: "form-control" %>
           </div>
         </div>
 
-        <div class="form-group row ml-3 mb-2">
-          <label class="col-md-3 col-form-label">ユーザーネーム</label>
+        <div class="form-group row ml-3 my-4">
+          <label class="col-md-3 col-form-label font-weight-bold pl-0">ユーザーネーム</label>
           <div class="col-md-9 form-row">
-            <div class="col-md-4 mr-md-5">
-              <%= f.text_field :username, class: "form-control" %>
-            </div>
+            <%= f.text_field :username, class: "form-control" %>
           </div>
         </div>
 
-        <div class="form-group row ml-3 mb-2">
-          <label class="col-md-3 col-form-label">プロフィール</label>
+        <div class="form-group row ml-3 my-4">
+          <label class="col-md-3 col-form-label font-weight-bold pl-0">プロフィール</label>
           <div class="col-md-9 form-row">
-            <div class="col-md-4">
-              <%= f.text_field :introduction, class: "form-control" %>
-            </div>
+            <%= f.text_area :introduction, rows: 6, class: "form-control" %>
           </div>
         </div>
 
-        <div class="form-group row ml-3 mb-2">
-          <label class="col-md-3 col-form-label">生年月日</label>
+        <div class="form-group row ml-3 my-4">
+          <label class="col-md-3 col-form-label font-weight-bold pl-0">生年月日</label>
           <div class="col-md-9 form-row">
-            <div class="col-md-9">
-              <%= f.date_select :birthdate, use_month_numbers: true %>
-            </div>
+            <%= f.date_field :birthdate, use_month_numbers: true, class: "form-control" %>
           </div>
         </div>
 
-        <div class="form-group row ml-3 mb-2">
-          <label class="col-md-3 col-form-label">メールアドレス</label>
+        <div class="form-group row ml-3 my-4">
+          <label class="col-md-3 col-form-label font-weight-bold pl-0">メールアドレス</label>
           <div class="col-md-9 form-row">
-            <div class="col-md-6">
-              <%= f.email_field :email, class: "form-control" %>
-            </div>
+            <%= f.email_field :email, class: "form-control" %>
           </div>
         </div>
 
-        <div class="form-group row ml-3 mb-2">
-          <label class="col-md-3 col-form-label">公開ステータス</label>
+        <div class="form-group row ml-3 my-4">
+          <label class="col-md-3 col-form-label font-weight-bold pl-0">公開ステータス</label>
           <div class="col-md-9 form-row y-middle">
             <div class="col-5  d-flex align-items-center">
               <%= f.radio_button :is_public, true %>
@@ -72,8 +58,8 @@
           </div>
         </div>
 
-        <div class="form-group row ml-3 mb-2">
-          <label class="col-md-3 col-form-label">アクティブステータス</label>
+        <div class="form-group row ml-3 my-4">
+          <label class="col-md-3 col-form-label font-weight-bold pl-0">アクティブステータス</label>
           <div class="col-md-9 form-row y-middle">
             <div class="col-5  d-flex align-items-center">
               <%= f.radio_button :is_active, true %>
@@ -84,16 +70,12 @@
           </div>
         </div>
 
-        <div class="form-group row ml-3">
-          <label class="col-md-3 col-form-label"></label>
-          <div class="col-md-9 form-row">
-            <div class="col-5">
-              <%= f.submit "変更を保存", class: "btn btn-success px-4" %>
-            </div>
+        <div class="row justify-content-center">
+          <div class="col-md-9 form-row d-flex justify-content-center">
+            <%= f.submit "変更を保存", class: "btn btn-success px-4" %>
           </div>
         </div>
 
-      </form>
     <% end %>
   </div>
 </div>

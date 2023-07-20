@@ -1,26 +1,25 @@
-<div class="container col-xl-8 col-lg-9 my-4 px-sm-1">
-  <div class="px-1 ml-md-2">
-    <h1 class="text-center mx-auto mb-4" style="width: 400px;">エピソード一覧</h1>
-  </div>
-  <div class="mx-auto col-10">
-
-    <table class="table">
+<div class="container px-0">
+  <h1 class="h4 text-center mb-5">エピソード一覧</h1>
+  <div class="row justify-content-center">
+    <table class="table table-hover table-bordered col-md-12 mx-1">
       <thead>
         <tr>
           <td class="bg-light">エピソードID</td>
           <td class="bg-light">名前</td>
           <td class="bg-light">タイトル</td>
-          <td class="bg-light">公開対象</td>
+          <td class="bg-light d-none d-md-block">公開設定</td>
         </tr>
+      </thead>
+      <tbody>
         <% @episodes.each do |episode| %>
         <tr>
           <td><%= episode.id %></td>
-          <td class="link-black"><%= link_to episode.user.name, admin_user_path(episode.user) %></td>
-          <td class="link-black"><%= link_to episode.title, admin_episode_path(episode) %></td>
-          <td><%= Episode.visibilities_i18n[episode.visibility] %></td>
+          <td><%= link_to episode.user.name, admin_user_path(episode.user), class: "text-body" %></td>
+          <td><u><%= link_to episode.title, admin_episode_path(episode), class: "text-body text-truncate font-weight-bold" %></u></td>
+          <td class="d-none d-md-block"><%= Episode.visibilities_i18n[episode.visibility] %></td>
         </tr>
       <% end %>
-    </thead>
+    </tbody>
   </table>
 
     <div>
