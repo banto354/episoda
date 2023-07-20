@@ -17,7 +17,7 @@
                       <small class="text-muted"><%= comment.created_at.strftime("%Y/%m/%d") %></small>
                     </td>
                     <td class="col-1">
-                      <% if comment.user == current_user || admin_signed_in? %>
+                      <% if comment.user == current_user || admin_signed_in?%>
                           <%= link_to episode_comment_path(comment.id, episode_id: comment.episode_id), method: :delete, remote: true, data: { confirm: "削除しますか？" } do %>
                               <i class="fa-solid fa-trash-can" style="color: #ea3e3e;"></i>
                           <% end %>

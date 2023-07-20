@@ -11,4 +11,6 @@ class Public::CategoriesController < ApplicationController
       format.json { render json: @subcategories }
     end    
   end
+  
+  
 end
