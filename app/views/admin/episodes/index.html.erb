@@ -3,7 +3,7 @@
     <h1 class="h4 text-center mx-auto mb-4">エピソード一覧</h1>
   </div>
   <div class="row justify-content-center">
-    <table class="table col-md-12 mx-1">
+    <table class="table table-hover table-bordered col-md-12 mx-1">
       <thead>
         <tr>
           <td class="bg-light">エピソードID</td>
@@ -17,7 +17,7 @@
         <tr>
           <td><%= episode.id %></td>
           <td><%= link_to episode.user.name, admin_user_path(episode.user), class: "text-body" %></td>
-          <td><u><%= link_to episode.title, admin_episode_path(episode), class: "text-body font-weight-bold" %></u></td>
+          <td><u><%= link_to episode.title, admin_episode_path(episode), class: "text-body text-truncate font-weight-bold" %></u></td>
           <td class="d-none d-md-block"><%= Episode.visibilities_i18n[episode.visibility] %></td>
         </tr>
       <% end %>

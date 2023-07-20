@@ -5,16 +5,18 @@
             <% comments.each do |comment| %>
                 <tr id="comment_<%= comment.id %>">
                     <td>
-                        <a href="<%= admin_user_path(comment.user) %>">
+                        <a href="<%= admin_user_path(comment.user) %>" class="text-body font-weight-bold">
                             <!--<%#= image_tag comment.user.get_profile_image(100, 100) %><br>-->
                             <%= comment.user.name %>
                         </a>
                     </td>
                     <td>
-                        <%= comment.content %>
+                        <%= simple_format(comment.content) %>
                     </td>
                     <td>
-                        <%= link_to "Destroy", admin_episode_comment_path(comment.id, episode_id: comment.episode_id), method: :delete, remote: true, class:"btn btn-sm btn-danger" %>
+                          <%= link_to episode_comment_path(comment.id, episode_id: comment.episode_id), method: :delete, remote: true, data: { confirm: "削除しますか？" } do %>
+                              <i class="fa-solid fa-trash-can" style="color: #ea3e3e;"></i>
+                          <% end %>
                     </td>
                 </tr>
             <% end %>

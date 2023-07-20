@@ -11,7 +11,7 @@
     <div class="form-group row mb-2">
       <div class="col form-row">
         <div class="col">
-          <%= f.text_area :content, class: 'form-control', rows: 6, placeholder: '本文', input_html: { wrap: :virtual } %>
+          <%= f.text_area :content, class: 'form-control', rows: 15, placeholder: '本文', input_html: { wrap: :virtual } %>
         </div>
       </div>
     </div>
@@ -39,7 +39,7 @@
     <div class="row justify-content-center">
       <div class="col-5 col-md-3 d-flex justify-content-between">
         <%= f.submit '変更を保存', class: 'btn btn-success px-4' %>
-        <%= link_to "削除", admin_episode_path(episode), method: :delete, class:"btn btn-sm btn-danger" %>
+        <%= link_to "削除", admin_episode_path(episode), method: :delete, data: { confirm: "削除しますか？" }, class:"btn btn-danger" %>
       </div>
     </div>
 
