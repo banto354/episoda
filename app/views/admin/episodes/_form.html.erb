@@ -1,6 +1,6 @@
 <div>
   <%= form_with model: episode, url: admin_episode_path, class: 'form' do |f| %>
-    <div class="form-group row ml-md-2 mb-2">
+    <div class="form-group row mb-2">
       <div class="col form-row">
         <div class="col">
           <%= f.text_field :title, class: 'form-control', placeholder: 'タイトル' %>
@@ -8,7 +8,7 @@
       </div>
     </div>
 
-    <div class="form-group row ml-md-2 mb-2">
+    <div class="form-group row mb-2">
       <div class="col form-row">
         <div class="col">
           <%= f.text_area :content, class: 'form-control', rows: 6, placeholder: '本文', input_html: { wrap: :virtual } %>
@@ -16,31 +16,30 @@
       </div>
     </div>
 
-    <div class="form-group row ml-md-2 mb-2">
+    <div class="form-group row mb-2">
       <label class="col-md-4 col-form-label">カテゴリ</label>
       <div class="col form-row">
         <div class="col">
-          <%#= f.select :category_id, options_for_select(Category.all.map { |category| [category.name, category.id] }), {prompt: '選択してください'}, class: 'form-control' %>
+          <%= f.fields_for :category_relations do |p| %>
+            <%= p.collection_select :category_id, categories, :id, :name, {prompt: '選択してください'}, class: 'form-control col-12 col-md-5' %>
+          <% end %>
         </div>
       </div>
     </div>
 
-    <div class="form-group row ml-md-2 mb-2">
+    <div class="form-group row mb-2">
       <label class="col-md-4 col-form-label">公開対象</label>
       <div class="col form-row">
-        <div class="col">
+        <div class="col-4">
           <%= f.select :visibility, Episode.visibilities_i18n.invert, {prompt: '選択してください'}, class: 'form-control' %>
         </div>
       </div>
     </div>
 
-    <div class="form-group row ml-md-2">
-      <label class="col-md-4 col-form-label"></label>
-      <div class="col form-row text-center">
-        <div class="col">
-          <%= f.submit '変更を保存', class: 'btn btn-success px-4' %>
-          <%= link_to "削除", admin_episode_path(episode), method: :delete, class:"btn btn-sm btn-danger" %>
-        </div>
+    <div class="row justify-content-center">
+      <div class="col-5 col-md-3 d-flex justify-content-between">
+        <%= f.submit '変更を保存', class: 'btn btn-success px-4' %>
+        <%= link_to "削除", admin_episode_path(episode), method: :delete, class:"btn btn-sm btn-danger" %>
       </div>
     </div>
 

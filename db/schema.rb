@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 2023_07_15_125634) do
     t.integer "episode_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id", "episode_id"], name: "index_category_relations_on_category_id_and_episode_id", unique: true
   end
 
   create_table "comments", force: :cascade do |t|

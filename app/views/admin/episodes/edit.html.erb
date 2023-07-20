@@ -1,11 +1,9 @@
-<div class="container my-4 px-sm-1">
-  <div class="col-sm-12 col-md-10 col-lg-8 mx-auto my-2">
-    <div class="px-1">
-      <h5 class="bg-light text-center" style="width: 150px;">編集</h5>
-      <%#= render 'layouts/errors', obj: @episode %>
-    </div>
-    <div class="col-md-11 col-lg-10 col-xl-9 ml-3">
-      <%= render 'admin/episodes/form', episode: @episode %>
-    </div>
+<div class="container my-4">
+  <div class="row">
+    <h1 class="h4 text-center" %>編集</h1>
+    <%= render 'layouts/error_messages', resource: @episode %>
+  </div>
+  <div class="col">
+    <%= render 'admin/episodes/form', episode: @episode, categories: @categories %>
   </div>
 </div>
