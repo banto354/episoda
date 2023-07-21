@@ -1,0 +1,35 @@
+<div class="container episode_show">
+  <div class="d-flex flex-column flex-md-row">
+    <div class="col-md-3 episode_profile">
+      <%= render 'public/users/pf_box', user: @episode.user %>
+    </div>
+
+    <div class="col-md-9 episode_content" style="">
+      <!--エピソード-->
+      <div class="row my-5">
+        <div class="col">
+          <h1><%= @episode.title %></h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <p><%= render_with_tags(@episode.content) %></p>
+        </div>
+      </div>
+      <!--閲覧数-->
+      <div class="row">
+        <div class="col">
+          <p>閲覧数: <%= @view_counts %></p>
+        </div>
+      </div>
+      <!--コメント-->
+      <div class="row">
+        <div class="col">
+          <h2 class="h4 mt-3 mb-2">コメント</h2>
+          <%= render "public/comments/comments_area", comments: @comments, episode: @episode %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

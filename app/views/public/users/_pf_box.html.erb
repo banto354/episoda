@@ -1,0 +1,40 @@
+<div class="container my-5 shadow-sm rounded">
+  <div class="row">
+    <div class="col d-flex justify-content-center">
+      <%= link_to user_path(user) do %>
+        <%= image_tag user.get_profile_image(100, 100), class: 'rounded-circle img-fluid img-thumbnail my-3' %><br>
+      <% end %>
+    </div>
+  </div>
+  <div class="row align-items-center">
+    <div class="col">
+      <%= link_to user_path(user), class:" text-body font-weight-bold" do %>
+        <%= user.name %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row align-items-center">
+    <div class="col text-muted">
+      @<%= user.username %>
+    </div>
+  </div>
+  <div class="row align-items-center mt-2">
+    <div class="col">
+      <small><%= simple_format(user.introduction) %></small>
+    </div>
+  </div>
+  <div class="row d-md-flex flex-md-column">
+    <div class="ml-3 mt-2">
+      <%= link_to user_following_path(user.id), class: "text-body" do %>
+        <span class="font-weight-bold text-body"><%= user.following.count %></span> フォロー
+      <% end %>
+    </div>
+    <div class="ml-3 mt-2">
+      <%= link_to user_followers_path(user.id), class: "text-body" do %>
+        <span class="font-weight-bold text-body"><%= user.followers.count %></span> フォロワー
+      <% end %>
+    </div>
+  </div>
+  <!--ログインユーザーの確認、表示ボタンの変更-->
+  <%= render 'public/relationships/btn_option', user: user %>
+</div>

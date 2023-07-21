@@ -1,0 +1,32 @@
+<div class="container">
+  <h1 class="h4">お知らせ</h1>
+  <div class="row mt-3">
+    <div class="col">
+      <% unless @notifications.exists? %>
+        <p>1週間以内の通知はありません</p>
+      <% end %>
+      <ul>
+        <% @notifications.each do |notification| %>
+          <% message = notification.to_notification.message %>
+          <% url = notification.to_notification.url %>
+          <li>
+            <div class="d-flex align-items-center">
+              <% if notification.type == "CommentNotification" %>
+                <%= link_to message[:user], url[:user] %>さんがあなたのエピソード "<%= link_to message[:episode], url[:episode], class: "d-inline-block text-truncate text-align-center" , style: "max-width: 150px;"  %>" にコメントしました。
+              <% elsif notification.type == "RelationshipNotification" %>
+                <%= link_to message[:user], url[:user] %>さんがあなたをフォローしました。
+              <% elsif notification.type == "FavouriteNotification" %>
+                <%= link_to message[:user], url[:user] %>さんがあなたのエピソード "<%= link_to message[:episode], url[:episode], class: "d-inline-block text-truncate text-align-center" , style: "max-width: 150px;" %>" にいいねしました。
+              <% end %>
+              <small class="text-muted ml-1">(<%= distance_of_time_in_words(notification.created_at, Time.now, locale: :ja) %>前)</small>
+              <!--既読バッジ-->
+              <!--<%# if notification.unread? %>-->
+              <!--  <span class="badge badge-success">未読</span>-->
+              <!--<%# end %>-->
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

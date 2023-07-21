@@ -1,0 +1,24 @@
+<div class="container">
+  <!--ログイン機能コンテナ-->
+  <div class="row justify-content-center">
+    <p><b>ログイン</b></p>
+  </div>
+  <!--ゲストユーザーログインボタン-->
+
+  <%= render "/public/sessions/form" %>
+
+  <div class="row justify-content-center mt-5">
+    <div class="col-6 d-flex justify-content-center">
+      <%= link_to "ゲストログイン（閲覧用）", users_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block col-8 mb-3", method: :post %>
+    </div>
+  </div>
+
+  <div class="row justify-content-center pb-5">
+    <div class="col-12 text-center ">
+      <%= link_to "はじめての方はこちら", new_registration_path(:user) %>
+    </div>
+  </div>
+  <div class="row text-center">
+    <%#= render "public/shared/links" %>
+  </div>
+</div>

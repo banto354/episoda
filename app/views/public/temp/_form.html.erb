@@ -1,0 +1,51 @@
+<div>
+  <%= form_with model: post, class: 'form' do |f| %>
+
+    
+    <div class="form-group row ml-md-2 mb-2">
+      <label class="col-md-4 col-form-label">title</label>
+      <div class="col form-row">
+        <div class="col">
+          <%= f.text_field :title, class: 'form-control', placeholder: 'タイトル' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row ml-md-2 mb-2">
+      <label class="col-md-4 col-form-label">本文</label>
+      <div class="col form-row">
+        <div class="col">
+          <%= f.text_area :content, class: 'form-control', rows: 6, placeholder: '本文', input_html: { wrap: :virtual } %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row ml-md-2 mb-2">
+      <label class="col-md-4 col-form-label">カテゴリ</label>
+      <div class="col form-row">
+        <div class="col">
+          <%#= f.select :category_id, options_for_select(Category.all.map { |category| [category.name, category.id] }), {prompt: '選択してください'}, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row ml-md-2 mb-2">
+      <label class="col-md-4 col-form-label">公開対象</label>
+      <div class="col form-row">
+        <div class="col">
+          <%= f.select :visibility, Post.visibilities_i18n.invert, {prompt: '選択してください'}, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row ml-md-2">
+      <label class="col-md-4 col-form-label"></label>
+      <div class="col form-row text-center">
+        <div class="col">
+          <%= f.submit (action_name == 'new' ? '新規登録' : '変更を保存'), class: 'btn btn-success px-4' %>
+        </div>
+      </div>
+    </div>
+    
+  <% end %>
+</div>

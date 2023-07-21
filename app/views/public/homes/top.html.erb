@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <!--サイト説明-->
+    <div class="col-md-6 d-md-flex align-items-center d-none">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <p>知らないエピソードが溢れるSNS</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--ログイン機能コンテナ-->
+    <div class="col-md-6">
+      <div class="container mt-5">
+        <div class="row justify-content-center">
+          <p><b>ログイン</b></p>
+        </div>
+        <!--ゲストユーザーログインボタン-->
+        <%= render "/public/sessions/form" %>
+        
+        <div class="row justify-content-center">
+          <%= link_to "ゲストログイン（閲覧用）", users_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block col-8 mb-3", method: :post %>
+        </div>
+
+        <div class="row justify-content-center pb-5">
+          <div class="col-12 text-center ">
+            <%= link_to "はじめての方はこちら", new_registration_path(:user) %>
+          </div>
+        </div>
+        <div class="row text-center">
+          <%#= render "public/shared/links" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

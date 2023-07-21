@@ -1,0 +1,33 @@
+<h2 class="h4 text-center mx-auto mb-4">ユーザー一覧</h2>
+<div class="mx-auto col-10">
+  <table class="table">
+    <thead>
+      <tr>
+        <td>ID</td>
+        <td><span class="d-none d-md-block">アカウント名</span></td>
+        <td>email</td>
+        <td><span class="d-none d-md-block">公開ステータス</span></td>
+        <td><span class="d-none d-md-block">退会ステータス</span></td>
+      </tr>
+    </thead>
+    <tbody>
+      <% users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><u><%= link_to user.name, admin_user_path(user), class: "text-body font-weight-bold" %></u></td>
+          <td><%= user.email %></td>
+          <% if user.is_public == true %>
+            <td><strong>公開</strong></td>
+          <% else %>
+            <td><strong>非公開</strong></td>
+          <% end %>
+          <% if user.is_active == true %>
+            <td class="text-success"><strong>有効</strong></td>
+          <% else %>
+            <td class="text-muted"><strong>退会</strong></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

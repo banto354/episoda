@@ -1,0 +1,36 @@
+<header class="header">
+  <nav class="navbar navbar-expand-md navbar-light">
+    <%= link_to root_path, class: "logo" do %>
+      <%= image_tag("episoda_logo.png", alt: "logo", id: "header_logo", class: "logo") %>
+    <% end %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                  aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div  class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ml-auto">
+        <%# ログイン後 %>
+        <% if user_signed_in? %>
+          <%= render 'layouts/user' %>
+        <% elsif admin_signed_in? %>
+        <!--管理者ログイン後-->
+          <li class="nav-link"><%= link_to "投稿一覧", admin_episodes_path, class: "nav-link" %></li>
+          <li class="nav-link"><%= link_to "ユーザー一覧", admin_users_path, class: "nav-link" %></li>
+          <li class="nav-link"><%= link_to "カテゴリー一覧", admin_categories_path, class: "nav-link" %></li>
+          <!--<li class="nav-link"><%#= link_to "グループ一覧", root_path, class: "nav-link" %></li>-->
+          <li class="nav-link"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link" %></li>
+        <% else %>
+          <%# ログイン前 %>
+          <li class="nav-link"><%= link_to "アバウトページ", about_path, class: "nav-link" %></li>
+          <li class="nav-link"><%= link_to "ログイン", new_user_session_path, class: "nav-link" %></li>
+          <li class="nav-link"><%= link_to "管理者ログイン", new_admin_session_path, class: "nav-link" %></li>
+          <li class="nav-link"><%= link_to "新規登録", new_user_registration_path, class: "nav-link" %></li>
+        <% end %>
+        <!--検索機能-->
+        <% if user_signed_in? || admin_signed_in? %>
+           <%= render "layouts/search" %>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+</header>

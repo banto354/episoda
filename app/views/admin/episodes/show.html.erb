@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col">
+      <h1><%= @episode.title %></h1>
+    </div>
+  </div>
+  <div class="row mb-5">
+    <div class="col">
+      エピソードID: <%= @episode.id %>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-11">
+      <p><%= simple_format(@episode.content) %></p>
+    </div>
+  </div>
+  <div class="row justify-content-end">
+    <%= link_to "編集する", edit_admin_episode_path(@episode), class: "btn btn-success btn-sm mr-2 mr-md-5 px-4" %>
+  </div>
+  <div class="row mt-3">
+    <div class="col">
+      <%= render "public/comments/comments_area", comments: @comments, episode: @episode %>
+    </div>
+  </div>
+</div>

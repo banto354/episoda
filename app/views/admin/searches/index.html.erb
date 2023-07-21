@@ -1,0 +1,9 @@
+<div class="container">
+  <h1 class="h4 row">"<%= @query %>"の検索結果</h1>
+  <% if @users.present? %>
+    <%= render "user_index", users: @users %>
+  <% end %>
+  <% if @episodes.present? %>
+    <%= render "episode_index", episodes: @episodes %>
+  <% end %>
+</div>

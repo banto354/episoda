@@ -1,0 +1,9 @@
+<div class="container my-4">
+  <div class="row">
+    <h1 class="h4 text-center" %>編集</h1>
+    <%= render 'layouts/error_messages', resource: @episode %>
+  </div>
+  <div class="col">
+    <%= render 'admin/episodes/form', episode: @episode, categories: @categories %>
+  </div>
+</div>

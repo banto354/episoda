@@ -1,0 +1,14 @@
+<div class="container">
+  <h1 class="h4">
+      <%= @user.name %>さんのフォロワー
+  </h1>
+
+  <% if @followers.empty? %>
+  <div class="row">
+    <div class="col">
+      <h2 class="h4">まだフォローされていません</h2>
+    </div>
+  </div>
+  <% end %>
+  <%= render 'index', users: @followers %>
+</div>

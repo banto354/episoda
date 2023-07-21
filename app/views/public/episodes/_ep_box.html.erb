@@ -1,0 +1,69 @@
+<div class="container my-3 shadow-sm rounded">
+  <div class="d-flex flex-md-row flex-column">
+    <!--左ブロック-->
+      <div class="col-md-2">
+        <div class="d-none d-md-block">
+           <%= image_tag user.get_profile_image(150, 150), class: 'rounded-circle img-fluid img-thumbnail mx-2 my-2' %>
+        </div>
+      </div>
+    <!--真ん中ブロック-->
+    <div class="col-md-8 mt-2">
+      <!--ユーザー情報段-->
+      <div class="row">
+        <div class="col">
+          <%= link_to user.name, user_path(episode.user), class: "underline text-body" %>
+          <small class="text-muted">@<%= link_to user.username, user_path(episode.user), class: "text-muted" %></small>
+        </div>
+      </div>
+      <!--エピソード情報段-->
+      <div>
+        <div class="row mt-2">
+          <div class="col">
+            <!--<%#= link_to episode.category.name, category_path(episode.category) %>-->
+            <%= link_to episode.title, episode_path(episode), class: "text-body font-weight-bold" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="episode_content col">
+            <small><%= episode.content %></small>
+          </div>
+        </div>
+      </div>
+      <!--最下段-->
+      <div class="row my-2">
+        <div class="col">
+          <div class="favourite-btn" id="favourite-btn-<%= episode.id %>">
+            <%= render 'public/favourites/favourite-btn', episode: episode %>
+          </div>
+        </div>
+        <div class="col d-flex align-items-center justify-content-end">
+          <small class="text-muted"><%= episode.created_at.strftime("%Y/%m/%d")  %></small>
+        </div>
+      </div>
+    </div>
+    <!--右ブロック-->
+    <div class="col-12 col-md-2 d-flex flex-row flex-md-column justify-content-between px-0 mt-2">
+      <!--公開対象-->
+      <div class="d-flex flex-md-row">
+        <div class="col-12 flex-md-grow-1 pr-0">
+          <%= Episode.visibilities_i18n[episode.visibility] %>
+        </div>
+      </div>
+      <!--編集、削除-->
+      <div class=" d-flex flex-md-row justify-content-end mr-1 my-2">
+        <% if user == current_user %>
+          <div class="col-3 col-md-2">
+            <%= link_to edit_episode_path(episode) do %>
+              <i class="fa-solid fa-file-pen"></i>
+            <% end %>
+          </div>
+          <div class="col-3 col-md-2">
+            <%= link_to episode_path(episode), method: "delete",  data: { confirm: "削除しますか？" } do %>
+              <i class="fa-solid fa-trash-can" style="color: #ea3e3e;"></i>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

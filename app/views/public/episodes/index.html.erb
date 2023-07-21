@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row justify-content-between">
+    <!--カテゴリボックス-->
+    <div class="col-2 mx-4">
+      <%= render "public/categories/category_search", categories: @categories %>
+    </div>
+    <!--エピソードインデックス-->
+    <div class="col-9">
+      <!--フォローアカウントのエピソード-->
+      <div class="row">
+        <h1 class="h4 mt-5">フォロー中</h1>
+        <div class="d-flex flex-nowrap" style="overflow-x: auto;">
+          <% @episodes_following.each do |episode| %>
+            <%= render "public/episodes/ep_box_search", episode: episode, user: episode.user %>
+          <% end %>
+        </div>
+      </div>
+      <!--エピソードランダム表示-->
+      <div class="row">
+        <h1 class="h4 mt-5">みんなのエピソード</h1>
+        <div class="d-flex flex-row flex-wrap">
+          <% @episodes_random.each do |episode| %>
+            <%= render "ep_box", episode: episode, user: episode.user %>
+          <% end %>
+        </div>
+        <%= paginate @episodes_random %>
+      </div>
+    </div>
+  </div>
+</div>
