@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     end
     resources :notifications, only: [:index]
     resources :searches, only: [:index]
+    resources :categories, only: [:show]
     get '/categories/subcategories' => 'categories#subcategories'
     get '/tag/:name', to: "episodes#hashtag"
   end
