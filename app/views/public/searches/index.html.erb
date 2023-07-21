@@ -1,10 +1,7 @@
-<div class="container col-10">
-  <h1 class="row">"<%= @query %>"の検索結果</h1>
-  <% if @users.present? %>
-    <div class="row">
-      <h2 class="mt-5">ユーザー</h2>
-    </div>
-
+<div class="container col-11">
+  <h1 class="h4">"<%= @query %>"の検索結果</h1>
+  <% if @users.exists? %>
+    <h2 class="h4 mt-5">ユーザー</h2>
     <div class="d-flex flex-wrap ">
       <% @users.each do |user| %>
         <%= render "public/users/pf_box_search", user: user %>
@@ -12,8 +9,8 @@
       <%= paginate @users %>
     </div>
   <% end %>
-  <% if @episodes.present? %>
-    <h2 class="mt-5">エピソード</h2>
+  <% if @episodes.exists? %>
+    <h2 class="h4 mt-5">エピソード</h2>
     <div class="d-flex flex-row flex-wrap">
       <% @episodes.each do |episode| %>
         <%= render "public/episodes/ep_box_search", episode: episode, user: episode.user %>
@@ -21,5 +18,4 @@
     </div>
     <%= paginate @episodes %>
   <% end %>
-
 </div>

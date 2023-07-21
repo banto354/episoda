@@ -11,4 +11,9 @@ class Public::CategoriesController < ApplicationController
       format.json { render json: @subcategories }
     end    
   end
+  
+  def show
+    @category = Category.find(params[:id])
+    @episodes = @category.episodes.page(params[:page]).per(10)
+  end
 end

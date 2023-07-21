@@ -1,4 +1,4 @@
-<h2 class="text-center mx-auto mb-4">エピソード一覧</h2>
+<h2 class="h4 text-center mx-auto mb-4">エピソード一覧</h2>
 <div class="mx-auto col-10">
   <table class="table">
     <thead>
@@ -13,8 +13,8 @@
       <% episodes.each do |episode| %>
       <tr>
         <td><%= episode.id %></td>
-        <td><%= episode.user.name %></td>
-        <td class="link-black"><%= link_to episode.title, admin_episode_path(episode) %></td>
+        <td><%=  link_to episode.user.name, admin_user_path(episode.user), class: "text-body" %></td>
+        <td><u><%= link_to episode.title, admin_episode_path(episode), class: "text-body d-inline-block text-truncate font-weight-bold" %></u></td>
         <td><%= Episode.visibilities_i18n[episode.visibility] %></td>
       </tr>
     <% end %>

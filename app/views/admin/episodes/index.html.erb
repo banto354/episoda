@@ -4,10 +4,10 @@
     <table class="table table-hover table-bordered col-md-12 mx-1">
       <thead>
         <tr>
-          <td class="bg-light">エピソードID</td>
+          <td class="bg-light col-2">エピソードID</td>
           <td class="bg-light">名前</td>
           <td class="bg-light">タイトル</td>
-          <td class="bg-light d-none d-md-block">公開設定</td>
+          <td class="bg-light">公開設定</td>
         </tr>
       </thead>
       <tbody>
@@ -16,7 +16,7 @@
           <td><%= episode.id %></td>
           <td><%= link_to episode.user.name, admin_user_path(episode.user), class: "text-body" %></td>
           <td><u><%= link_to episode.title, admin_episode_path(episode), class: "text-body text-truncate font-weight-bold" %></u></td>
-          <td class="d-none d-md-block"><%= Episode.visibilities_i18n[episode.visibility] %></td>
+          <td><%= Episode.visibilities_i18n[episode.visibility] %></td>
         </tr>
       <% end %>
     </tbody>

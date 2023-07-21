@@ -18,6 +18,7 @@
         </div>
         <!--ゲストユーザーログインボタン-->
         <%= render "/public/sessions/form" %>
+        
         <div class="row justify-content-center">
           <%= link_to "ゲストログイン（閲覧用）", users_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block col-8 mb-3", method: :post %>
         </div>

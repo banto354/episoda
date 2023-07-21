@@ -14,7 +14,7 @@ class Public::CommentsController < ApplicationController
         notification = CommentNotification.with(comment: comment)
         notification.deliver(@episode.user)
       end  
-      # flash[:success] = "コメントを投稿しました"
+      # flash[:notice] = "コメントを投稿しました"
     else
       render "episodes/show"
     end
