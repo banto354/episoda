@@ -8,7 +8,6 @@ class Episode < ApplicationRecord
   has_many :category_relations, dependent: :destroy
   has_many :categories, through: :category_relations
 
-
   accepts_nested_attributes_for :category_relations
 
   enum visibility: { to_public: 0, to_group: 1, to_myself: 2 }
