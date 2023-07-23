@@ -5,8 +5,9 @@
 // 下記追記
 //= require_tree ./packs
 
+
 import Rails from "@rails/ujs"
-// import Turbolinks from "turbolinks"
+import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
@@ -19,5 +20,5 @@ import "../stylesheets/application";
 
 
 Rails.start()
-// Turbolinks.start()
+Turbolinks.start()
 ActiveStorage.start()
