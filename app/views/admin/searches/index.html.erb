@@ -1,9 +1,15 @@
 <div class="container">
   <h1 class="h4 row">"<%= @query %>"の検索結果</h1>
-  <% if @users.present? %>
+  <% if @users.exists? %>
     <%= render "user_index", users: @users %>
   <% end %>
-  <% if @episodes.present? %>
+  <% if @episodes.exists? %>
     <%= render "episode_index", episodes: @episodes %>
+  <% end %>
+  
+  <% if @users.empty? && @episodes.empty? %>
+    <div class="d-flex justify-content-center align-items-center" style="height: 60vh;">
+      <p class="h4">該当するものはありませんでした。</p>
+    </div>
   <% end %>
 </div>

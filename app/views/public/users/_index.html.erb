@@ -3,7 +3,7 @@
       <%= user.name %>さんの投稿一覧
   </h1>
   <% if episodes.empty? %>
-    <h2>現在投稿はありません</h2>
+    <h2>現在、投稿されたはありません</h2>
   <% elsif user.is_public == false %>
     <h2>このユーザーの投稿は公開されていません</h2>
   <% end %>

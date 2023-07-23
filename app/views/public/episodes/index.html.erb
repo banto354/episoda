@@ -1,26 +1,40 @@
 <div class="container">
-  <div class="row justify-content-between">
+  <div class="d-flex flex-column flex-lg-row justify-content-lg-between">
     <!--カテゴリボックス-->
-    <div class="col-2 mx-4">
-      <%= render "public/categories/category_search", categories: @categories %>
+    <div class="col mr-4">
+      <div class="d-flex justify-content-lg-center mx-4">
+        <%= render "public/categories/category_search", categories: @categories %>
+      </div>
     </div>
     <!--エピソードインデックス-->
-    <div class="col-9">
+    <div class="col col-lg-9">
       <!--フォローアカウントのエピソード-->
-      <div class="row">
-        <h1 class="h4 mt-5">フォロー中</h1>
-        <div class="d-flex flex-nowrap" style="overflow-x: auto;">
+      <h1 class="h4 mt-5">フォロー中</h1>
+      <div class="d-flex flex-nowrap" style="overflow-x: auto;">
+        <% if @epsodes_following.nil? %>
+        <!--該当データなし-->
+        <div class="col mt-4">
+          <p>現在投稿されたエピソードはありません。</p>
+        </div>
+        <% else %>
+        <!--該当データあり-->
           <% @episodes_following.each do |episode| %>
             <%= render "public/episodes/ep_box_search", episode: episode, user: episode.user %>
           <% end %>
-        </div>
+        <% end %>
       </div>
       <!--エピソードランダム表示-->
+      <h1 class="h4 mt-5">みんなのエピソード</h1>
       <div class="row">
-        <h1 class="h4 mt-5">みんなのエピソード</h1>
         <div class="d-flex flex-row flex-wrap">
-          <% @episodes_random.each do |episode| %>
-            <%= render "ep_box", episode: episode, user: episode.user %>
+          <% if @episodes_random.nil? %>
+          <!--該当データなし-->
+            現在投稿されたエピソードはありません。
+          <% else %>
+          <!--該当データあり-->
+            <% @episodes_random.each do |episode| %>
+              <%= render "ep_box", episode: episode, user: episode.user %>
+            <% end %>
           <% end %>
         </div>
         <%= paginate @episodes_random %>
