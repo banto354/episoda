@@ -1,5 +1,6 @@
 <div class="container col-11">
   <h1 class="h4">"<%= @query %>"の検索結果</h1>
+  <!--ユーザーの表示-->
   <% if @users.exists? %>
     <h2 class="h4 mt-5">ユーザー</h2>
     <div class="d-flex flex-wrap ">
@@ -9,6 +10,7 @@
       <%= paginate @users %>
     </div>
   <% end %>
+  <!--エピソードの表示-->
   <% if @episodes.exists? %>
     <h2 class="h4 mt-5">エピソード</h2>
     <div class="d-flex flex-row flex-wrap">
@@ -17,5 +19,11 @@
       <% end %>
     </div>
     <%= paginate @episodes %>
+  <% end %>
+
+  <% if @users.empty? && @episodes.empty? %>
+    <div class="d-flex justify-content-center align-items-center" style="height: 60vh;">
+      <p class="h4">該当するものはありませんでした。</p>
+    </div>
   <% end %>
 </div>

@@ -1,12 +1,30 @@
-<div class="container col-10">
-  <h1 class="h4 row">カテゴリ: <%= @category.name %></h1>
-  <% if @episodes.exists? %>
-    <h2 class="mt-5">エピソード</h2>
-    <div class="d-flex flex-row flex-wrap">
-      <% @episodes.each do |episode| %>
-        <%= render "public/episodes/ep_box_search", episode: episode, user: episode.user %>
+<div class="container">
+  <div class="d-flex flex-column flex-lg-row justify-content-lg-between">
+    <!--カテゴリボックス-->
+    <div class="col mr-4">
+      <!--<div class="row justify-content-center">-->
+        <div class="d-flex justify-content-lg-center mx-4">
+          <%= render "public/categories/category_search", categories: @categories %>
+        </div>
+      <!--</div>-->
+    </div>
+    <!--エピソードインデックス-->
+    <div class="col col-lg-9">
+      <h1 class="h4 row">カテゴリ: <%= @category.name %></h1>
+      <% if @episodes.exists? %>
+      <!--該当データあり-->
+        <div class="d-flex flex-row flex-wrap">
+          <% @episodes.each do |episode| %>
+            <%= render "public/episodes/ep_box_search", episode: episode, user: episode.user %>
+          <% end %>
+        </div>
+        <%= paginate @episodes %>
+      <!--該当データなし-->
+      <% else %>
+        <div class="d-flex justify-content-center align-items-center" style="height: 60vh;">
+          <p class="h4">該当するものはありませんでした。</p>
+        </div>
       <% end %>
     </div>
-    <%= paginate @episodes %>
-  <% end %>
+  </div>
 </div>
