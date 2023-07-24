@@ -31,12 +31,19 @@ ja:
       am: "午前"
       pm: "午後"
     activerecord:
+      models:
+        user: "ユーザー"
+        episode: "エピソード"
+        tag: "タグ"
+        category: "カテゴリー"
+        category_relation: "カテゴリー"
       attributes:
         user:
           name: "名前"
           username: "ユーザーネーム"
           introduction: "プロフィール"
         episode:
-          episode: "エピソード"
+          title: "タイトル"
+          content: "内容"
         category:
-          category: "カテゴリー"
+          name: "カテゴリー名"

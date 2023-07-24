@@ -7,11 +7,11 @@ class Episode < ApplicationRecord
   has_many :tags, through: :taggings
   has_many :category_relations, dependent: :destroy
   has_many :categories, through: :category_relations
-  
+
   # 単一フォーム複数モデル用設定
   accepts_nested_attributes_for :category_relations, reject_if: :all_blank
-
-  enum visibility: { to_public: 0, to_group: 1, to_myself: 2 }
+  #to_group: 2は未実装
+  enum visibility: { to_public: 0, to_myself: 1 }
 
   with_options presence: true do
     validates :title
