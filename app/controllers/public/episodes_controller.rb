@@ -28,12 +28,13 @@ class Public::EpisodesController < ApplicationController
   end
 
   def create
-    episode = Episode.new(episode_params)
-    episode.user_id = current_user.id
-    if episode.save
+    @episode = Episode.new(episode_params)
+    @episode.user_id = current_user.id
+    if @episode.save
         flash[:success] = "投稿に成功しました"
         redirect_to user_path(current_user)
     else
+      @categories = Category.all
       render :new
     end
   end

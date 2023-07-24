@@ -36,3 +36,7 @@ ja:
           name: "名前"
           username: "ユーザーネーム"
           introduction: "プロフィール"
+        episode:
+          episode: "エピソード"
+        category:
+          category: "カテゴリー"

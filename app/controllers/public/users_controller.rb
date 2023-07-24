@@ -5,9 +5,9 @@ class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     if @user == current_user
-      @episodes = Episode.where(user_id: current_user.id).page(params[:page]).per(10)
+      @episodes = Episode.where(user_id: current_user.id).order("created_at DESC").page(params[:page]).per(10)
     else
-      @episodes = Episode.where(user_id: params[:id], visibility: 0).page(params[:page]).per(10)
+      @episodes = Episode.where(user_id: params[:id], visibility: 0).order("created_at DESC").page(params[:page]).per(10)
     end
   end
 
