@@ -37,8 +37,8 @@
     <div class="form-group row mt-4">
       <div class="col d-flex justify-content-md-center justify-content-end mx-auto">
         <!--"新規作成"と"編集"で表示を変更-->
-        <% button_text = (action_name == 'new' ? '新規登録' : '変更を保存') %>
-        <% button_class = (action_name == 'new' ? 'btn btn-outline-primary px-4' : 'btn btn-success px-4') %>
+        <% button_text = (params[:action] == 'new' || params[:action] == 'create' ? '新規登録' : '変更を保存') %>
+        <% button_class = (params[:action] == 'new' || params[:action] == 'create' ? 'btn btn-outline-primary px-4' : 'btn btn-primary px-4') %>
         <%= f.submit button_text, class: button_class %>
       </div>
     </div>
