@@ -3,22 +3,18 @@
   <!--ユーザーの表示-->
   <% if @users.exists? %>
     <h2 class="h4 mt-5">ユーザー</h2>
-    <div class="d-flex flex-wrap ">
-      <% @users.each do |user| %>
-        <%= render "public/users/pf_box_search", user: user %>
-      <% end %>
-      <%= paginate @users %>
+    <div class="search-user d-flex flex-wrap">
+      <%= render 'user', users: @users %>
     </div>
+      <%= link_to_next_page @users, "もっとみる", remote: true, params: { type: :user }, id: 'another-user' %>
   <% end %>
   <!--エピソードの表示-->
   <% if @episodes.exists? %>
     <h2 class="h4 mt-5">エピソード</h2>
-    <div class="d-flex flex-row flex-wrap">
-      <% @episodes.each do |episode| %>
-        <%= render "public/episodes/ep_box_search", episode: episode, user: episode.user %>
-      <% end %>
+    <div class="d-flex flex-row flex-wrap" id = "search-episode">
+      <%= render 'episode', episodes: @episodes %>
     </div>
-    <%= paginate @episodes %>
+    <%= link_to_next_page @episodes, 'もっとみる', remote: true, params: { type: :episode }, id:  'another-episode' %>
   <% end %>
 
   <% if @users.empty? && @episodes.empty? %>

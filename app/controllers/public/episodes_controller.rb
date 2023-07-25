@@ -34,6 +34,7 @@ class Public::EpisodesController < ApplicationController
         flash[:success] = "投稿に成功しました"
         redirect_to user_path(current_user)
     else
+      @episode.category_relations.build
       @categories = Category.all
       render :new
     end
