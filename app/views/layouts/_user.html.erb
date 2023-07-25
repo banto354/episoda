@@ -2,30 +2,30 @@
 <li class="nav-link">
   <% if current_user.notifications.unread.exists? %>
     <%= link_to notifications_path, class: "nav-link" do %>
-      <i class="fa-regular fa-bell fa-xl" style="color: #f05656;"></i>
+      <i class="fa-regular fa-bell fa-lg" style="color: #f05656;"></i>
     <% end %>
   <% else %>
     <%= link_to notifications_path, class: "nav-link" do %>
-      <i class="fa-regular fa-bell fa-xl"></i>
+      <i class="fa-regular fa-bell fa-lg"></i>
     <% end %>
   <% end %>
 </li>
 <!--マイページ-->
 <li class="nav-link">
   <%= link_to user_path(current_user), class: "nav-link" do %>
-    <i class="fa-solid fa-circle-user fa-xl"></i>
+    <i class="fa-solid fa-circle-user fa-lg"></i>
   <% end %>
   </li>
   <!--新規投稿-->
   <li class="nav-link">
   <%= link_to new_episode_path, class: "nav-link" do %>
-    <i class="fa-solid fa-pen-to-square fa-xl"></i>
+    <i class="fa-solid fa-pen-to-square fa-lg"></i>
   <% end %>
 </li>
 <!--ユーザー情報編集-->
 <li class="nav-link">
   <%= link_to edit_user_path(current_user), class: 'nav-link' do %>
-    <i class="fa-solid fa-gear fa-xl"></i>
+    <i class="fa-solid fa-gear fa-lg"></i>
   <% end %>
 </li>
 <li class="nav-link"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link font-weight-bold" %></li>

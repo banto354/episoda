@@ -25,11 +25,36 @@ class Episode < ApplicationRecord
 
   after_create do
     episode = Episode.find_by(id: self.id)
+    # contentカラムからハッシュタグを抽出
     tags  = self.content.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
     tags.uniq.each do |tag|
       #ハッシュタグは先頭の'#'を外した上で保存
-      hashtag = Tag.find_or_create_by(name: tag.downcase.delete('#'))
+      hashtag = Tag.find_or_initialize_by(name: tag.downcase.delete('#'))
       episode.tags << hashtag
     end
   end
+
+  after_update do
+    episode = Episode.find_by(id: self.id)
+    # contentカラムからハッシュタグを抽出
+    tags = self.content.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
+    # ハッシュタグの重複を削除
+    tags.uniq!
+    # 現在のタグと新しいタグの差分を取得
+    old_tags = episode.tags.pluck(:name)
+    new_tags = tags.map { |tag| tag.downcase.delete('#') }
+    add_tags = new_tags - old_tags
+    remove_tags = old_tags - new_tags
+    # 追加するタグを関連付ける
+    add_tags.each do |tag|
+      hashtag = Tag.find_or_initialize_by(name: tag)
+      episode.tags << hashtag
+    end
+    # 消去するタグを関連付け解除する
+    remove_tags.each do |tag|
+      hashtag = Tag.find_by(name: tag)
+      episode.tags.delete(hashtag)
+    end
+  end
+
 end

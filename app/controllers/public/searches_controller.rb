@@ -1,12 +1,11 @@
 class Public::SearchesController < ApplicationController
   def index
     @query = params[:query]
-    @users = User.where("name LIKE ?", "%#{@query}%").page(params[:user_page]).per(5)
+    @users = User.where("name LIKE ?", "%#{@query}%").page(params[:user_page]).per(3)
     # ユーザー検索結果から検索者を除外
     @users = @users.where.not(id: current_user.id) unless current_user.nil?
 
-    @episodes = Episode.where("title LIKE ?", "%#{@query}%").page(params[:episode_page]).per(5)
-
+    @episodes = Episode.where("title LIKE ?", "%#{@query}%").page(params[:episode_page]).per(6)
     # 'もっとみる'ページネーション設定
     return unless request.xhr?
 

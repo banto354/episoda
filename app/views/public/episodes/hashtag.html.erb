@@ -1,0 +1,25 @@
+<div class="container col-11">
+  <h1 class="h4">"#<%= @tag.name %>"の検索結果</h1>
+  <!--エピソードの表示-->
+  <% if @episodes.exists? %>
+    <h2 class="h4 mt-5">エピソード</h2>
+    <div class="d-flex flex-row flex-wrap" id = "search-episode">
+      <%= render 'public/searches/episode', episodes: @episodes %>
+    </div>
+    <!--検索結果数に応じて"もっとみる"を表示-->
+    <div class="row justify-content-center">
+      <% unless @episodes.count < 5 %>
+        <div class="col-4 col-lg-2 text-center border rounded-pill p-2">
+          <%= link_to_next_page @episodes, 'もっとみる', remote: true, params: { type: :episode }, class: 'text-body stretched-link', id:  'another-episode' %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <!--検索結果なし-->
+  <% if @episodes.empty? %>
+    <div class="d-flex justify-content-center align-items-center" style="height: 60vh;">
+      <p class="h4">該当するものはありませんでした。</p>
+    </div>
+  <% end %>
+</div>

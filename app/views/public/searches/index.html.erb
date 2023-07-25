@@ -6,7 +6,15 @@
     <div class="search-user d-flex flex-wrap">
       <%= render 'user', users: @users %>
     </div>
-      <%= link_to_next_page @users, "もっとみる", remote: true, params: { type: :user }, id: 'another-user' %>
+    <!--検索結果数に応じて"もっとみる"を表示-->
+    <div class="row justify-content-center">
+      <% unless @users.count < 3 %>
+        <div class="col-4 col-lg-2 text-center border rounded-pill p-2">
+          <%= link_to_next_page @users, "もっとみる", remote: true, params: { type: :user }, :param_name => 'user_page', id: 'another-user' %>
+        </div>
+      <% end %>
+    </div>
+
   <% end %>
   <!--エピソードの表示-->
   <% if @episodes.exists? %>
@@ -14,9 +22,16 @@
     <div class="d-flex flex-row flex-wrap" id = "search-episode">
       <%= render 'episode', episodes: @episodes %>
     </div>
-    <%= link_to_next_page @episodes, 'もっとみる', remote: true, params: { type: :episode }, id:  'another-episode' %>
+    <!--検索結果数に応じて"もっとみる"を表示-->
+    <div class="row justify-content-center">
+      <% unless @episodes.count < 5 %>
+        <div class="col-4 col-lg-2 text-center border rounded-pill p-2">
+          <%= link_to_next_page @episodes, 'もっとみる', remote: true, params: { type: :episode }, :param_name => 'episode_page', class: 'another-episode text-body stretched-link' %>
+        </div>
+      <% end %>
+    </div>
   <% end %>
-
+  <!--検索結果なし-->
   <% if @users.empty? && @episodes.empty? %>
     <div class="d-flex justify-content-center align-items-center" style="height: 60vh;">
       <p class="h4">該当するものはありませんでした。</p>
