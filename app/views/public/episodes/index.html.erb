@@ -26,22 +26,24 @@
       <!--エピソードランダム表示-->
       <h1 class="h4 mt-5">みんなのエピソード</h1>
       <div class="row">
-        <div class="d-flex flex-row flex-wrap">
-          <% if @episodes_random.nil? %>
+        <div class="col-12">
+          <% if @episodes.nil? %>
           <!--該当データなし-->
             現在投稿されたエピソードはありません。
           <% else %>
           <!--該当データあり-->
-            <div id="ep_random">
-              <%= render "ep_random", episodes_random: @episodes_random %>
+            <div class="col col-lg-12", id="ep_random">
+              <%= render "episodes", episodes: @episodes %>
             </div>
             <% end %>
         </div>
       </div>
       <div class="row justify-content-center">
-        <div class="col-2 text-center border rounded-pill p-2">
-          <%= link_to_next_page @episodes_random, 'もっとみる', remote: true, class: 'link-another text-body stretched-link', id: 'link-another' %>
-        </div>
+        <% unless @episodes.count < 5 %>
+          <div class="col-2 text-center border rounded-pill p-2">
+            <%= link_to_next_page @episodes, 'もっとみる', remote: true, class: 'link-another text-body stretched-link', id: 'another-link' %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

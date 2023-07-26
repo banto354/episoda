@@ -1,14 +1,31 @@
 <div class="container episode_show">
-  <div class="d-flex flex-column flex-md-row">
-    <div class="col-md-3 episode_profile">
+  <div class="d-flex flex-column flex-lg-row">
+    <div class="col-lg-3 episode_profile">
       <%= render 'public/users/pf_box', user: @episode.user %>
     </div>
 
-    <div class="col-md-9 episode_content" style="">
+    <div class="episode_content col-lg-8">
       <!--エピソード-->
       <div class="row my-5">
         <div class="col">
           <h1><%= @episode.title %></h1>
+
+          <div class="row justify-content-end">
+            <% if @episode.user == current_user %>
+              <div class="col-1">
+                <%= link_to edit_episode_path(@episode) do %>
+                  <i class="fa-solid fa-file-pen fa-xl"></i>
+                <% end %>
+              </div>
+              <div class="col-1">
+                <%= link_to episode_path(@episode), method: "delete",  data: { confirm: "削除しますか？" } do %>
+                  <i class="fa-solid fa-trash-can fa-xl" style="color: #ea3e3e;"></i>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+
+
         </div>
       </div>
       <div class="row">
