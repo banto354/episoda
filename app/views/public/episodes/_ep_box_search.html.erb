@@ -1,9 +1,9 @@
-<div class="col col-lg-4 shadow-sm rounded my-3 d-inline-block ">
+<div class="col-12 col-sm-6 col-lg-4 shadow-sm rounded my-3 d-inline-block ">
   <!--エピソード概要上段-->
   <div class="row mt-2 mx-1">
     <div class="col-4 d-flex align-items-center justify-content-lg-center px-0">
       <%= link_to user_path(episode.user) do %>
-        <%= image_tag user.get_profile_image(150, 150), class: 'rounded-circle img-fulid img-thumbnail my-2' %>
+        <%= image_tag user.get_profile_image(100, 100), class: 'rounded-circle img-thumbnail my-2' %>
       <% end %>
     </div>
     <div class="col-8 d-flex flex-column">

@@ -1,2 +1,2 @@
 $('#search-episode').append('<%= escape_javascript(render 'episode', episodes: @episodes) %>');
-$('#another-episode').replaceWith('<%= escape_javascript(link_to_next_page(@episodes, 'もっと見る', params: { type: :episode }, remote: true, id: 'another-episode')) %>');
+$('.another-episode').replaceWith('<%= escape_javascript(link_to_next_page(@episodes, 'もっとみる', remote: true, params: { type: :episode }, :param_name => 'episode_page', class: 'another-episode text-body stretched-link')) %>');

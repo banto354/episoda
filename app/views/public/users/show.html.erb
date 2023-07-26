@@ -1,11 +1,11 @@
 <div class="container">
-  <div class="d-flex flex-column flex-md-row">
+  <div class="d-flex flex-column flex-lg-row">
     <!--左側:プロフィール-->
-    <div class="col-md-3">
+    <div class="col-lg-3">
       <%= render 'pf_box', user: @user %>
     </div>
 
-    <div class="col-md-9">
+    <div class="col-lg-9">
       <!-- 右側:投稿一覧 -->
       <%= render 'index', episodes: @episodes, user: @user %>
     </div>

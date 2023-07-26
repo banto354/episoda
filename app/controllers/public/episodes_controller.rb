@@ -5,7 +5,7 @@ class Public::EpisodesController < ApplicationController
   def index
     following_user_ids = current_user.following.pluck(:id)
     @episodes_following = Episode.where(user_id: following_user_ids).order("created_at DESC").limit(40).page(params[:page]).per(5)
-    @episodes_random = Episode.where(visibility: 0).order("RANDOM()").limit(40).page(params[:page]).per(5)
+    @episodes = Episode.where(visibility: 0).order("RANDOM()").limit(40).page(params[:page]).per(5)
     @categories = Category.all
   end
 
@@ -43,19 +43,22 @@ class Public::EpisodesController < ApplicationController
   def edit
     @episode = Episode.find(params[:id])
     @categories = Category.all
-    unless CategoryRelation.find_by(episode_id: params[:id]).nil?
-      @category_relation = CategoryRelation.find(episode_id: params[:id])
-      @category = Category.find(@category_relation.category_id)
+    if CategoryRelation.find_by(episode_id: params[:id]).nil?
+      byebug
+      @episode.category_relations.build
+    else
+      byebug
     end
   end
 
   def update
     @episode = Episode.find(params[:id])
-    @category_relation =
+
     if @episode.update(episode_params)
       flash[:success] = "編集を完了しました"
       redirect_to user_path(current_user)
     else
+      @categories = Category.all
       render :edit
     end
   end
@@ -69,10 +72,7 @@ class Public::EpisodesController < ApplicationController
   def hashtag
     @user = current_user
     @tag = Tag.find_by(name: params[:name])
-    @episodes = @tag.episodes
-    @episode  = @tag.episodes.page(params[:page])
-    @comment    = Comment.new
-    @comments   = @episodes.comments
+    @episodes = @tag.episodes.page(params[:page]).per(6)
   end
 
   private

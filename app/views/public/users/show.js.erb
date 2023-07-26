@@ -1,0 +1,2 @@
+$('#user-episodes').append('<%= escape_javascript(render 'public/episodes/episodes', episodes: @episodes) %>');
+$('.another-episode').replaceWith('<%= escape_javascript(link_to_next_page(@episodes, 'もっとみる', params: { type: :episode }, :param_name => 'episode_page', remote: true, class:'another-episode text-body stretched-link')) %>');
