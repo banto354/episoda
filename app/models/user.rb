@@ -3,10 +3,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-         
+
   has_one_attached :image
   # validate :image_size_validation
-  
+
   has_many :episodes, dependent: :destroy
   has_many :favourites, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -15,17 +15,16 @@ class User < ApplicationRecord
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
   has_many :notifications, as: :recipient
-  has_many :category_relations
-  
+
   # accepts_nested_attributes_for :categroy_relations
-  
+
   validates :name, presence: true, length: { minimum: 2, maximum: 20 }
     # 半角英数字のみを許可する正規表現（英字は小文字のみ）
   ALPHANUMERIC_REGEX = /\A[a-z0-9]+\z/
   validates :username, presence: true, length: { minimum: 2, maximum: 20 }, uniqueness: true, format: { with: ALPHANUMERIC_REGEX }
   validates :introduction, length: { maximum: 400 }
   validates :email, uniqueness: true
-  
+
   # ユーザー画像サイズ変換
   def get_profile_image(width, height)
     unless image.attached?
@@ -34,12 +33,12 @@ class User < ApplicationRecord
     end
     image.variant(resize_to_limit: [width, height]).processed
   end
-  
+
   def followed_by?(user)
     passive_relationships.exists?(follower_id: user.id )
   end
-  
-  
+
+
   GUEST_USER_EMAIL = "guest@example.com"
 
   def self.guest
@@ -50,11 +49,11 @@ class User < ApplicationRecord
       user.birthdate = "2023-07-01"
     end
   end
-  
+
   def guest_user?
     email == GUEST_USER_EMAIL
   end
-  
+
   # def image_size_validation
   #   if image.attached?
   #     if image.blob.byte_size > 1.megabytes
