@@ -43,19 +43,22 @@ class Public::EpisodesController < ApplicationController
   def edit
     @episode = Episode.find(params[:id])
     @categories = Category.all
-    unless CategoryRelation.find_by(episode_id: params[:id]).nil?
-      @category_relation = CategoryRelation.find(episode_id: params[:id])
-      @category = Category.find(@category_relation.category_id)
+    if CategoryRelation.find_by(episode_id: params[:id]).nil?
+      byebug
+      @episode.category_relations.build
+    else
+      byebug
     end
   end
 
   def update
     @episode = Episode.find(params[:id])
-    @category_relation =
+
     if @episode.update(episode_params)
       flash[:success] = "編集を完了しました"
       redirect_to user_path(current_user)
     else
+      @categories = Category.all
       render :edit
     end
   end

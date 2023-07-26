@@ -23,6 +23,10 @@ class Episode < ApplicationRecord
       favourites.exists?(user_id: user.id)
   end
 
+  # def category_changed?(params)
+  #   self.categories.first.id != params[:episode][:category_relations_attributes]["0"][:category_id].to_i
+  # end
+
   after_create do
     episode = Episode.find_by(id: self.id)
     # contentカラムからハッシュタグを抽出

@@ -26,13 +26,13 @@
       <!--エピソードランダム表示-->
       <h1 class="h4 mt-5">みんなのエピソード</h1>
       <div class="row">
-        <div class="d-flex flex-row flex-wrap">
+        <div class="col-12">
           <% if @episodes.nil? %>
           <!--該当データなし-->
             現在投稿されたエピソードはありません。
           <% else %>
           <!--該当データあり-->
-            <div id="ep_random">
+            <div class="col col-lg-12", id="ep_random">
               <%= render "episodes", episodes: @episodes %>
             </div>
             <% end %>

@@ -6,8 +6,5 @@ class CreateCategoryRelations < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
-    
-    add_index :category_relations, [:category_id, :episode_id], unique: true
-    
   end
 end
