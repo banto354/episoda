@@ -9,34 +9,58 @@
       <div class="row my-5">
         <div class="col">
           <h1><%= @episode.title %></h1>
-
-          <div class="row justify-content-end">
-            <% if @episode.user == current_user %>
-              <div class="col-1">
-                <%= link_to edit_episode_path(@episode) do %>
-                  <i class="fa-solid fa-file-pen fa-xl"></i>
-                <% end %>
-              </div>
-              <div class="col-1">
-                <%= link_to episode_path(@episode), method: "delete",  data: { confirm: "削除しますか？" } do %>
-                  <i class="fa-solid fa-trash-can fa-xl" style="color: #ea3e3e;"></i>
-                <% end %>
+          <!--カテゴリ表示-->
+          <div class="row my-3">
+            <% @categories.each do |category| %>
+              <div class="col">
+                <div>
+                  <span class="bg-info text-white rounded p-2"><%= category.name %></span>
+                </div>
               </div>
             <% end %>
           </div>
 
-
+          <div class="row justify-content-end">
+            <% if @episode.user == current_user %>
+            <!--編集アイコン-->
+              <div class="col-1">
+                <%= link_to edit_episode_path(@episode) do %>
+                  <i class="fa-solid fa-file-pen fa-lg"></i>
+                <% end %>
+              </div>
+              <!--削除アイコン-->
+              <div class="col-1">
+                <%= link_to episode_path(@episode), method: "delete",  data: { confirm: "削除しますか？" } do %>
+                  <i class="fa-solid fa-trash-can fa-lg" style="color: #ea3e3e;"></i>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
         </div>
       </div>
+      <!--エピソード本文-->
       <div class="row">
         <div class="col">
           <p><%= render_with_tags(@episode.content) %></p>
         </div>
       </div>
-      <!--閲覧数-->
-      <div class="row">
-        <div class="col">
+      <!--投稿日-->
+      <div class="row justify-content-end">
+        <div class="col-6 col-lg-4 text-right">
+          <span class="text-muted">投稿日: <%= @episode.created_at.strftime("%Y/%m/%d") %></span>
+        </div>
+      </div>
+
+      <div class="row justify-content-between mt-2">
+        <!--閲覧数-->
+        <div class="col-4 col-lg-2">
           <p>閲覧数: <%= @view_counts %></p>
+        </div>
+        <!--いいねボタン-->
+        <div class="col-lg-2">
+          <div class="favourite-btn" id="favourite-btn-<%= @episode.id %>">
+            <%= render 'public/favourites/favourite-btn', episode: @episode %>
+          </div>
         </div>
       </div>
       <!--コメント-->
