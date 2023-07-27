@@ -30,6 +30,12 @@ main {
   -webkit-line-clamp: 4;
 }
 
+.user_introduction {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
 @media screen and (min-width:992px) {
   .episode_show .episode_profile {
     position: fixed;

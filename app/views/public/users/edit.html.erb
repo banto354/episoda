@@ -14,6 +14,7 @@
   <div class="row">
     <%= form_with model: @user, class: "col-lg-8 mt-3 mx-auto" do |f| %>
       <div class="col d-flex flex-column justify-content-center">
+        <!--プロフィールアイコン-->
         <div class="form-group d-flex flex-column flex-lg-row align-items-center align-items-lg-start justify-content-lg-between mb-3">
           <%= f.label :image, "プロフィール画像", class: "form-label pl-0 col-lg-5" %>
           <div class="col-12 col-sm-6 d-flex justify-content-center">
@@ -34,22 +35,22 @@
             </div>
           </div>
         </div>
-
+        <!--名前-->
         <div class="form-group d-flex flex-column flex-lg-row align-items-center justify-content-lg-between mt-2 mb-3">
           <%= f.label :name, "名前", class: "form-label pl-0 col-lg-5" %>
           <%= f.text_field :name, autocomplete: "名前", class: "col-lg-6 form-control" %>
         </div>
-
+        <!--ユーザー名-->
         <div class="form-group d-flex flex-column flex-lg-row align-items-center justify-content-lg-between mt-2 mb-3">
           <%= f.label :username, "ユーザー名", class: "col form-label pl-0 col-lg-5" %>
           <%= f.text_field :username, autocomplete: "ユーザーネーム", class: "col-lg-6 form-control" %>
         </div>
-
+        <!--生年月日-->
         <div class="form-group d-flex flex-column flex-lg-row align-items-center justify-content-lg-between mt-2 mb-3">
           <%= f.label :birthdate, "生年月日", class: "form-label pl-0 col-lg-5" %>
           <%= f.date_field :birthdate, use_month_numbers: true, class: "col-lg-6 form-control", id: "datepicker"%>
         </div>
-
+        <!--メールアドレス-->
         <div class="form-group d-flex flex-column flex-lg-row align-items-center justify-content-lg-between mt-2 mb-3">
           <%= f.label :email, "メールアドレス", class: "form-label pl-0 col-lg-5" %>
           <%= f.email_field :email, autocomplete: "email", class: "form-control col-lg-6 " %>
