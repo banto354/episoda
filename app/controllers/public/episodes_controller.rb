@@ -50,7 +50,6 @@ class Public::EpisodesController < ApplicationController
 
   def update
     @episode = Episode.find(params[:id])
-
     if @episode.update(episode_params)
       flash[:success] = "編集を完了しました"
       redirect_to episode_path(@episode)
@@ -75,7 +74,7 @@ class Public::EpisodesController < ApplicationController
   private
 
   def episode_params
-    params.require(:episode).permit(:title, :content, :visibility, :group_id, category_relations_attributes: [:category_id, :_destroy])
+    params.require(:episode).permit(:title, :content, :visibility, :group_id, category_relations_attributes: [:id, :category_id, :_destroy])
   end
 
   def is_matching_login_user
