@@ -55,10 +55,17 @@
           <%= f.label :email, "メールアドレス", class: "form-label pl-0 col-lg-5" %>
           <%= f.email_field :email, autocomplete: "email", class: "form-control col-lg-6 " %>
         </div>
+        <!--自己紹介-->
         <div class="form-group d-flex flex-column flex-lg-row align-items-center justify-content-lg-between mt-2 mb-3">
           <%= f.label :introduction, "プロフィール", class: "form-label pl-0 col-lg-5" %>
           <%= f.text_area :introduction, rows: 6, class: "form-control col-lg-6 " %>
         </div>
+        <!--非公開投稿-->
+        <!--<div class="form-check d-flex flex-column flex-lg-row align-items-center justify-content-lg-between mt-2 mb-3">-->
+        <!--  <%#= f.label :is_private, "投稿の非公開", class: "form-label pl-0 col-lg-5" %>-->
+        <!--  <%#= f.check_box :is_private, {class: "form-check-input col-lg-6"}, false, true %>-->
+        <!--</div>-->
+
         <div class="d-flex flex-lg-row justify-content-center mt-2 ">
           <div class="col-6 d-flex justify-content-center">
             <%= f.submit "更新", class: "btn btn-primary col-4 mx-2" %>
