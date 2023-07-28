@@ -5,5 +5,6 @@ class Admin::CommentsController < ApplicationController
     @comments = Comment.where(episode_id: params[:episode_id])
     @episode = Episode.find(params[:episode_id])
     flash[:success] = "コメントを削除しました"
+    redirect_to admin_episode_path(comment.episode)
   end
 end
