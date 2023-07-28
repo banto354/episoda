@@ -1,30 +1,32 @@
 <!--お知らせ-->
 <li class="nav-link">
   <% if current_user.notifications.unread.exists? %>
-    <%= link_to notifications_path, class: "nav-link" do %>
+    <!--新規通知あり-->
+    <%= link_to notifications_path, class: "nav-link", data: { toggle: "tooltip", placement: "top" }, title: "お知らせ" do %>
       <i class="fa-regular fa-bell fa-lg" style="color: #f05656;"></i>
     <% end %>
   <% else %>
-    <%= link_to notifications_path, class: "nav-link" do %>
+    <!--新規通知なし-->
+    <%= link_to notifications_path, class: "nav-link", data: { toggle: "tooltip", placement: "top" }, title: "お知らせ" do %>
       <i class="fa-regular fa-bell fa-lg"></i>
     <% end %>
   <% end %>
 </li>
 <!--マイページ-->
 <li class="nav-link">
-  <%= link_to user_path(current_user), class: "nav-link" do %>
+  <%= link_to user_path(current_user), class: "nav-link", data: { toggle: "tooltip", placement: "top" }, title: "マイページ" do %>
     <i class="fa-solid fa-circle-user fa-lg"></i>
   <% end %>
   </li>
   <!--新規投稿-->
   <li class="nav-link">
-  <%= link_to new_episode_path, class: "nav-link" do %>
+  <%= link_to new_episode_path, class: "nav-link", data: { toggle: "tooltip", placement: "top" }, title: "新規投稿" do %>
     <i class="fa-solid fa-pen-to-square fa-lg"></i>
   <% end %>
 </li>
 <!--ユーザー情報編集-->
 <li class="nav-link">
-  <%= link_to edit_user_path(current_user), class: 'nav-link' do %>
+  <%= link_to edit_user_path(current_user), class: 'nav-link', data: { toggle: "tooltip", placement: "top" }, title: "ユーザー編集" do %>
     <i class="fa-solid fa-gear fa-lg"></i>
   <% end %>
 </li>

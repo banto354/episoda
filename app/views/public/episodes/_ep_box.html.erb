@@ -54,12 +54,12 @@
       <div class=" d-flex flex-lg-row justify-content-end mr-1 my-2">
         <% if user == current_user %>
           <div class="col-3 col-lg-2">
-            <%= link_to edit_episode_path(episode) do %>
+            <%= link_to edit_episode_path(episode), data: { toggle: "tooltip", placement: "top" }, title: "編集" do %>
               <i class="fa-solid fa-file-pen"></i>
             <% end %>
           </div>
           <div class="col-3 col-lg-2 mr-1">
-            <%= link_to episode_path(episode), method: "delete",  data: { confirm: "削除しますか？" } do %>
+            <%= link_to episode_path(episode), method: "delete", data: { toggle: "tooltip", placement: "top", confirm: "削除しますか？"  }, title: "削除" do %>
               <i class="fa-solid fa-trash-can" style="color: #ea3e3e;"></i>
             <% end %>
           </div>
