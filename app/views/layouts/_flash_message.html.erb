@@ -1,5 +1,6 @@
 <% flash.each do |message| %>
-  <div class="alert alert-danger alert-dismissible fade show">
+<% byebug %>
+  <div class="alert alert-<%= (message[0]) %> alert-dismissible fade show">
     <% if message[1].is_a?(Array) %>
       <% message[1].each do |value| %>
         <span><%= value %><br></span>

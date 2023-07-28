@@ -20,15 +20,15 @@
           <div class="col-12 col-sm-6 d-flex justify-content-center">
             <div class="d-flex flex-column align-items-lg-center mx-auto">
               <!--ファイル画像表示-->
-              <div class="col my-2 d-lg-flex justify-content-center">
-                  <%= image_tag @user.get_profile_image(100, 100), class: 'rounded-circle img-fluid' if @user.image.attached? %>
+              <div class="col my-2 d-lg-flex justify-content-center" id="profile_image">
+                  <p id="preview"><%#= image_tag @user.get_profile_image(100, 100), class: 'rounded-circle img-fluid' if @user.image.attached? %></p>
               </div>
               <div class="col my-1 d-lg-flex justify-content-center">
                 <!--ファイル選択ボタン-->
                 <label>
                   <span class="btn btn-secondary btn-sm col-12">
                     ファイルを選択
-                    <%= f.file_field :image, accept: "image/*" , class: "d-none" %>
+                    <%= f.file_field :image, accept: "image/*", class: "d-none", onchange: "loadImage(this)" %>
                   </span>
                 </label>
               </div>

@@ -14,6 +14,7 @@ import "jquery";
 import "popper.js";
 import "bootstrap";
 import "../stylesheets/application";
+import "profile_image.js";
 
 Rails.start()
 Turbolinks.start()
