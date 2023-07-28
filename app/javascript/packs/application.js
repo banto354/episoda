@@ -3,7 +3,6 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 // 下記追記
-//= require_tree ./packs
 
 
 import Rails from "@rails/ujs"
@@ -15,9 +14,6 @@ import "jquery";
 import "popper.js";
 import "bootstrap";
 import "../stylesheets/application";
-
-// import "./categories"
-
 
 Rails.start()
 Turbolinks.start()

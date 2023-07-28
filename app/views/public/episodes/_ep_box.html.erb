@@ -59,12 +59,17 @@
             <% end %>
           </div>
           <div class="col-3 col-lg-2 mr-1">
-            <%= link_to episode_path(episode), method: "delete", data: { toggle: "tooltip", placement: "top", confirm: "削除しますか？"  }, title: "削除" do %>
-              <i class="fa-solid fa-trash-can" style="color: #ea3e3e;"></i>
-            <% end %>
+            <div type="button" data-toggle="modal" data-target="#deleteModal">
+              <span data-toggle="tooltip" title="top">
+               <i class="fa-solid fa-trash-can" style="color: #ea3e3e;"></i>
+               </span>
+            </div>
+            <!--削除用モーダルウィンドウ-->
+            <%= render 'public/episodes/modal', episode: episode %>
           </div>
         <% end %>
       </div>
     </div>
   </div>
 </div>
+
