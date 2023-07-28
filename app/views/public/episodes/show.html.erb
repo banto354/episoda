@@ -23,16 +23,20 @@
           <div class="row justify-content-end">
             <% if @episode.user == current_user %>
             <!--編集アイコン-->
-              <div class="col-1">
+              <div class="col-1 text-right">
                 <%= link_to edit_episode_path(@episode), data: { toggle: "tooltip", placement: "top" }, title: "削除" do %>
                   <i class="fa-solid fa-file-pen fa-lg"></i>
                 <% end %>
               </div>
               <!--削除アイコン-->
               <div class="col-1">
-                <%= link_to episode_path(@episode), method: "delete", data: { toggle: "tooltip", placement: "top", confirm: "削除しますか？"  }, title: "削除" do %>
-                  <i class="fa-solid fa-trash-can fa-lg" style="color: #ea3e3e;"></i>
-                <% end %>
+                <div type="button" data-toggle="modal" data-target="#deleteModal">
+                  <span data-toggle="tooltip" title="top">
+                    <i class="fa-solid fa-trash-can fa-lg" style="color: #ea3e3e;"></i>
+                  </span>
+                </div>
+                <!--削除用モーダルウィンドウ-->
+                <%= render 'public/episodes/modal', episode: @episode %>
               </div>
             <% end %>
           </div>

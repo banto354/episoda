@@ -62,6 +62,7 @@ class Public::EpisodesController < ApplicationController
 
   def destroy
     episode = Episode.find(params[:id])
+    byebug
     episode.destroy
     redirect_to user_path(current_user)
   end
