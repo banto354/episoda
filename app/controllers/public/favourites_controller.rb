@@ -1,6 +1,11 @@
 class Public::FavouritesController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    user = User.find(current_user.id)
+    @episodes = user.favourite_episodes.page(params[:page]).per(6)
+  end
+
   def create
     @episode = Episode.find(params[:episode_id])
     favourite = Favourite.new(user_id: current_user.id, episode_id: params[:episode_id])
@@ -22,5 +27,5 @@ class Public::FavouritesController < ApplicationController
     favourite = Favourite.find_by(user_id: current_user.id, episode_id: params[:episode_id])
     favourite.destroy
   end
-  
+
 end

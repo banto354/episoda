@@ -1,5 +1,5 @@
 class Public::CommentsController < ApplicationController
-  before_action :authenticate_user!, except: [:top, :about] 
+  before_action :authenticate_user!, except: [:top, :about]
   def create
     # コメント保存
     comment = Comment.new(comment_params)
@@ -13,7 +13,7 @@ class Public::CommentsController < ApplicationController
       unless comment.user == comment.episode.user
         notification = CommentNotification.with(comment: comment)
         notification.deliver(@episode.user)
-      end  
+      end
       # flash[:notice] = "コメントを投稿しました"
     else
       render "episodes/show"
@@ -26,6 +26,7 @@ class Public::CommentsController < ApplicationController
     @comments = Comment.where(episode_id: params[:episode_id])
     @episode = Episode.find(params[:episode_id])
     flash[:success] = "コメントを削除しました"
+    redirect_to episode_path(comment.episode)
   end
 
   private

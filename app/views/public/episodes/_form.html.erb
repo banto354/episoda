@@ -28,7 +28,7 @@
     <div class="form-group row mb-2">
       <label class="col-lg-3 col-form-label">公開設定</label>
       <div class="col form-row">
-        <%= f.select :visibility, Episode.visibilities_i18n.invert, {prompt: '選択してください'}, class: 'form-control col-12 col-lg-5' %>
+        <%= f.select :visibility, Episode.visibilities_i18n.invert, {}, class: 'form-control col-12 col-lg-5' %>
       </div>
     </div>
 

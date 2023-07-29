@@ -39,7 +39,9 @@
     <div class="row justify-content-center">
       <div class="col-5 col-lg-3 d-flex justify-content-between">
         <%= f.submit '変更を保存', class: 'btn btn-success px-4' %>
-        <%= link_to "削除", admin_episode_path(episode), method: :delete, data: { confirm: "削除しますか？" }, class:"btn btn-danger" %>
+        <div type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">削除</div>
+        <!--削除用モーダルウィンドウ-->
+        <%= render 'admin/episodes/modal', episode: episode %>
       </div>
     </div>
 

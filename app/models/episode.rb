@@ -1,5 +1,4 @@
 class Episode < ApplicationRecord
-
   belongs_to :user
   has_many :favourites, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -9,7 +8,7 @@ class Episode < ApplicationRecord
   has_many :categories, through: :category_relations
 
   # 単一フォーム複数モデル用設定
-  accepts_nested_attributes_for :category_relations, reject_if: :all_blank
+  accepts_nested_attributes_for :category_relations, reject_if: :all_blank, allow_destroy: true
   #to_group: 2は未実装
   enum visibility: { to_public: 0, to_myself: 1 }
 

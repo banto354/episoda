@@ -6,29 +6,29 @@
           <!--上段-->
           <div class="row">
             <!--ユーザーアイコン-->
-            <div class="col-1">
+            <div class="col-3 col-sm-2 col-lg-1">
               <%= link_to user_path(user) do %>
-                <%= image_tag user.get_profile_image(80, 80), class: 'rounded-circle img-fluid img-thumbnail' %>
+                <%= image_tag user.get_profile_image(80, 80), class: 'rounded-circle img-thumbnail' %>
               <% end %>
             </div>
-            <div class="col-8">
+            <div class="col-5 col-sm-7 col-lg-8">
               <div class="row">
-                <%= link_to user_path(user), class:" text-body font-weight-bold" do %>
+                <%= link_to user_path(user), class:" text-body font-weight-bold text-truncate" do %>
                   <%= user.name %>
                 <% end %>
               </div>
-              <div class="row text-muted">
+              <div class="row text-muted text-truncate">
                 @<%= user.username %>
               </div>
             </div>
-            <div class="col-3 d-flex justify-content-end align-items-start">
+            <div class="col-4 col-sm-3 d-flex justify-content-end align-items-start">
               <!--ログインユーザーの確認、表示ボタンの選択-->
               <%= render 'btn_option', user: user %>
             </div>
           </div>
           <!--下段（プロフィール）-->
           <div class="row justify-content-end">
-            <div class="col-11 pl-0">
+            <div class="user_introduction col-11 pl-0">
               <small><%= user.introduction %></small>
             </div>
           </div>

@@ -11,11 +11,11 @@
       <!--フォローアカウントのエピソード-->
       <h1 class="h4 mt-5">フォロー中</h1>
       <div class="d-flex flex-nowrap" style="overflow-x: auto;">
-        <% if @epsodes_following.nil? %>
-        <!--該当データなし-->
-        <div class="col mt-4">
-          <p>現在投稿されたエピソードはありません。</p>
-        </div>
+        <% if @episodes_following.empty? %>
+          <!--該当データなし-->
+          <div class="col mt-4">
+            <p>現在投稿されたエピソードはありません。</p>
+          </div>
         <% else %>
         <!--該当データあり-->
           <% @episodes_following.each do |episode| %>
@@ -29,7 +29,7 @@
         <div class="col-12">
           <% if @episodes.nil? %>
           <!--該当データなし-->
-            現在投稿されたエピソードはありません。
+            現在表示できるエピソードはありません。
           <% else %>
           <!--該当データあり-->
             <div class="col col-lg-12", id="ep_random">
@@ -41,7 +41,7 @@
       <div class="row justify-content-center">
         <% unless @episodes.count < 5 %>
           <div class="col-2 text-center border rounded-pill p-2">
-            <%= link_to_next_page @episodes, 'もっとみる', remote: true, class: 'link-another text-body stretched-link', id: 'another-link' %>
+            <%= link_to_next_page @episodes, 'もっとみる', remote: true, class: 'another-link text-body stretched-link', id: 'another-link' %>
           </div>
         <% end %>
       </div>

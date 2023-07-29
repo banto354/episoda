@@ -14,9 +14,7 @@
                         <%= simple_format(comment.content) %>
                     </td>
                     <td>
-                          <%= link_to episode_comment_path(comment.id, episode_id: comment.episode_id), method: :delete, remote: true, data: { confirm: "削除しますか？" } do %>
-                              <i class="fa-solid fa-trash-can" style="color: #ea3e3e;"></i>
-                          <% end %>
+                        <%= render 'admin/comments/modal' comment: comment %>
                     </td>
                 </tr>
             <% end %>

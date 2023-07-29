@@ -4,19 +4,21 @@
   </h1>
   <!--投稿履歴チェック-->
   <% if episodes.empty? %>
-    <h2 class="h4">現在、投稿されたはありません</h2>
+    <h2 class="h4">現在、投稿されたエピソードはありません</h2>
   <!--公開ステータスチェック  -->
   <% elsif user.is_public == false %>
     <h2 class="h4">このユーザーの投稿は公開されていません</h2>
   <% end %>
-  
+
   <div id="user-episodes">
     <%= render "public/episodes/episodes", episodes: episodes %>
   </div>
   <!--一定数以上の投稿でページネーション表示-->
-  <% unless @episodes.count < 5 %>
-    <div class="col-2 text-center border rounded-pill p-2">
-      <%= link_to_next_page @episodes, 'もっとみる', remote: true, params: { type: :episode }, :param_name => 'episode_page', class: 'another-episode text-body stretched-link' %>
-    </div>
-  <% end %>
+  <div class="row justify-content-center">
+    <% unless @episodes.count < 5 %>
+      <div class="col-2 text-center border rounded-pill p-2">
+        <%= link_to_next_page @episodes, 'もっとみる', remote: true, params: { type: :episode }, :param_name => 'episode_page', class: 'another-episode text-body stretched-link' %>
+      </div>
+    <% end %>
+  </div>
 </div>

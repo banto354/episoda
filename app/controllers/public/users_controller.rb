@@ -31,7 +31,7 @@ class Public::UsersController < ApplicationController
     user = User.find(current_user.id)
     user.update(is_active: false)
     reset_session
-    flash[:danger] = "退会処理を実行いたしました"
+    flash[:danger] = "退会処理が実行されました"
     redirect_to root_path
   end
 

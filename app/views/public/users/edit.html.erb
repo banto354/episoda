@@ -14,50 +14,58 @@
   <div class="row">
     <%= form_with model: @user, class: "col-lg-8 mt-3 mx-auto" do |f| %>
       <div class="col d-flex flex-column justify-content-center">
+        <!--プロフィールアイコン-->
         <div class="form-group d-flex flex-column flex-lg-row align-items-center align-items-lg-start justify-content-lg-between mb-3">
           <%= f.label :image, "プロフィール画像", class: "form-label pl-0 col-lg-5" %>
           <div class="col-12 col-sm-6 d-flex justify-content-center">
             <div class="d-flex flex-column align-items-lg-center mx-auto">
               <!--ファイル画像表示-->
-              <div class="col my-2 d-lg-flex justify-content-center">
-                  <%= image_tag @user.get_profile_image(100, 100), class: 'rounded-circle img-fluid' if @user.image.attached? %>
+              <div class="col my-2 d-lg-flex justify-content-center" id="profile_image">
+                  <p id="preview"><%#= image_tag @user.get_profile_image(100, 100), class: 'rounded-circle img-fluid' if @user.image.attached? %></p>
               </div>
               <div class="col my-1 d-lg-flex justify-content-center">
                 <!--ファイル選択ボタン-->
                 <label>
                   <span class="btn btn-secondary btn-sm col-12">
                     ファイルを選択
-                    <%= f.file_field :image, accept: "image/*" , class: "d-none" %>
+                    <%= f.file_field :image, accept: "image/*", class: "d-none", onchange: "loadImage(this)" %>
                   </span>
                 </label>
               </div>
             </div>
           </div>
         </div>
-
+        <!--名前-->
         <div class="form-group d-flex flex-column flex-lg-row align-items-center justify-content-lg-between mt-2 mb-3">
           <%= f.label :name, "名前", class: "form-label pl-0 col-lg-5" %>
           <%= f.text_field :name, autocomplete: "名前", class: "col-lg-6 form-control" %>
         </div>
-
+        <!--ユーザー名-->
         <div class="form-group d-flex flex-column flex-lg-row align-items-center justify-content-lg-between mt-2 mb-3">
           <%= f.label :username, "ユーザー名", class: "col form-label pl-0 col-lg-5" %>
           <%= f.text_field :username, autocomplete: "ユーザーネーム", class: "col-lg-6 form-control" %>
         </div>
-
+        <!--生年月日-->
         <div class="form-group d-flex flex-column flex-lg-row align-items-center justify-content-lg-between mt-2 mb-3">
           <%= f.label :birthdate, "生年月日", class: "form-label pl-0 col-lg-5" %>
           <%= f.date_field :birthdate, use_month_numbers: true, class: "col-lg-6 form-control", id: "datepicker"%>
         </div>
-
+        <!--メールアドレス-->
         <div class="form-group d-flex flex-column flex-lg-row align-items-center justify-content-lg-between mt-2 mb-3">
           <%= f.label :email, "メールアドレス", class: "form-label pl-0 col-lg-5" %>
           <%= f.email_field :email, autocomplete: "email", class: "form-control col-lg-6 " %>
         </div>
+        <!--自己紹介-->
         <div class="form-group d-flex flex-column flex-lg-row align-items-center justify-content-lg-between mt-2 mb-3">
           <%= f.label :introduction, "プロフィール", class: "form-label pl-0 col-lg-5" %>
           <%= f.text_area :introduction, rows: 6, class: "form-control col-lg-6 " %>
         </div>
+        <!--非公開投稿-->
+        <!--<div class="form-check d-flex flex-column flex-lg-row align-items-center justify-content-lg-between mt-2 mb-3">-->
+        <!--  <%#= f.label :is_private, "投稿の非公開", class: "form-label pl-0 col-lg-5" %>-->
+        <!--  <%#= f.check_box :is_private, {class: "form-check-input col-lg-6"}, false, true %>-->
+        <!--</div>-->
+
         <div class="d-flex flex-lg-row justify-content-center mt-2 ">
           <div class="col-6 d-flex justify-content-center">
             <%= f.submit "更新", class: "btn btn-primary col-4 mx-2" %>

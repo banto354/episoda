@@ -4,14 +4,15 @@ class Public::EpisodesController < ApplicationController
 
   def index
     following_user_ids = current_user.following.pluck(:id)
-    @episodes_following = Episode.where(user_id: following_user_ids).order("created_at DESC").limit(40).page(params[:page]).per(5)
-    @episodes = Episode.where(visibility: 0).order("RANDOM()").limit(40).page(params[:page]).per(5)
+    @episodes_following = Episode.where(user_id: following_user_ids).order("created_at DESC").limit(10)
+    @episodes = Episode.where(visibility: 0).order("RAND()").limit(40).page(params[:page]).per(5)
     @categories = Category.all
   end
 
   def show
     @episode = Episode.find(params[:id])
-    @comments = Comment.where(episode_id: params[:id])
+    @comments = @episode.comments
+    @categories = @episode.categories
     # 閲覧数カウント（3時間以内の同一ユーザーの閲覧はカウントしない）
     unless ViewCount.where('user_id = ? AND episode_id = ? AND created_at >= ?', current_user.id, params[:id], 3.hours.ago).present?
       view_count = ViewCount.new(user_id: current_user.id, episode_id: params[:id])
@@ -44,19 +45,15 @@ class Public::EpisodesController < ApplicationController
     @episode = Episode.find(params[:id])
     @categories = Category.all
     if CategoryRelation.find_by(episode_id: params[:id]).nil?
-      byebug
       @episode.category_relations.build
-    else
-      byebug
     end
   end
 
   def update
     @episode = Episode.find(params[:id])
-
     if @episode.update(episode_params)
       flash[:success] = "編集を完了しました"
-      redirect_to user_path(current_user)
+      redirect_to episode_path(@episode)
     else
       @categories = Category.all
       render :edit
@@ -65,6 +62,7 @@ class Public::EpisodesController < ApplicationController
 
   def destroy
     episode = Episode.find(params[:id])
+    byebug
     episode.destroy
     redirect_to user_path(current_user)
   end
@@ -78,7 +76,7 @@ class Public::EpisodesController < ApplicationController
   private
 
   def episode_params
-    params.require(:episode).permit(:title, :content, :visibility, :group_id, category_relations_attributes: [:category_id])
+    params.require(:episode).permit(:title, :content, :visibility, :group_id, category_relations_attributes: [:id, :category_id, :_destroy])
   end
 
   def is_matching_login_user

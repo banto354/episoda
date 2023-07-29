@@ -3,7 +3,9 @@
     <!--左ブロック-->
       <div class="col-lg-2">
         <div class="d-none d-lg-block">
+          <%= link_to user_path(episode.user) do %>
            <%= image_tag user.get_profile_image(150, 150), class: 'rounded-circle img-fluid img-thumbnail mx-2 my-2' %>
+          <% end %>
         </div>
       </div>
     <!--真ん中ブロック-->
@@ -31,6 +33,7 @@
       </div>
       <!--最下段-->
       <div class="row my-2">
+        <!--いいねボタン-->
         <div class="col">
           <div class="favourite-btn" id="favourite-btn-<%= episode.id %>">
             <%= render 'public/favourites/favourite-btn', episode: episode %>
@@ -53,17 +56,22 @@
       <div class=" d-flex flex-lg-row justify-content-end mr-1 my-2">
         <% if user == current_user %>
           <div class="col-3 col-lg-2">
-            <%= link_to edit_episode_path(episode) do %>
+            <%= link_to edit_episode_path(episode), data: { toggle: "tooltip", placement: "top" }, title: "編集" do %>
               <i class="fa-solid fa-file-pen"></i>
             <% end %>
           </div>
-          <div class="col-3 col-lg-2">
-            <%= link_to episode_path(episode), method: "delete",  data: { confirm: "削除しますか？" } do %>
-              <i class="fa-solid fa-trash-can" style="color: #ea3e3e;"></i>
-            <% end %>
+          <div class="col-3 col-lg-2 mr-1">
+            <div type="button" data-toggle="modal" data-target="#deleteModal">
+              <span data-toggle="tooltip" title="削除">
+               <i class="fa-solid fa-trash-can" style="color: #ea3e3e;"></i>
+               </span>
+            </div>
+            <!--削除用モーダルウィンドウ-->
+            <%= render 'public/episodes/modal', episode: episode %>
           </div>
         <% end %>
       </div>
     </div>
   </div>
 </div>
+
