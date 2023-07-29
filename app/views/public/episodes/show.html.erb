@@ -1,29 +1,74 @@
 <div class="container episode_show">
-  <div class="d-flex flex-column flex-md-row">
-    <div class="col-md-3 episode_profile">
+  <div class="d-flex flex-column flex-lg-row">
+    <!--ユーザープロフィール-->
+    <div class="col-lg-3 episode_profile" id="profile_box">
       <%= render 'public/users/pf_box', user: @episode.user %>
     </div>
-
-    <div class="col-md-9 episode_content" style="">
-      <!--エピソード-->
+    <!--エピソードコンテンツ-->
+    <div class="episode_content col-lg-8 ml-lg-4">
       <div class="row my-5">
         <div class="col">
           <h1><%= @episode.title %></h1>
+          <!--カテゴリ表示-->
+          <div class="row my-3">
+            <% @categories.each do |category| %>
+              <div class="col">
+                <div>
+                  <span class="bg-info text-white rounded p-2"><%= category.name %></span>
+                </div>
+              </div>
+            <% end %>
+          </div>
+
+          <div class="row justify-content-end">
+            <% if @episode.user == current_user %>
+            <!--編集アイコン-->
+              <div class="col-1 text-right">
+                <%= link_to edit_episode_path(@episode), data: { toggle: "tooltip", placement: "top" }, title: "削除" do %>
+                  <i class="fa-solid fa-file-pen fa-lg"></i>
+                <% end %>
+              </div>
+              <!--削除アイコン-->
+              <div class="col-1">
+                <div type="button" data-toggle="modal" data-target="#deleteModal">
+                  <span data-toggle="tooltip" title="top">
+                    <i class="fa-solid fa-trash-can fa-lg" style="color: #ea3e3e;"></i>
+                  </span>
+                </div>
+                <!--削除用モーダルウィンドウ-->
+                <%= render 'public/episodes/modal', episode: @episode %>
+              </div>
+            <% end %>
+          </div>
         </div>
       </div>
+      <!--エピソード本文-->
       <div class="row">
         <div class="col">
           <p><%= render_with_tags(@episode.content) %></p>
         </div>
       </div>
-      <!--閲覧数-->
-      <div class="row">
-        <div class="col">
+      <!--投稿日-->
+      <div class="row justify-content-end mt-3">
+        <div class="col-6 col-lg-4 text-right">
+          <span class="text-muted">投稿日: <%= @episode.created_at.strftime("%Y/%m/%d") %></span>
+        </div>
+      </div>
+
+      <div class="row justify-content-between mt-2">
+        <!--閲覧数-->
+        <div class="col-4 col-lg-2">
           <p>閲覧数: <%= @view_counts %></p>
+        </div>
+        <!--いいねボタン-->
+        <div class="col-lg-2">
+          <div class="favourite-btn text-right" id="favourite-btn-<%= @episode.id %>">
+            <%= render 'public/favourites/favourite-btn', episode: @episode %>
+          </div>
         </div>
       </div>
       <!--コメント-->
-      <div class="row">
+      <div class="row mt-5">
         <div class="col">
           <h2 class="h4 mt-3 mb-2">コメント</h2>
           <%= render "public/comments/comments_area", comments: @comments, episode: @episode %>

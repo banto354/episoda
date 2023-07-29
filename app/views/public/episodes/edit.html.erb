@@ -2,10 +2,10 @@
   <div class="col-12 col-md-10  mx-auto my-2">
     <div class="pl-0">
       <h1 class="h4">エピソード編集</h1>
-      <%#= render 'layouts/errors', obj: @episode %>
+      <%= render 'layouts/error_messages', resource: @episode %>
     </div>
     <div class="col-12">
-    <%= render 'form', episode: @episode %>
+    <%= render 'form', episode: @episode, categories: @categories %>
     </div>
   </div>
 </div>

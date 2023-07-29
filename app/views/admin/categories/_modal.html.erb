@@ -1,0 +1,17 @@
+<span type="button" data-toggle="modal" data-target="#deleteCategory" class='btn btn-danger px-3'>
+  削除
+</span>
+
+<div class="modal fade" id="deleteCategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        このカテゴリーを削除しますか？
+      </div>
+      <div class="modal-footer border-0">
+        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">戻る</button>
+        <%= link_to  "削除する", admin_category_path(category), method: :delete, class: "btn btn-sm btn-danger" %>
+      </div>
+    </div>
+  </div>
+</div>

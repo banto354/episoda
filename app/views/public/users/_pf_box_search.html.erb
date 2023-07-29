@@ -23,13 +23,18 @@
     </div>
     <div class="row align-items-center">
       <div class="col">
-        <%= link_to user_following_path(user.id) do %>
-          <a class-"text-body font-weight-bold"><%= user.following.count %></a> <a class="text-muted">フォロー</a>
-        <% end %>
-        <br>
-        <%= link_to user_followers_path(user.id) do %>
-          <a class-"text-body font-weight-bold"><%= user.followers.count %></a> <a class="text-muted">フォロワー</a>
-        <% end %>
+        <!--フォロイーカウント-->
+        <div class="ml-3 mt-1">
+          <div id="following-count-<%= user.id %>">
+            <%= render 'public/relationships/following_count', user: user %>
+          </div>
+        </div>
+        <!--フォロワーカウント-->
+        <div class="ml-3 mt-1">
+          <div id="followers-count-<%= user.id %>">
+            <%= render 'public/relationships/followers_count', user: user %>
+          </div>
+        </div>
       </div>
     </div>
     <!--フォローボタン-->

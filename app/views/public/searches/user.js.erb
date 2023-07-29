@@ -1,0 +1,2 @@
+$('.search-user').append('<%= escape_javascript(render 'user', users: @users) %>');
+$('#another-user').replaceWith('<%= escape_javascript(link_to_next_page(@users, 'もっと見る', params: { type: :user }, :param_name => 'user_page', remote: true, class: 'text-body stretched-link', id: 'another-user')) %>');

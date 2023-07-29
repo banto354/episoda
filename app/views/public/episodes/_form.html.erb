@@ -17,28 +17,26 @@
     </div>
 
     <div class="form-group row mb-2">
-      <label class="col-md-3 col-form-label">カテゴリ</label>
+      <label class="col-lg-3 col-form-label">カテゴリ</label>
       <div class="col form-row">
-        <%#= f.collection_select :parent, Category.parents_i18n, :first, :last, prompt: true, id: 'category_parent_id' %>
-        <%#= f.collection_select :category_id, @categories, :id, :name, prompt: true, id: 'category_id' %>
         <%= f.fields_for :category_relations, episode.category_relations do |p| %>
-          <%= p.collection_select :category_id, categories, :id, :name, {prompt: '選択してください'}, class: 'form-control col-12 col-md-5' %>
+          <%= p.collection_select :category_id, categories, :id, :name, {prompt: '選択してください'}, class: 'form-control col-12 col-lg-5' %>
         <% end %>
       </div>
     </div>
 
     <div class="form-group row mb-2">
-      <label class="col-md-3 col-form-label">公開設定</label>
+      <label class="col-lg-3 col-form-label">公開設定</label>
       <div class="col form-row">
-        <%= f.select :visibility, Episode.visibilities_i18n.invert, {prompt: '選択してください'}, class: 'form-control col-12 col-md-5' %>
+        <%= f.select :visibility, Episode.visibilities_i18n.invert, {}, class: 'form-control col-12 col-lg-5' %>
       </div>
     </div>
 
     <div class="form-group row mt-4">
-      <div class="col d-flex justify-content-md-center justify-content-end mx-auto">
+      <div class="col d-flex justify-content-lg-center justify-content-end mx-auto">
         <!--"新規作成"と"編集"で表示を変更-->
-        <% button_text = (action_name == 'new' ? '新規登録' : '変更を保存') %>
-        <% button_class = (action_name == 'new' ? 'btn btn-outline-primary px-4' : 'btn btn-success px-4') %>
+        <% button_text = (params[:action] == 'new' || params[:action] == 'create' ? '新規登録' : '変更を保存') %>
+        <% button_class = (params[:action] == 'new' || params[:action] == 'create' ? 'btn btn-outline-primary px-4' : 'btn btn-primary px-4') %>
         <%= f.submit button_text, class: button_class %>
       </div>
     </div>

@@ -1,0 +1,2 @@
+$('#favourite-episode').append('<%= escape_javascript(render 'public/searches/episode', episodes: @episodes) %>');
+$('.another-favourite').replaceWith('<%= escape_javascript(link_to_next_page(@episodes, 'もっとみる', remote: true, class: 'text-body stretched-link', id: 'another-favourite')) %>');

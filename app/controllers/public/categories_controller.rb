@@ -9,10 +9,11 @@ class Public::CategoriesController < ApplicationController
     # レスポンスを返す
     respond_to do |format|
       format.json { render json: @subcategories }
-    end    
+    end
   end
-  
+
   def show
+    @categories = Category.all
     @category = Category.find(params[:id])
     @episodes = @category.episodes.page(params[:page]).per(10)
   end

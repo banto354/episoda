@@ -2,20 +2,23 @@
   <h1 class="h4">
       <%= user.name %>さんの投稿一覧
   </h1>
+  <!--投稿履歴チェック-->
   <% if episodes.empty? %>
-    <h2>現在投稿はありません</h2>
+    <h2 class="h4">現在、投稿されたエピソードはありません</h2>
+  <!--公開ステータスチェック  -->
   <% elsif user.is_public == false %>
-    <h2>このユーザーの投稿は公開されていません</h2>
+    <h2 class="h4">このユーザーの投稿は公開されていません</h2>
   <% end %>
-  <div>
 
+  <div id="user-episodes">
+    <%= render "public/episodes/episodes", episodes: episodes %>
   </div>
-  <div>
-    <% episodes.each do |episode| %>
-      <%= render "public/episodes/ep_box", episode: episode, user: user %>
+  <!--一定数以上の投稿でページネーション表示-->
+  <div class="row justify-content-center">
+    <% unless @episodes.count < 5 %>
+      <div class="col-2 text-center border rounded-pill p-2">
+        <%= link_to_next_page @episodes, 'もっとみる', remote: true, params: { type: :episode }, :param_name => 'episode_page', class: 'another-episode text-body stretched-link' %>
+      </div>
     <% end %>
-  </div>
-  <div class="pagination d-flex justify-content-center mb-4">
-    <%= paginate episodes %>
   </div>
 </div>

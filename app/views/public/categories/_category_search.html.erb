@@ -1,16 +1,16 @@
-<table class="table table-bordered text-center">
-  <tr>
-    <th>カテゴリー</th>
-  </tr>
-  <tr>
-    <td>
-      <div class="d-flex flex-column">
-        <% @categories.each do |category| %>
-          <%#= link_to items_path(genre_id: genre.id), class: "text-dark pt-lg-3 pt-sm-2 pt-1" do %>
-            <p><%= link_to category.name, category_path(category), class: "text-body" %></p>
-          <%# end %>
-        <% end %>
-      </div>
-    </td>
-  </tr>
+<table class="table table-bordered text-lg-center rounded">
+  <thead>
+    <tr>
+      <th>カテゴリー</th>
+    </tr>
+  </thead>
+  <tbody>
+      <td>
+        <div class="d-flex flex-lg-column flex-wrap">
+            <% @categories.each do |category| %>
+              <p><%= link_to category.name, category_path(category), class: "text-body mx-4 mx-lg-1" %></p>
+            <% end %>
+        </div>
+      </td>
+  </tbody>
 </table>
