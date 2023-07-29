@@ -3,7 +3,9 @@
     <!--左ブロック-->
       <div class="col-lg-2">
         <div class="d-none d-lg-block">
+          <%= link_to user_path(episode.user) do %>
            <%= image_tag user.get_profile_image(150, 150), class: 'rounded-circle img-fluid img-thumbnail mx-2 my-2' %>
+          <% end %>
         </div>
       </div>
     <!--真ん中ブロック-->

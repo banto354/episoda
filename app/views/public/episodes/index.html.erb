@@ -11,7 +11,7 @@
       <!--フォローアカウントのエピソード-->
       <h1 class="h4 mt-5">フォロー中</h1>
       <div class="d-flex flex-nowrap" style="overflow-x: auto;">
-        <% if @episodes_following.nil? %>
+        <% if @episodes_following.empty? %>
           <!--該当データなし-->
           <div class="col mt-4">
             <p>現在投稿されたエピソードはありません。</p>
