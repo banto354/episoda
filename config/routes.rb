@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     resources :categories, only: [:show]
     get '/categories/subcategories' => 'categories#subcategories'
     get '/tag/:name', to: "episodes#hashtag"
+    get '/favourites/index' => 'favourites#index', as: 'favourites_index'
   end
 
   namespace :admin do
