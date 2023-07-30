@@ -9,6 +9,9 @@
     <div class="col-8 d-flex flex-column">
       <%= link_to user.name, user_path(episode.user), class: "underline text-body" %>
       <p class="text-muted">@<%= link_to user.username, user_path(episode.user), class: "text-muted" %></p>
+      <div class="user_introduction">
+        <small><%= simple_format(user.introduction) %></small><br>
+      </div>
     </div>
   </div>
   <!--中段-->
