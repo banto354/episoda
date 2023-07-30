@@ -19,7 +19,7 @@
                     <!--削除ボタン-->
                     <td class="col-1">
                       <% if comment.user == current_user || admin_signed_in?%>
-                        <%= render 'public/comments/modal', comment: comment %>
+                        <%= render 'admin/comments/modal', comment: comment %>
                       <% end %>
                     </td>
                 </tr>
