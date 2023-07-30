@@ -62,13 +62,13 @@ class Public::EpisodesController < ApplicationController
 
   def destroy
     episode = Episode.find(params[:id])
-    byebug
     episode.destroy
     redirect_to user_path(current_user)
   end
 
   def hashtag
     @user = current_user
+
     @tag = Tag.find_by(name: params[:name])
     @episodes = @tag.episodes.page(params[:page]).per(6)
   end
