@@ -1,5 +1,6 @@
 class Public::CommentsController < ApplicationController
   before_action :authenticate_user!, except: [:top, :about]
+  before_action :is_matching_login_user, only: [:destroy]
   def create
     # コメント保存
     comment = Comment.new(comment_params)
@@ -35,4 +36,11 @@ class Public::CommentsController < ApplicationController
     params.require(:comment).permit(:content)
   end
 
+  def is_matching_login_user
+    comment = Comment.find(params[:id])
+    unless comment.user == current_user
+      flash[:alert] = "ユーザーが一致しません"
+      redirect_to user_path(current_user)
+    end
+  end
 end

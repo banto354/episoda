@@ -1,5 +1,6 @@
 class Public::EpisodesController < ApplicationController
   before_action :authenticate_user!
+  before_action :is_matching_login_user, only: [:edit, :update, :destroy]
   before_action :is_public?, only: [:show]
 
   def index
@@ -83,7 +84,7 @@ class Public::EpisodesController < ApplicationController
     episode = Episode.find(params[:id])
     unless episode.user.id == current_user.id
       flash[:alert]="ユーザーが一致しません"
-      redirect_to user_path(current_user.id)
+      redirect_to user_path(current_user)
     end
   end
 

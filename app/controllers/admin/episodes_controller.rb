@@ -1,4 +1,6 @@
 class Admin::EpisodesController < ApplicationController
+  before_action :authenticate_admin!
+  
   def index
     @episodes = Episode.page(params[:page]).per(10)
   end
