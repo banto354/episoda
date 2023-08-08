@@ -5,7 +5,8 @@ class Public::SearchesController < ApplicationController
     # ユーザー検索結果から検索者を除外
     @users = @users.where.not(id: current_user.id) unless current_user.nil?
 
-    @episodes = Episode.where("title LIKE ?", "%#{@query}%").page(params[:episode_page]).per(6)
+    episodes = Episode.where("title LIKE ?", "%#{@query}%")
+    @episodes = episodes.where(visibility: 0).page(params[:episode_page]).per(6)
     # 'もっとみる'ページネーション設定
     return unless request.xhr?
 
