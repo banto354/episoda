@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  before_action :is_matching_login_user, only: [:edit, :update]
   before_action :prevent_logged_in_user, only: [:new_session]
 
 
