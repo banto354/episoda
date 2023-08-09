@@ -12,6 +12,13 @@ class Public::EpisodesController < ApplicationController
 
   def show
     @episode = Episode.find(params[:id])
+    # 非公開投稿へのアクセス制限
+    if @episode.visibility == Episode.visibilities.key(1)
+      unless @episode.user == current_user
+        flash[:alert] = "ユーザーが一致しません"
+        redirect_to user_path(current_user)
+      end
+    end
     @comments = @episode.comments
     @categories = @episode.categories
     # 閲覧数カウント（3時間以内の同一ユーザーの閲覧はカウントしない）
