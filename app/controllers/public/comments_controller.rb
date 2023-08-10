@@ -15,7 +15,7 @@ class Public::CommentsController < ApplicationController
         notification = CommentNotification.with(comment: @comment)
         notification.deliver(@episode.user)
       end
-      # flash[:notice] = "コメントを投稿しました"
+      flash[:notice] = "コメントを投稿しました"
     else
       render :error_messages
     end
@@ -28,7 +28,7 @@ class Public::CommentsController < ApplicationController
     @comments = Comment.where(episode_id: params[:episode_id])
     @episode = Episode.find(params[:episode_id])
     @comment_new = Comment.new
-    flash[:success] = "コメントを削除しました"
+    flash[:notice] = "コメントを削除しました"
     redirect_to episode_path(comment.episode)
   end
 
