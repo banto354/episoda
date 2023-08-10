@@ -19,15 +19,15 @@
                     <!--削除ボタン-->
                     <td class="col-1">
                       <% if comment.user == current_user || admin_signed_in?%>
-                        <%= render 'admin/comments/modal', comment: comment %>
+                        <%= render 'public/comments/modal', comment: comment %>
                       <% end %>
                     </td>
                 </tr>
             <% end %>
         </tbody>
     </table>
+    <!--非同期通信エラー発生時のエラー表示-->
     <div id="comments-error">
-      <%= render 'layouts/error_messages', resource: comment_new %>
     </div>
     <!--comment form-->
     <% if user_signed_in? %>

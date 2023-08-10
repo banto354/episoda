@@ -12,7 +12,6 @@
       </div>
       <div class="modal-footer border-0">
         <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">戻る</button>
-        <% byebug %>
           <%= link_to  "削除する", admin_signed_in? ? admin_episode_comment_path(comment.id, episode_id: comment.episode_id) : episode_comment_path(comment.id, episode_id: comment.episode_id), method: "delete" , class: "btn btn-sm btn-danger" %>
       </div>
     </div>
