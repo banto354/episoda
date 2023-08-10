@@ -26,10 +26,13 @@
             <% end %>
         </tbody>
     </table>
+    <div id="comments-error">
+      <%= render 'layouts/error_messages', resource: comment_new %>
+    </div>
     <!--comment form-->
     <% if user_signed_in? %>
       <div class="row mt-3">
-          <%= form_with model: Comment.new, url: episode_comments_path(episode), local: false, class: "col-10" do |f| %>
+          <%= form_with model: comment_new, url: episode_comments_path(episode), local: false, class: "col-10" do |f| %>
               <div class="d-flex col-12 mb-4">
                   <%= f.text_area :content, class:"form-control" %>
               </div>
