@@ -1,18 +1,18 @@
-<div type="button" data-toggle="modal" data-target="#deleteModal">
+<div type="button" data-toggle="modal" data-target="#delete-comment">
   <span data-toggle="tooltip" title="削除">
     <i class="fa-solid fa-trash-can" style="color: #ea3e3e;"></i>
   </span>
 </div>
 
-<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="delete-comment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-body">
-        このエピソードを削除しますか？
+        このコメントを削除しますか？
       </div>
       <div class="modal-footer border-0">
         <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">戻る</button>
-          <%= link_to  "削除する", admin_signed_in? ? admin_episode_comment_path(comment.id, episode_id: comment.episode_id) : episode_comment_path(comment.id, episode_id: comment.episode_id), method: "delete" , class: "btn btn-sm btn-danger" %>
+          <%= link_to  "削除する", admin_signed_in? ? admin_episode_comment_path(comment.id, episode_id: comment.episode_id) : episode_comment_path(comment.id, episode_id: comment.episode_id), method: "delete", remote: true, class: "btn btn-sm btn-danger" %>
       </div>
     </div>
   </div>
