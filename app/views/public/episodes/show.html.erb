@@ -30,7 +30,7 @@
               </div>
               <!--削除アイコン-->
               <div class="col-1">
-                <div type="button" data-toggle="modal" data-target="#deleteModal">
+                <div type="button" data-toggle="modal" data-target="#delete-episode">
                   <span data-toggle="tooltip" title="top">
                     <i class="fa-solid fa-trash-can fa-lg" style="color: #ea3e3e;"></i>
                   </span>
@@ -71,7 +71,7 @@
       <div class="row mt-5">
         <div class="col">
           <h2 class="h4 mt-3 mb-2">コメント</h2>
-          <%= render "public/comments/comments_area", comments: @comments, episode: @episode %>
+          <%= render "public/comments/comments_area", comments: @comments, comment_new: @comment_new, episode: @episode %>
         </div>
       </div>
     </div>

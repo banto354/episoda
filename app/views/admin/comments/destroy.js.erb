@@ -1,1 +1,4 @@
-$(".comment").html("<%= j(render 'admin/comments/comments_area', comments: @comments, episode: @episode ) %>");
+$(".comment").html("<%= j(render 'public/comments/comments_area', comments: @comments, episode: @episode ) %>");
+$("#flash-message").html("<%= j(render 'layouts/flash_message') %>");
+$(".modal-backdrop").remove();
+$("body").removeClass("modal-open");

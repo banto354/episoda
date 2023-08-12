@@ -13,7 +13,7 @@ class Episode < ApplicationRecord
   enum visibility: { to_public: 0, to_myself: 1 }
 
   with_options presence: true do
-    validates :title
+    validates :title, length: { maximum: 50 }
     validates :content
     validates :visibility
   end

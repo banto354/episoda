@@ -37,6 +37,7 @@ ja:
         tag: "タグ"
         category: "カテゴリー"
         category_relation: "カテゴリー"
+        comment: "コメント"
       attributes:
         user:
           name: "名前"
@@ -47,3 +48,5 @@ ja:
           content: "内容"
         category:
           name: "カテゴリー名"
+        comment:
+          content: "コメント内容"

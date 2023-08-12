@@ -19,17 +19,20 @@
                     <!--削除ボタン-->
                     <td class="col-1">
                       <% if comment.user == current_user || admin_signed_in?%>
-                        <%= render 'admin/comments/modal', comment: comment %>
+                        <%= render 'public/comments/modal', comment: comment %>
                       <% end %>
                     </td>
                 </tr>
             <% end %>
         </tbody>
     </table>
+    <!--非同期通信投稿エラー発生時のエラー表示-->
+    <div id="comments-error">
+    </div>
     <!--comment form-->
     <% if user_signed_in? %>
       <div class="row mt-3">
-          <%= form_with model: Comment.new, url: episode_comments_path(episode), local: false, class: "col-10" do |f| %>
+          <%= form_with model: comment_new, url: episode_comments_path(episode), local: false, class: "col-10" do |f| %>
               <div class="d-flex col-12 mb-4">
                   <%= f.text_area :content, class:"form-control" %>
               </div>
