@@ -35,6 +35,7 @@ class ApplicationController < ActionController::Base
   def is_active?
     if user_signed_in?
       unless current_user.active_for_authentication?
+        flash[:alert] = "このアカウントは退会済みです。アカウントを登録し直してください"
         redirect_to root_path
       end
     end
