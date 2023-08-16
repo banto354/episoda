@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     flash[:notice] = "ログインしました"
     if current_user
-      episodes_path(current_user.id)
+      episodes_path
     else
       admin_users_path
     end
