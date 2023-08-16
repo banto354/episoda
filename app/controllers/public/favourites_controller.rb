@@ -3,7 +3,7 @@ class Public::FavouritesController < ApplicationController
 
   def index
     user = User.find(current_user.id)
-    @episodes = user.favourite_episodes.page(params[:page]).per(6)
+    @episodes = user.favourite_episodes.order("favourites.created_at DESC").page(params[:page]).per(6)
   end
 
   def create

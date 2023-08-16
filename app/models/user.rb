@@ -55,6 +55,11 @@ class User < ApplicationRecord
     email == GUEST_USER_EMAIL
   end
 
+  # ユーザーの有効性を検証
+  def active_for_authentication?
+    super && (self.is_active == true)
+  end
+
   # def image_size_validation
   #   if image.attached?
   #     if image.blob.byte_size > 1.megabytes
