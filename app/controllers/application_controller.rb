@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :prevent_logged_in_user, only: [:new_session]
-
+  before_action :is_active?
 
 
   def after_sign_in_path_for(resource)
@@ -31,4 +31,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # 退会処理済みユーザーをトップページへと戻す
+  def is_active?
+    if user_signed_in?
+      unless current_user.active_for_authentication?
+        redirect_to root_path
+      end
+    end
+  end
 end
