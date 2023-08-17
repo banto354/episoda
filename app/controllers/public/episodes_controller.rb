@@ -6,7 +6,7 @@ class Public::EpisodesController < ApplicationController
   def index
     following_user_ids = current_user.following.pluck(:id)
     @episodes_following = Episode.where(user_id: following_user_ids).order("created_at DESC").limit(10)
-    @episodes = Episode.where(visibility: 0).order("RANDOM()").limit(40).page(params[:page]).per(5)
+    @episodes = Episode.where(visibility: 0).order("RAND()").limit(40).page(params[:page]).per(5)
     @categories = Category.all
   end
 
