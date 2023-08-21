@@ -1,16 +1,17 @@
 <!--お知らせ-->
 <li class="nav-link">
-  <% if current_user.notifications.unread.exists? %>
-    <!--新規通知あり-->
-    <%= link_to notifications_path, class: "nav-link", data: { toggle: "tooltip", placement: "top" }, title: "お知らせ" do %>
-      <i class="fa-regular fa-bell fa-lg" style="color: #f05656;"></i>
-    <% end %>
-  <% else %>
-    <!--新規通知なし-->
-    <%= link_to notifications_path, class: "nav-link", data: { toggle: "tooltip", placement: "top" }, title: "お知らせ" do %>
-      <i class="fa-regular fa-bell fa-lg"></i>
-    <% end %>
-  <% end %>
+    <a type="button" data-toggle="modal" data-target="#notifications-modal" href="/notifications">
+      <span class="nav-link" data-toggle="tooltip" title="お知らせ">
+        <!--新規通知あり-->
+        <% if current_user.notifications.unread.exists? %>
+          <i class="fa-regular fa-bell fa-lg" style="color: #f05656;"></i>
+        <!--新規通知なし-->
+        <% else %>
+          <i class="fa-regular fa-bell fa-lg"></i>
+        <% end %>
+      </span>
+    </a>
+  <%= render 'public/notifications/modal'%>
 </li>
 <!--マイページ-->
 <li class="nav-link">

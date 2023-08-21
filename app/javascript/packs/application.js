@@ -15,6 +15,7 @@ import "popper.js";
 import "bootstrap";
 import "../stylesheets/application";
 import "profile_image.js";
+import "notification.js";
 
 Rails.start()
 Turbolinks.start()
