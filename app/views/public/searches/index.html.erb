@@ -8,10 +8,9 @@
     </div>
     <!--検索結果数に応じて"もっとみる"を表示-->
     <div class="row justify-content-center">
-      <% unless @users.count < 3 %>
-        <div class="col-4 col-lg-2 text-center border rounded-pill p-2">
-          <%= link_to_next_page @users, "もっとみる", remote: true, class: 'text-body stretched-link', params: { type: :user }, :param_name => 'user_page', id: 'another-user' %>
-        </div>
+      <% unless @users.last_page? %>
+        <%= link_to_next_page @users, "もっとみる", remote: true,
+        class: 'text-body stretched-link col-4 col-lg-2 text-center border rounded-pill p-2', params: { type: :user }, :param_name => 'user_page', id: 'another-user' %>
       <% end %>
     </div>
 
@@ -24,10 +23,9 @@
     </div>
     <!--検索結果数に応じて"もっとみる"を表示-->
     <div class="row justify-content-center">
-      <% unless @episodes.count < 6 %>
-        <div class="col-4 col-lg-2 text-center border rounded-pill p-2">
-          <%= link_to_next_page @episodes, 'もっとみる', remote: true, params: { type: :episode }, :param_name => 'episode_page', class: 'another-episode text-body stretched-link' %>
-        </div>
+      <% unless @episodes.last_page? %>
+        <%= link_to_next_page @episodes, 'もっとみる', remote: true, params: { type: :episode }, :param_name => 'episode_page',
+        class: 'another-episode text-body stretched-link col-4 col-lg-2 text-center border rounded-pill p-2' %>
       <% end %>
     </div>
   <% end %>

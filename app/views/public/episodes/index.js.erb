@@ -1,4 +1,4 @@
 $('#ep_random').append("<%= escape_javascript(render 'episodes', episodes: @episodes) %>")
 $("#another-link").replaceWith("<%= escape_javascript(
-  link_to_next_page(@episodes, 'もっと見る', remote: true, class: 'another-link text-body stretched-link', id: 'another-link')
+  link_to_next_page(@episodes, 'もっと見る', remote: true, class: 'another-link text-body stretched-link col-2 text-center border rounded-pill p-2', id: 'another-link')
 ) %>");
