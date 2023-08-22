@@ -7,10 +7,9 @@
     </div>
     <!--検索結果数に応じて"もっとみる"を表示-->
     <div class="row justify-content-center">
-      <% unless @episodes.count < 6 %>
+      <% unless @episodes.last_page? %>
         <div class="col-4 col-lg-2 text-center border rounded-pill p-2">
-          <%#= link_to_next_page @episodes, 'もっとみる', remote: true, class: 'text-body stretched-link', id: 'another-favourite' %>
-          <%= paginate @episodes %>
+          <%= link_to_next_page @episodes, 'もっとみる', remote: true, class: 'text-body stretched-link', id: 'another-favourite' %>
         </div>
       <% end %>
     </div>
