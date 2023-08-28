@@ -1,7 +1,7 @@
 class Public::SearchesController < ApplicationController
   def index
     @query = params[:query]
-    @users = User.where("name LIKE ?", "%#{@query}%").order("created_at DESC").page(params[:user_page]).per(3)
+    @users = User.where("name LIKE ?", "%#{@query}%").where.not(id: 4).order("created_at DESC").page(params[:user_page]).per(3)
     # ユーザー検索結果から検索者を除外
     @users = @users.where.not(id: current_user.id) unless current_user.nil?
 

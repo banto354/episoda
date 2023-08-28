@@ -1,6 +1,6 @@
 <!--お知らせ-->
 <li class="nav-link">
-  <% if current_user.notifications.unread.exists? %>
+  <% if current_user.notifications.unread.where('created_at >= ?', 7.days.ago).exists? %>
     <!--新規通知あり-->
     <%= link_to notifications_path, class: "nav-link", data: { toggle: "tooltip", placement: "top" }, title: "お知らせ" do %>
       <i class="fa-regular fa-bell fa-lg" style="color: #f05656;"></i>
