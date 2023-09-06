@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # To deliver this notification:
 #
 # RelationshipNotification.with(post: @post).deliver_later(current_user)
@@ -26,9 +28,9 @@ class RelationshipNotification < Noticed::Base
     }
   end
   #
-   def url
-   {
-     user: user_path(params[:follower])
-   }
-   end
+  def url
+    {
+      user: user_path(params[:follower])
+    }
+  end
 end

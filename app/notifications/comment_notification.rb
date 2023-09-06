@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # To deliver this notification:
 #
 # CommentNotification.with(post: @post).deliver_later(current_user)
@@ -13,13 +15,13 @@ class CommentNotification < Noticed::Base
 
   # Add required params
   #
-   param :comment
+  param :comment
 
   # Define helper methods to make rendering easier.
   #
   def message
     {
-      user: params[:comment].user.name, 
+      user: params[:comment].user.name,
       episode: params[:comment].episode.title
     }
   end

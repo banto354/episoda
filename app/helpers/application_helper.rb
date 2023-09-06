@@ -7,6 +7,5 @@ module ApplicationHelper
     elsif obj == "alert"
       alert = "danger"
     end
-    return alert
   end
 end
