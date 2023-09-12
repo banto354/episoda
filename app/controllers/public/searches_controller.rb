@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Public::SearchesController < ApplicationController
   def index
     @query = params[:query]
@@ -11,9 +13,8 @@ class Public::SearchesController < ApplicationController
     return unless request.xhr?
 
     case params[:type]
-    when 'user', 'episode'
+    when "user", "episode"
       render "#{params[:type]}"
     end
   end
-
 end

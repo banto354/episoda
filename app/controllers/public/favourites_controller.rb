@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Public::FavouritesController < ApplicationController
   before_action :authenticate_user!
 
@@ -27,5 +29,4 @@ class Public::FavouritesController < ApplicationController
     favourite = Favourite.find_by(user_id: current_user.id, episode_id: params[:episode_id])
     favourite.destroy
   end
-
 end

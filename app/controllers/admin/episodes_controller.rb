@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class Admin::EpisodesController < ApplicationController
   before_action :authenticate_admin!
-  
+
   def index
     @episodes = Episode.page(params[:page]).per(10)
   end
@@ -38,12 +40,12 @@ class Admin::EpisodesController < ApplicationController
     episode.destroy
     redirect_to admin_user_path(user)
   end
+
   private
+    def episode_params
+      params.require(:episode).permit(:title, :content, :visibility, :group_id, category_relations_attributes: [:category_id])
+    end
 
-  def episode_params
-    params.require(:episode).permit(:title, :content, :visibility, :group_id, category_relations_attributes: [:category_id])
-  end
-
-  def is_matching_login_user
-  end
+    def is_matching_login_user
+    end
 end
