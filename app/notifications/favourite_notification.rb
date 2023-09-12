@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # To deliver this notification:
 #
 # FavourtiteNotification.with(post: @post).deliver_later(current_user)
@@ -6,7 +8,7 @@
 class FavouriteNotification < Noticed::Base
   # Add your delivery methods
   #
-   deliver_by :database
+  deliver_by :database
   # deliver_by :email, mailer: "UserMailer"
   # deliver_by :slack
   # deliver_by :custom, class: "MyDeliveryMethod"
@@ -22,15 +24,15 @@ class FavouriteNotification < Noticed::Base
   # end
   def message
     {
-      user: params[:favourite].user.name, 
+      user: params[:favourite].user.name,
       episode: params[:favourite].episode.title
     }
   end
-  
-   def url
-     {
-     user: user_path(params[:favourite].user),
-     episode: episode_path(params[:favourite].episode)       
-     }
-   end
+
+  def url
+    {
+      user: user_path(params[:favourite].user),
+      episode: episode_path(params[:favourite].episode)
+    }
+  end
 end

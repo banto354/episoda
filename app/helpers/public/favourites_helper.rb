@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Public::FavouritesHelper
   def episode_favourite_icon(episode, user)
     count = episode.favourites.count

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
   def bootstrap_alert(obj)
     if obj == "notice"
@@ -7,6 +9,6 @@ module ApplicationHelper
     elsif obj == "alert"
       alert = "danger"
     end
-    return alert
+    alert
   end
 end

@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class Admin::CategoriesController < ApplicationController
   before_action :authenticate_admin!
-  
+
   def index
     @categories = Category.all
     @category = Category.new
@@ -38,12 +40,11 @@ class Admin::CategoriesController < ApplicationController
 
 
   private
+    def category_params
+      params.require(:category).permit(:name, :parent)
+    end
 
-  def category_params
-    params.require(:category).permit(:name, :parent)
-  end
-
-  def is_matching_login_user
-    # 管理者ログインは認証済み
-  end
+    def is_matching_login_user
+      # 管理者ログインは認証済み
+    end
 end

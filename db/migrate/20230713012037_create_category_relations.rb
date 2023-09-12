@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateCategoryRelations < ActiveRecord::Migration[6.1]
   def change
     create_table :category_relations do |t|

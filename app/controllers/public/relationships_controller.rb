@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Public::RelationshipsController < ApplicationController
   before_action :authenticate_user!
   def create
@@ -7,7 +9,7 @@ class Public::RelationshipsController < ApplicationController
       notification = RelationshipNotification.with(follower: current_user)
       notification.deliver(relationship.followed)
     else
-      redirect_to request.referer #要チェック
+      redirect_to request.referer # 要チェック
     end
     @user = User.find(params[:user_id])
   end
@@ -27,10 +29,9 @@ class Public::RelationshipsController < ApplicationController
     @user = User.find(params[:user_id])
     @following = @user.following.page(params[:page]).per(30)
   end
+
   private
-
-  def relationship_params
-    params.require(:ralationship).permit(:follower_id, :followed_id)
-  end
-
+    def relationship_params
+      params.require(:ralationship).permit(:follower_id, :followed_id)
+    end
 end
