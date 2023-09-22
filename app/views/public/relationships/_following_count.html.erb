@@ -1,3 +1,3 @@
-<%= link_to following_users_path(user.id) do %>
+<%= link_to user_following_path(user.id) do %>
   <span class="text-body font-weight-bold"><%= user.following.count %></span><span class="text-muted"> フォロー</span>
 <% end %>

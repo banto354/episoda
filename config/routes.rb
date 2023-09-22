@@ -20,10 +20,8 @@ Rails.application.routes.draw do
     get "users/check" => "users#check", as: "check_user"
     resources :users, only: [:show, :edit, :update] do
       resource :relationships, only: [:create, :destroy]
-      collection do
-        get "followers"
-        get "following"
-      end
+      get 'followers' => 'relationships#followers', as: 'followers'
+      get 'following' => 'relationships#following', as: 'following'
     end
     resources :episodes, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
       resource :favourite, only: [:create, :destroy]
